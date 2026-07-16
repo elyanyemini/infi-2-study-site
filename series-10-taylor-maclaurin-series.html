@@ -159,7 +159,7 @@ window.MathJax = {
       <p class="step">מתחילים מהטור ההנדסי \(\frac{1}{1-t}=\sum t^n\), ומציבים \(t=-x^2\):</p>
       <p class="step">$$\frac{1}{1-(-x^2)} = \sum_{n=0}^{\infty}(-x^2)^n = \sum_{n=0}^{\infty}(-1)^n x^{2n}$$</p>
       <p class="step">כלומר:</p>
-      <p class="step">$$\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \dots \qquad (-1<x<1)$$</p>
+      <p class="step">$$\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \dots \qquad (-1\lt x\lt 1)$$</p>
     </div>
   </div>
 
@@ -223,9 +223,9 @@ window.MathJax = {
     <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
     <div class="answer">
       <p class="step">עבור \(e^x\), כל הנגזרות הן \(e^x\), אז \(f^{(4)}(c)=e^c\). כאן \(a=0,\ x=0.5,\ k=3\):</p>
-      <p class="step">$$|R_3(0.5)| = \frac{e^c}{4!}(0.5)^4, \qquad 0<c<0.5$$</p>
-      <p class="step">חוסמים את \(e^c\): מכיוון ש־\(c<0.5\), מתקיים \(e^c<e^{0.5}<2\). לכן:</p>
-      <p class="step">$$|R_3(0.5)| < \frac{2}{24}\cdot(0.5)^4 = \frac{2}{24}\cdot\frac{1}{16} = \frac{1}{192}\approx 0.0052$$</p>
+      <p class="step">$$|R_3(0.5)| = \frac{e^c}{4!}(0.5)^4, \qquad 0\lt c\lt 0.5$$</p>
+      <p class="step">חוסמים את \(e^c\): מכיוון ש־\(c\lt 0.5\), מתקיים \(e^c\lt e^{0.5}\lt 2\). לכן:</p>
+      <p class="step">$$|R_3(0.5)| \lt \frac{2}{24}\cdot(0.5)^4 = \frac{2}{24}\cdot\frac{1}{16} = \frac{1}{192}\approx 0.0052$$</p>
       <p class="step">אז הקירוב מדויק עד כדי כ־\(0.005\).</p>
     </div>
   </div>

@@ -112,7 +112,8 @@ window.MathJax = {
   <p>אם פונקציה \(f\) שווה לטור חזקות סביב נקודה \(a\), אז המקדמים נקבעים באופן יחיד על ידי הנגזרות של \(f\) בנקודה:</p>
 
   <div class="boxed">
-    $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n \qquad \text{— טור טיילור סביב } a$$
+    $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n$$
+    <div class="muted" style="text-align:center; margin-top:4px">טור טיילור סביב \(a\)</div>
   </div>
 
   <p>עבור \(a=0\) קוראים לזה <b>טור מקלורן</b>:</p>
@@ -158,7 +159,7 @@ window.MathJax = {
       <p class="step">מתחילים מהטור ההנדסי \(\frac{1}{1-t}=\sum t^n\), ומציבים \(t=-x^2\):</p>
       <p class="step">$$\frac{1}{1-(-x^2)} = \sum_{n=0}^{\infty}(-x^2)^n = \sum_{n=0}^{\infty}(-1)^n x^{2n}$$</p>
       <p class="step">כלומר:</p>
-      <p class="step">$$\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \dots \qquad (-1<x<1)$$</p>
+      <p class="step">$$\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \dots \qquad (-1\lt x\lt 1)$$</p>
     </div>
   </div>
 
@@ -205,7 +206,8 @@ window.MathJax = {
 
   <p>אם מקרבים את \(f\) בפולינום טיילור מסדר \(k\), השגיאה \(R_k(x)=f(x)-T_k(x)\) ניתנת בצורת לגראנז':</p>
   <div class="boxed">
-    $$R_k(x)=\frac{f^{(k+1)}(c)}{(k+1)!}(x-a)^{k+1}\qquad \text{עבור } c \text{ כלשהו בין } a \text{ ל־} x$$
+    $$R_k(x)=\frac{f^{(k+1)}(c)}{(k+1)!}(x-a)^{k+1}$$
+    <div class="muted" style="text-align:center; margin-top:4px">כאשר \(c\) היא נקודה כלשהי בין \(a\) ל־\(x\)</div>
   </div>
 
   <p>מכיוון ש־\(c\) לא ידועה, מחפשים <b>חסם עליון</b> לביטוי: מעריכים את הערך המקסימלי של \(|f^{(k+1)}(c)|\) על הטווח האפשרי של \(c\).</p>
@@ -221,9 +223,9 @@ window.MathJax = {
     <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
     <div class="answer">
       <p class="step">עבור \(e^x\), כל הנגזרות הן \(e^x\), אז \(f^{(4)}(c)=e^c\). כאן \(a=0,\ x=0.5,\ k=3\):</p>
-      <p class="step">$$|R_3(0.5)| = \frac{e^c}{4!}(0.5)^4, \qquad 0<c<0.5$$</p>
-      <p class="step">חוסמים את \(e^c\): מכיוון ש־\(c<0.5\), מתקיים \(e^c<e^{0.5}<2\). לכן:</p>
-      <p class="step">$$|R_3(0.5)| < \frac{2}{24}\cdot(0.5)^4 = \frac{2}{24}\cdot\frac{1}{16} = \frac{1}{192}\approx 0.0052$$</p>
+      <p class="step">$$|R_3(0.5)| = \frac{e^c}{4!}(0.5)^4, \qquad 0\lt c\lt 0.5$$</p>
+      <p class="step">חוסמים את \(e^c\): מכיוון ש־\(c\lt 0.5\), מתקיים \(e^c\lt e^{0.5}\lt 2\). לכן:</p>
+      <p class="step">$$|R_3(0.5)| \lt \frac{2}{24}\cdot(0.5)^4 = \frac{2}{24}\cdot\frac{1}{16} = \frac{1}{192}\approx 0.0052$$</p>
       <p class="step">אז הקירוב מדויק עד כדי כ־\(0.005\).</p>
     </div>
   </div>

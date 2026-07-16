@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינטגרלים · נושא 2 · אינטגרציה בחלקים</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · אינטגרלים</div>
+  <h1>נושא 2 — אינטגרציה בחלקים</h1>
+  <div class="sub">Integration by parts · הכלי למכפלות ולפונקציות "בודדות"</div>
+  <div class="progress">נושא <b>2</b> מתוך 5 · זמן קריאה משוער: כ־20 דקות</div>
+</header>
+
+<!-- ============ 1. הנוסחה ============ -->
+<section>
+  <h2><span class="num">1</span>מאיפה מגיעה הנוסחה?</h2>
+
+  <p>אינטגרציה בחלקים היא פשוט <b>כלל המכפלה של הגזירה, קרוא הפוך</b>. נזכיר:</p>
+  <p>$$(f\cdot g)' = f'g + f g'$$</p>
+  <p>אם נעביר אגפים ונבצע אינטגרל על שני הצדדים, נקבל את הנוסחה המרכזית:</p>
+
+  <div class="boxed">
+    $$\int f\,g'\,dx = f\,g - \int f'\,g\,dx$$
+  </div>
+
+  <div class="callout">
+    <span class="lead">מה בעצם עשינו כאן?</span>
+    לקחנו אינטגרל שקשה לחשב ישירות, והחלפנו אותו באינטגרל <b>אחר</b> (זה שמימין) שאמור להיות קל יותר. כל הרעיון: לבחור נכון מי \(f\) ומי \(g'\) כך שהאינטגרל החדש יהיה פשוט יותר מהמקורי.
+  </div>
+
+  <h3>הכלל לבחירה: מי \(f\) ומי \(g'\)?</h3>
+  <ul>
+    <li>\(f\) — הפונקציה ש<b>נגזור</b>. כדאי שתהיה כזו ש"מצטמצמת" כשגוזרים (כמו פולינום, שיורד בדרגה).</li>
+    <li>\(g'\) — הפונקציה ש<b>נבצע עליה אינטגרל</b>. חייבים לדעת לחשב את האינטגרל שלה בקלות.</li>
+  </ul>
+
+  <div class="callout tip">
+    <span class="lead">כלל אצבע — סדר עדיפויות ל־\(f\) (מי לגזור)</span>
+    לוגריתם ← פונקציה טריגונומטרית הפוכה (arc) ← פולינום ← מעריכי ← טריגונומטרי.
+    <br>מה שמופיע ראשון ברשימה — עדיף לבחור אותו כ־\(f\) (זה שגוזרים).
+  </div>
+</section>
+
+<!-- ============ 2. מתי ============ -->
+<section>
+  <h2><span class="num">2</span>שלושה מצבים שבהם משתמשים בבחלקים</h2>
+
+  <table class="tbl">
+    <tr><th>המצב</th><th>דוגמה טיפוסית</th><th>מה עושים</th></tr>
+    <tr><td>מכפלה של פולינום בפונקציה אחרת</td><td>\(\int x e^x\,dx\)</td><td>הפולינום הוא \(f\) (יורד בדרגה)</td></tr>
+    <tr><td>פונקציה "בודדת" בלי מכפלה</td><td>\(\int \ln x\,dx\)</td><td>חושבים עליה כ־\(1\cdot\ln x\), לוקחים \(g'=1\)</td></tr>
+    <tr><td>בחלקים חוזר (חילוץ אלגברי)</td><td>\(\int e^x\sin x\,dx\)</td><td>עושים פעמיים, מקבלים משוואה ומחלצים</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="lead">הטריק של הפונקציה ה"בודדת"</span>
+    את \(\int \ln x\,dx\), \(\int \arctan x\,dx\), \(\int \arcsin x\,dx\) לא יודעים לפתור ישירות. הפתרון: לכתוב אותן כמכפלה ב־1, ולקחת \(g'=1\) (כלומר \(g=x\)). ככה מתחילים בחלקים.
+  </div>
+</section>
+
+<!-- ============ 3. דוגמאות ============ -->
+<section>
+  <h2><span class="num">3</span>דוגמאות פתורות</h2>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · מכפלה בסיסית</span>
+    <p>חשב את \(\displaystyle\int x\,e^x\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">בוחרים את הפולינום לגזירה:</p>
+      <p class="step">$$f=x \;\Rightarrow\; f'=1 \qquad g'=e^x \;\Rightarrow\; g=e^x$$</p>
+      <p class="step">מציבים בנוסחה \(\int fg' = fg - \int f'g\):</p>
+      <p class="step">$$\int x e^x\,dx = x e^x - \int 1\cdot e^x\,dx$$</p>
+      <p class="step">האינטגרל שנשאר קל:</p>
+      <p class="step">$$= x e^x - e^x + C = e^x(x-1)+C$$</p>
+      <p class="step muted">שים לב: בזכות הבחירה, \(x\) נעלם (נגזר ל־1) והאינטגרל הפך לפשוט.</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · הפונקציה ה"בודדת"</span>
+    <p>חשב את \(\displaystyle\int \ln x\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">כותבים כ־\(1\cdot \ln x\) ובוחרים:</p>
+      <p class="step">$$f=\ln x \;\Rightarrow\; f'=\tfrac1x \qquad g'=1 \;\Rightarrow\; g=x$$</p>
+      <p class="step">מציבים:</p>
+      <p class="step">$$\int \ln x\,dx = x\ln x - \int \tfrac1x \cdot x\,dx = x\ln x - \int 1\,dx$$</p>
+      <p class="step">ומקבלים:</p>
+      <p class="step">$$= x\ln x - x + C$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · בחלקים פעמיים</span>
+    <p>חשב את \(\displaystyle\int x^2\cos x\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>סבב ראשון:</b> \(f=x^2,\ f'=2x,\ g'=\cos x,\ g=\sin x\):</p>
+      <p class="step">$$\int x^2\cos x\,dx = x^2\sin x - \int 2x\sin x\,dx$$</p>
+      <p class="step">הפולינום ירד מדרגה 2 לדרגה 1 — מתקדמים. נטפל ב־\(\int 2x\sin x\,dx\) בבחלקים שוב.</p>
+      <p class="step"><b>סבב שני:</b> \(f=2x,\ f'=2,\ g'=\sin x,\ g=-\cos x\):</p>
+      <p class="step">$$\int 2x\sin x\,dx = -2x\cos x - \int (-2\cos x)\,dx = -2x\cos x + 2\sin x$$</p>
+      <p class="step">מרכיבים הכל יחד (זהירות עם המינוס מהסבב הראשון):</p>
+      <p class="step">$$\int x^2\cos x\,dx = x^2\sin x - \big(-2x\cos x + 2\sin x\big) + C$$</p>
+      <p class="step">$$= x^2\sin x + 2x\cos x - 2\sin x + C$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · חילוץ אלגברי (הטריק החשוב)</span>
+    <p>חשב את \(\displaystyle I=\int e^x\sin x\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">כאן שום צד לא "מצטמצם" בגזירה, אבל נראה קסם. נסמן את האינטגרל \(I\).</p>
+      <p class="step"><b>סבב ראשון:</b> \(f=\sin x,\ f'=\cos x,\ g'=e^x,\ g=e^x\):</p>
+      <p class="step">$$I = e^x\sin x - \int e^x\cos x\,dx$$</p>
+      <p class="step"><b>סבב שני</b> על \(\int e^x\cos x\,dx\): \(f=\cos x,\ f'=-\sin x,\ g'=e^x,\ g=e^x\):</p>
+      <p class="step">$$\int e^x\cos x\,dx = e^x\cos x - \int e^x(-\sin x)\,dx = e^x\cos x + \int e^x\sin x\,dx$$</p>
+      <p class="step">שים לב: חזר האינטגרל המקורי \(I\)! מציבים בחזרה:</p>
+      <p class="step">$$I = e^x\sin x - \big(e^x\cos x + I\big) = e^x\sin x - e^x\cos x - I$$</p>
+      <p class="step">מעבירים אגפים — "מחלצים" את \(I\):</p>
+      <p class="step">$$2I = e^x\sin x - e^x\cos x \;\;\Rightarrow\;\; I = \frac{e^x(\sin x - \cos x)}{2}+C$$</p>
+      <p class="step muted">הטריק: כשבחלקים מחזירים אותך לאותו אינטגרל, מתייחסים אליו כאל נעלם ופותרים משוואה אלגברית. אל תשכח את ה־\(+C\) בסוף.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. שאלות הבנה ============ -->
+<section>
+  <h2><span class="num">4</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> באינטגרל \(\displaystyle\int x\ln x\,dx\), מי כדאי לבחור כ־\(f\) (מה שגוזרים), ולמה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>בוחרים \(f=\ln x\) (ולכן \(g'=x\)). הסיבה הכפולה: לפי סדר העדיפויות לוג קודם לפולינום, וגם — אנחנו פשוט <b>לא יודעים</b> לחשב אינטגרל של \(\ln x\) בתור \(g'\), אבל כן יודעים של \(x\). לכן \(\ln x\) חייב להיות זה שגוזרים.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> למה עבור \(\int \arctan x\,dx\) משתמשים בבחלקים למרות שאין שם מכפלה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כי \(\arctan x\) היא פונקציה "בודדת" שאין לה אינטגרל מיידי בטבלה. הטריק: כותבים אותה כ־\(1\cdot\arctan x\), לוקחים \(g'=1\) (כלומר \(g=x\)), ואז הגזירה של \(\arctan x\) נותנת \(\frac{1}{1+x^2}\) — ביטוי הרבה יותר נוח.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> באינטגרל \(\int e^x\cos x\,dx\), אחרי שני סבבי בחלקים חזרנו לאינטגרל המקורי. זו טעות?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>לא — זה בדיוק מה שאמור לקרות.</b> זה הסימן להשתמש בחילוץ אלגברי: מסמנים את האינטגרל ב־\(I\), מקבלים משוואה מהצורה \(I = (\dots) - I\), ומחלצים \(I\) על ידי העברת אגפים.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> בבחלקים על \(\int x^3 e^x\,dx\), כמה פעמים נצטרך להפעיל את השיטה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>שלוש פעמים.</b> כל סבב מוריד את דרגת הפולינום ב־1: מ־\(x^3\) ל־\(x^2\), ל־\(x\), ולבסוף לקבוע. כשהפולינום נעלם, האינטגרל הופך למיידי.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. תרגיל ============ -->
+<section>
+  <h2><span class="num">5</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>חשב את שני האינטגרלים הבאים:</p>
+    <p>א. \(\displaystyle\int x\sin x\,dx\) &nbsp;&nbsp;&nbsp; ב. \(\displaystyle\int x^2\ln x\,dx\)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> בוחרים \(f=x,\ f'=1,\ g'=\sin x,\ g=-\cos x\):</p>
+      <p class="step">$$\int x\sin x\,dx = -x\cos x - \int (-\cos x)\,dx = -x\cos x + \int\cos x\,dx$$</p>
+      <p class="step">$$= -x\cos x + \sin x + C$$</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> לפי סדר העדיפויות, הלוג נגזר: \(f=\ln x,\ f'=\tfrac1x,\ g'=x^2,\ g=\tfrac{x^3}{3}\):</p>
+      <p class="step">$$\int x^2\ln x\,dx = \frac{x^3}{3}\ln x - \int \frac{x^3}{3}\cdot\frac1x\,dx = \frac{x^3}{3}\ln x - \frac13\int x^2\,dx$$</p>
+      <p class="step">$$= \frac{x^3}{3}\ln x - \frac{x^3}{9} + C$$</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">איך לבדוק את עצמך</span>
+    גזור את התשובה שקיבלת. אם חוזרים לפונקציה שבתוך האינטגרל המקורי — הפתרון נכון. זו בדיקה מהירה ששווה לעשות במבחן.
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 2</span>
+  <span class="pill">הבא → נושא 3: שברים חלקיים</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · נושא 2 מתוך 5
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>חקירת פונקציות · נושא 11 · המתכון המלא</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  .progress .hot{color:var(--warn); font-weight:700;}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+  .recipe{counter-reset:step; list-style:none; padding-inline-start:0;}
+  .recipe li{position:relative; padding:10px 52px 10px 12px; margin:8px 0; background:var(--panel2); border-radius:10px; border:1px solid var(--line);}
+  .recipe li::before{
+    counter-increment:step; content:counter(step);
+    position:absolute; inset-inline-end:12px; top:50%; transform:translateY(-50%);
+    background:var(--accent); color:#0e1020; font-weight:800; width:30px; height:30px;
+    border-radius:8px; text-align:center; line-height:30px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · חקירת פונקציות</div>
+  <h1>נושא 11 — המתכון המלא לחקירת פונקציה</h1>
+  <div class="sub">תחום · אסימפטוטות · עלייה/ירידה · קמירות · שרטוט</div>
+  <div class="progress"><span class="hot">הנושא הכי נבחן במבחנים (31%)</span> · זמן קריאה משוער: כ־30 דקות</div>
+</header>
+
+<!-- ============ 1. המתכון ============ -->
+<section>
+  <h2><span class="num">1</span>המתכון הקבוע — שבעה שלבים</h2>
+
+  <p>כמעט כל מבחן פותח בחקירת פונקציה מלאה. הסוד הוא לעבוד לפי סדר קבוע, בלי לדלג. שנן את הרצף הזה:</p>
+
+  <ol class="recipe">
+    <li><b>תחום הגדרה</b> — היכן הפונקציה מוגדרת (לא לחלק ב־0, לא שורש של שלילי, לא \(\ln\) של אי-חיובי).</li>
+    <li><b>נקודות חיתוך וסימטריה</b> — חיתוך עם הצירים; זוגיות (\(f(-x)=f(x)\)) או אי-זוגיות (\(f(-x)=-f(x)\)).</li>
+    <li><b>אסימפטוטות</b> — אנכיות, אופקיות ומשופעות (ראה שלב מפורט בהמשך).</li>
+    <li><b>נגזרת ראשונה</b> — פותרים \(f'(x)=0\), בונים טבלת סימנים \(\to\) קטעי עלייה/ירידה ונקודות קיצון.</li>
+    <li><b>נגזרת שנייה</b> — פותרים \(f''(x)=0\), טבלת סימנים \(\to\) קמירות/קעירות ונקודות פיתול.</li>
+    <li><b>טבלה מסכמת</b> — מרכזים את כל המידע.</li>
+    <li><b>שרטוט</b> — מציירים לפי כל הנ"ל.</li>
+  </ol>
+</section>
+
+<!-- ============ 2. אסימפטוטות ============ -->
+<section>
+  <h2><span class="num">2</span>אסימפטוטות — שלושת הסוגים</h2>
+
+  <table class="tbl">
+    <tr><th>סוג</th><th>איך מוצאים</th><th>התוצאה</th></tr>
+    <tr><td>אנכית</td><td>נקודה \(x_0\) מחוץ לתחום שבה \(\lim_{x\to x_0}f=\pm\infty\)</td><td>הישר \(x=x_0\)</td></tr>
+    <tr><td>אופקית</td><td>\(\lim_{x\to\pm\infty}f(x)=L\) (סופי)</td><td>הישר \(y=L\)</td></tr>
+    <tr><td>משופעת</td><td>\(m=\lim_{x\to\infty}\frac{f(x)}{x}\), &nbsp; \(b=\lim_{x\to\infty}(f(x)-mx)\)</td><td>הישר \(y=mx+b\)</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="lead">אופקית או משופעת — לא שתיהן</span>
+    בכיוון נתון (\(+\infty\) או \(-\infty\)) יש או אסימפטוטה אופקית או משופעת, אף פעם לא שתיהן. אם קיים גבול סופי \(\to\) אופקית. אם הפונקציה שואפת לאינסוף אבל \(\frac{f}{x}\) שואף למספר סופי \(\ne0\) \(\to\) משופעת.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · מציאת אסימפטוטות</span>
+    <p>מצא את כל האסימפטוטות של \(f(x)=\dfrac{x^2}{x-1}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>אנכית:</b> המכנה מתאפס ב־\(x=1\). בודקים: \(\lim_{x\to1}\frac{x^2}{x-1}=\pm\infty\), אז \(x=1\) אסימפטוטה אנכית.</p>
+      <p class="step"><b>אופקית?</b> \(\lim_{x\to\infty}\frac{x^2}{x-1}=\infty\) — לא סופי, אז אין אופקית. בודקים משופעת.</p>
+      <p class="step"><b>משופעת:</b></p>
+      <p class="step">$$m=\lim_{x\to\infty}\frac{x^2}{x(x-1)}=\lim_{x\to\infty}\frac{x}{x-1}=1$$</p>
+      <p class="step">$$b=\lim_{x\to\infty}\left(\frac{x^2}{x-1}-x\right)=\lim_{x\to\infty}\frac{x^2-x(x-1)}{x-1}=\lim_{x\to\infty}\frac{x}{x-1}=1$$</p>
+      <p class="step">אז יש אסימפטוטה משופעת \(y=x+1\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. עלייה קמירות ============ -->
+<section>
+  <h2><span class="num">3</span>עלייה/ירידה, קיצון, קמירות</h2>
+
+  <div class="callout">
+    <span class="lead">נגזרת ראשונה — מונוטוניות וקיצון</span>
+    <ul>
+      <li>\(f'(x)>0\) בקטע \(\Leftarrow\) הפונקציה <b>עולה</b> שם; \(f'(x)<0\Rightarrow\) <b>יורדת</b>.</li>
+      <li>נקודה שבה \(f'\) מחליפה מ־\(+\) ל־\(-\) \(\Leftarrow\) <b>מקסימום מקומי</b>; מ־\(-\) ל־\(+\) \(\Leftarrow\) <b>מינימום מקומי</b>.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <span class="lead">נגזרת שנייה — קמירות ופיתול</span>
+    <ul>
+      <li>\(f''(x)>0\Rightarrow\) הפונקציה <b>קמורה</b> (חיוך, \(\smile\)); \(f''(x)<0\Rightarrow\) <b>קעורה</b> (זעף, \(\frown\)).</li>
+      <li>נקודה שבה \(f''\) מחליפה סימן \(\Leftarrow\) <b>נקודת פיתול</b>.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · עלייה/ירידה וקיצון</span>
+    <p>מצא את קטעי העלייה/ירידה ונקודות הקיצון של \(f(x)=x^3-3x\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">גוזרים: \(f'(x)=3x^2-3=3(x-1)(x+1)\). אפסים ב־\(x=\pm1\).</p>
+      <p class="step">טבלת סימנים של \(f'\):</p>
+      <p class="step">\(x<-1\): \(f'>0\) (עולה) &nbsp;|&nbsp; \(-1<x<1\): \(f'<0\) (יורדת) &nbsp;|&nbsp; \(x>1\): \(f'>0\) (עולה).</p>
+      <p class="step"><b>קיצון:</b> ב־\(x=-1\) המעבר \(+\to-\): מקסימום מקומי, \(f(-1)=2\). ב־\(x=1\) המעבר \(-\to+\): מינימום מקומי, \(f(1)=-2\).</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · קמירות ופיתול</span>
+    <p>לאותה פונקציה \(f(x)=x^3-3x\), מצא קמירות ונקודת פיתול.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נגזרת שנייה: \(f''(x)=6x\). מתאפסת ב־\(x=0\).</p>
+      <p class="step">\(x<0\): \(f''<0\) (קעורה) &nbsp;|&nbsp; \(x>0\): \(f''>0\) (קמורה).</p>
+      <p class="step">יש החלפת סימן ב־\(x=0\), אז זו <b>נקודת פיתול</b>: \((0,0)\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. דוגמה מלאה ============ -->
+<section>
+  <h2><span class="num">4</span>דוגמה מלאה — חקירה מקצה לקצה</h2>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · חקירה מלאה</span>
+    <p>חקור את \(f(x)=\dfrac{x^2}{x^2-1}\) (תחום, סימטריה, אסימפטוטות, עלייה/ירידה, קיצון).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>1. תחום:</b> המכנה \(x^2-1=(x-1)(x+1)\) מתאפס ב־\(x=\pm1\). התחום: \(x\ne\pm1\).</p>
+      <p class="step"><b>2. סימטריה:</b> \(f(-x)=\frac{x^2}{x^2-1}=f(x)\) — הפונקציה <b>זוגית</b> (סימטרית לציר \(y\)). חיתוך: ב־\(x=0\), \(f(0)=0\).</p>
+      <p class="step"><b>3. אסימפטוטות:</b></p>
+      <p class="step">אנכיות: \(x=1\) ו־\(x=-1\) (המכנה מתאפס, המונה לא).</p>
+      <p class="step">אופקית: \(\lim_{x\to\pm\infty}\frac{x^2}{x^2-1}=1\), אז \(y=1\).</p>
+      <p class="step"><b>4. נגזרת ראשונה:</b> לפי כלל המנה,</p>
+      <p class="step">$$f'(x)=\frac{2x(x^2-1)-x^2\cdot 2x}{(x^2-1)^2}=\frac{-2x}{(x^2-1)^2}$$</p>
+      <p class="step">המכנה תמיד חיובי, אז הסימן נקבע ע"י \(-2x\): עבור \(x<0\) הנגזרת חיובית (עולה), עבור \(x>0\) שלילית (יורדת).</p>
+      <p class="step"><b>קיצון:</b> \(f'=0\) ב־\(x=0\), מעבר \(+\to-\): מקסימום מקומי \(f(0)=0\).</p>
+      <p class="step muted">(שים לב: הזוגיות שראינו בשלב 2 עקבית עם התמונה — מקסימום על הציר, סימטריה מלאה.)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. שאלות ============ -->
+<section>
+  <h2><span class="num">5</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> \(f''(x_0)>0\). מה זה אומר על צורת הגרף בנקודה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>הפונקציה <b>קמורה</b> שם (צורת חיוך, \(\smile\)). אם בנוסף \(f'(x_0)=0\), זה מינימום מקומי.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> מתי מחפשים אסימפטוטה משופעת ולא אופקית?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כאשר \(\lim_{x\to\infty}f(x)=\pm\infty\) (אין גבול סופי, אז אין אופקית), אבל \(m=\lim\frac{f(x)}{x}\) קיים וסופי ושונה מ־0. אז יש משופעת \(y=mx+b\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> \(f'\) מחליפה סימן מ־\(-\) ל־\(+\) בנקודה. איזה סוג קיצון?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>מינימום מקומי.</b> הפונקציה ירדה ואז עלתה — יש "בור" בנקודה.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> אם \(f\) זוגית, מה זה חוסך בחקירה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>אפשר לחקור רק את \(x\ge0\) ולשקף לציר \(y\) — הכל סימטרי. גם: אם יש קיצון/אסימפטוטה בצד אחד, יש מקבילה בצד השני.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. תרגיל ============ -->
+<section>
+  <h2><span class="num">6</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>עבור \(f(x)=\dfrac{x}{x^2+1}\), מצא: תחום, סימטריה, אסימפטוטה אופקית, קטעי עלייה/ירידה ונקודות קיצון.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>תחום:</b> \(x^2+1>0\) תמיד, אז כל \(\mathbb{R}\).</p>
+      <p class="step"><b>סימטריה:</b> \(f(-x)=\frac{-x}{x^2+1}=-f(x)\) — <b>אי-זוגית</b> (סימטרית לראשית). חיתוך: \(f(0)=0\).</p>
+      <p class="step"><b>אסימפטוטה אופקית:</b> \(\lim_{x\to\pm\infty}\frac{x}{x^2+1}=0\), אז \(y=0\).</p>
+      <p class="step"><b>נגזרת ראשונה:</b></p>
+      <p class="step">$$f'(x)=\frac{(x^2+1)-x\cdot 2x}{(x^2+1)^2}=\frac{1-x^2}{(x^2+1)^2}$$</p>
+      <p class="step">הסימן נקבע ע"י \(1-x^2=(1-x)(1+x)\): שלילי עבור \(|x|>1\) (יורדת), חיובי עבור \(-1<x<1\) (עולה).</p>
+      <p class="step"><b>קיצון:</b> ב־\(x=-1\) מעבר \(-\to+\): מינימום, \(f(-1)=-\tfrac12\). ב־\(x=1\) מעבר \(+\to-\): מקסימום, \(f(1)=\tfrac12\).</p>
+      <p class="step muted">(עקבי עם אי-זוגיות: המינימום והמקסימום סימטריים סביב הראשית.)</p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 11</span>
+  <span class="pill">הבא → נושא 12: הוכחות משפטים (לגראנז', קושי, ערך ביניים)</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · חקירת פונקציות
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

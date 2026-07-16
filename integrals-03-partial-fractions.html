@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינטגרלים · נושא 3 · שברים חלקיים</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · אינטגרלים</div>
+  <h1>נושא 3 — שברים חלקיים</h1>
+  <div class="sub">אינטגרציה של פונקציות רציונליות \(\frac{p(x)}{q(x)}\)</div>
+  <div class="progress">נושא <b>3</b> מתוך 5 · זמן קריאה משוער: כ־25 דקות</div>
+</header>
+
+<!-- ============ 1. מבוא ============ -->
+<section>
+  <h2><span class="num">1</span>מתי משתמשים בשיטה?</h2>
+
+  <p>כשצריך לחשב אינטגרל של <b>מנת שני פולינומים</b>:</p>
+  <p>$$\int \frac{p(x)}{q(x)}\,dx$$</p>
+
+  <p>הרעיון המרכזי: אינטגרל של שבר מסובך קשה, אבל אם נפרק אותו ל<b>סכום של שברים פשוטים</b> — כל שבר קטן הופך לאינטגרל שאנחנו כבר יודעים (לוג או ארקטנגנס). כל השיטה היא איך מגיעים לפירוק הזה.</p>
+
+  <div class="callout tip">
+    <span class="lead">שלושת השלבים בקצרה</span>
+    <ol>
+      <li><b>חילוק פולינומים</b> — רק אם דרגת המונה \(\ge\) דרגת המכנה.</li>
+      <li><b>פירוק לשברים חלקיים</b> — מפרקים את השבר לסכום שברים פשוטים ומוצאים מקדמים.</li>
+      <li><b>אינטגרל איבר־איבר</b> — כל שבר פשוט הופך ללוג או ארקטנגנס.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 2. שלב 1 ============ -->
+<section>
+  <h2><span class="num">2</span>שלב 1 — חילוק פולינומים</h2>
+
+  <p>עושים את זה <b>רק</b> אם דרגת המונה גדולה או שווה לדרגת המכנה. מבצעים חילוק ארוך עד שהשארית מדרגה נמוכה מהמכנה, וכותבים:</p>
+  <p>$$\frac{p(x)}{q(x)} = (\text{פולינום}) + \frac{\text{שארית}}{q(x)}$$</p>
+
+  <div class="callout warn">
+    <span class="lead">למה זה הכרחי?</span>
+    שיטת השברים החלקיים עובדת רק כשהמונה מדרגה נמוכה מהמכנה (שבר "אמיתי"). אם המונה גדול מדי — חייבים קודם לחלק. הפולינום שיצא מהחילוק פשוט לאינטגרל, והשארית עוברת לשלב 2.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · חילוק לפני הכל</span>
+    <p>חשב את \(\displaystyle\int \frac{x^2}{x+1}\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">המונה מדרגה 2, המכנה מדרגה 1 — חייבים חילוק. מחלקים \(x^2\) ב־\(x+1\):</p>
+      <p class="step">$$\frac{x^2}{x+1} = x - 1 + \frac{1}{x+1}$$</p>
+      <p class="step muted">(בדיקה: \((x-1)(x+1)+1 = x^2-1+1 = x^2\). ✓)</p>
+      <p class="step">עכשיו אינטגרל איבר־איבר:</p>
+      <p class="step">$$\int\!\left(x-1+\frac{1}{x+1}\right)dx = \frac{x^2}{2} - x + \ln|x+1| + C$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. שלב 2 ============ -->
+<section>
+  <h2><span class="num">3</span>שלב 2 — הפירוק לשברים חלקיים</h2>
+
+  <h3>איך בונים את הפירוק</h3>
+  <p>קודם מפרקים את המכנה למכפלת גורמים. לכל סוג גורם יש "תבנית" שבר משלו:</p>
+
+  <table class="tbl">
+    <tr><th>גורם במכנה</th><th>השבר שמתאים לו</th></tr>
+    <tr><td>גורם ליניארי \((x+a)\)</td><td>\(\dfrac{A}{x+a}\)</td></tr>
+    <tr><td>גורם ליניארי בחזקה \((x+a)^k\)</td><td>\(\dfrac{A_1}{x+a}+\dfrac{A_2}{(x+a)^2}+\dots+\dfrac{A_k}{(x+a)^k}\)</td></tr>
+    <tr><td>ריבועי חסר שורש \((x^2+bx+c)\)</td><td>\(\dfrac{Ax+B}{x^2+bx+c}\)</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="lead">שתי מלכודות נפוצות</span>
+    <ul>
+      <li>גורם <b>בחזקה</b> \((x+a)^k\) — "רצים" על כל החזקות מ־1 עד \(k\), לא רק על \(k\).</li>
+      <li>גורם <b>ריבועי</b> חסר שורש — המונה חייב להיות מדרגה ראשונה \(Ax+B\), לא סתם קבוע.</li>
+    </ul>
+  </div>
+
+  <h3>איך מוצאים את המקדמים</h3>
+  <p>מכפילים את שני האגפים במכנה המשותף, ואז יש שתי דרכים (אפשר לשלב):</p>
+  <ul>
+    <li><b>הצבת ערכים נוחים של \(x\)</b> — בעיקר השורשים של המכנה, כדי לאפס איברים.</li>
+    <li><b>השוואת מקדמים</b> — משווים מקדמי \(x^2, x^1, x^0\) בשני האגפים.</li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · שני גורמים ליניאריים</span>
+    <p>חשב את \(\displaystyle\int \frac{1}{x^2-1}\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מפרקים את המכנה: \(x^2-1=(x-1)(x+1)\). תבנית הפירוק:</p>
+      <p class="step">$$\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}$$</p>
+      <p class="step">מכפילים במכנה המשותף:</p>
+      <p class="step">$$1 = A(x+1) + B(x-1)$$</p>
+      <p class="step">מציבים \(x=1\): &nbsp; \(1 = 2A \Rightarrow A=\tfrac12\).</p>
+      <p class="step">מציבים \(x=-1\): &nbsp; \(1 = -2B \Rightarrow B=-\tfrac12\).</p>
+      <p class="step">עכשיו אינטגרל איבר־איבר:</p>
+      <p class="step">$$\int\!\left(\frac{1/2}{x-1} - \frac{1/2}{x+1}\right)dx = \tfrac12\ln|x-1| - \tfrac12\ln|x+1| + C$$</p>
+      <p class="step">אפשר לאחד ללוג אחד:</p>
+      <p class="step">$$= \tfrac12\ln\left|\frac{x-1}{x+1}\right| + C$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · גורם בחזקה</span>
+    <p>חשב את \(\displaystyle\int \frac{x+3}{(x+1)^2}\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">גורם ליניארי בחזקה 2 — רצים על שתי החזקות:</p>
+      <p class="step">$$\frac{x+3}{(x+1)^2} = \frac{A}{x+1} + \frac{B}{(x+1)^2}$$</p>
+      <p class="step">מכפילים ב־\((x+1)^2\):</p>
+      <p class="step">$$x+3 = A(x+1) + B$$</p>
+      <p class="step">מציבים \(x=-1\): &nbsp; \(2 = B\). משווים מקדם של \(x\): &nbsp; \(1=A\).</p>
+      <p class="step">אינטגרל איבר־איבר (השני לפי כלל החזקה):</p>
+      <p class="step">$$\int\!\left(\frac{1}{x+1} + \frac{2}{(x+1)^2}\right)dx = \ln|x+1| - \frac{2}{x+1} + C$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. שלב 3 - גורם ריבועי ============ -->
+<section>
+  <h2><span class="num">4</span>שלב 3 — הגורם הריבועי (הכי מסובך)</h2>
+
+  <p>כשמופיע שבר \(\displaystyle\frac{Ax+B}{x^2+bx+c}\) עם מכנה ריבועי <b>חסר שורש</b>, מפרקים אותו לשני חלקים:</p>
+
+  <ol>
+    <li>מסדרים את המונה בצורה "<b>נגזרת המכנה + קבוע</b>".</li>
+    <li>החלק של "נגזרת המכנה חלקי המכנה" נותן \(\ln\) (תבנית \(\frac{f'}{f}\)).</li>
+    <li>החלק של "קבוע חלקי המכנה" — <b>משלימים לריבוע</b> את המכנה ומשתמשים בנוסחת הארקטנגנס.</li>
+  </ol>
+
+  <div class="callout">
+    <span class="lead">תזכורת מנושא 1</span>
+    $$\int \frac{f'(x)}{f(x)}\,dx = \ln|f(x)|+C \qquad\qquad \int \frac{dx}{x^2+a^2} = \frac1a\arctan\frac{x}{a}+C$$
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · מכנה ריבועי חסר שורש</span>
+    <p>חשב את \(\displaystyle\int \frac{x+1}{x^2+4}\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נגזרת המכנה היא \((x^2+4)'=2x\). מפצלים את המונה כדי "לייצר" אותה:</p>
+      <p class="step">$$\frac{x+1}{x^2+4} = \frac{x}{x^2+4} + \frac{1}{x^2+4}$$</p>
+      <p class="step"><b>החלק הראשון</b> — תבנית \(\frac{f'}{f}\) (עד כדי חצי, כי הנגזרת היא \(2x\)):</p>
+      <p class="step">$$\int \frac{x}{x^2+4}\,dx = \tfrac12\int\frac{2x}{x^2+4}\,dx = \tfrac12\ln(x^2+4)$$</p>
+      <p class="step"><b>החלק השני</b> — נוסחת ארקטנגנס עם \(a^2=4\), כלומר \(a=2\):</p>
+      <p class="step">$$\int \frac{1}{x^2+4}\,dx = \tfrac12\arctan\frac{x}{2}$$</p>
+      <p class="step">מחברים:</p>
+      <p class="step">$$\int \frac{x+1}{x^2+4}\,dx = \tfrac12\ln(x^2+4) + \tfrac12\arctan\frac{x}{2} + C$$</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">מחוץ לחומר הקורס</span>
+    גורם ריבועי בחזקה גבוהה מ־1 (כמו \(\frac{1}{(x^2+a^2)^2}\)) לא נדרש בקורס — לא צריך לדעת לטפל בו.
+  </div>
+</section>
+
+<!-- ============ 5. שאלות ============ -->
+<section>
+  <h2><span class="num">5</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> לפני שמפרקים לשברים חלקיים את \(\displaystyle\frac{x^3+2}{x^2-1}\), מה חייבים לעשות קודם?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>חילוק פולינומים</b>, כי דרגת המונה (3) גדולה מדרגת המכנה (2). רק אחרי שנשארת שארית מדרגה נמוכה מהמכנה מפרקים לשברים חלקיים.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> מהי תבנית הפירוק הנכונה עבור \(\displaystyle\frac{1}{(x-2)^2(x+3)}\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>$$\frac{A}{x-2} + \frac{B}{(x-2)^2} + \frac{C}{x+3}$$</p>
+      <p>הגורם \((x-2)^2\) מקבל שני שברים (רצים על שתי החזקות), והגורם הליניארי \((x+3)\) מקבל שבר אחד.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> על גורם ריבועי חסר שורש כמו \(x^2+9\), איזה מונה שמים בשבר החלקי — קבוע או \(Ax+B\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>מונה מדרגה ראשונה \(Ax+B\).</b> על גורם ריבועי המונה תמיד מדרגה אחת פחות מהמכנה, כלומר ליניארי. (על גורם ליניארי, לעומת זאת, המונה קבוע.)</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> את \(\displaystyle\int\frac{2x}{x^2+5}\,dx\) אפשר לפתור מיד בלי פירוק. איך, ומה התוצאה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>המונה \(2x\) הוא בדיוק הנגזרת של המכנה \(x^2+5\) — תבנית \(\frac{f'}{f}\). לכן:</p>
+      <p>$$\int\frac{2x}{x^2+5}\,dx = \ln(x^2+5)+C$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. תרגיל ============ -->
+<section>
+  <h2><span class="num">6</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>חשב את \(\displaystyle\int \frac{5x-4}{x^2-x-2}\,dx\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step">המונה מדרגה 1, המכנה מדרגה 2 — אין צורך בחילוק. מפרקים את המכנה:</p>
+      <p class="step">$$x^2-x-2=(x-2)(x+1)$$</p>
+      <p class="step">תבנית הפירוק:</p>
+      <p class="step">$$\frac{5x-4}{(x-2)(x+1)} = \frac{A}{x-2} + \frac{B}{x+1}$$</p>
+      <p class="step">מכפילים במכנה המשותף: &nbsp; \(5x-4 = A(x+1)+B(x-2)\).</p>
+      <p class="step">מציבים \(x=2\): &nbsp; \(10-4=3A \Rightarrow A=2\).</p>
+      <p class="step">מציבים \(x=-1\): &nbsp; \(-5-4=-3B \Rightarrow B=3\).</p>
+      <p class="step">אינטגרל איבר־איבר:</p>
+      <p class="step">$$\int\!\left(\frac{2}{x-2}+\frac{3}{x+1}\right)dx = 2\ln|x-2| + 3\ln|x+1| + C$$</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">סדר עבודה שכדאי לזכור למבחן</span>
+    דרגת מונה \(\ge\) מכנה? ← חלק. אחר כך: פרק את המכנה לגורמים ← כתוב תבנית ← מצא מקדמים ← אינטגרל איבר־איבר (לוג / חזקה / ארקטנגנס).
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 3</span>
+  <span class="pill">הבא → נושא 4: אינטגרל מסוים</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · נושא 3 מתוך 5
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טורים · נושא 8 · טורים מספריים ומבחני התכנסות</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+  .reveal-btn.deep{background:var(--ex); color:#181428;}
+  .answer.deep{background:#201a33; border:1px solid #4a3d6b;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · טורים</div>
+  <h1>נושא 8 — טורים מספריים</h1>
+  <div class="sub">התכנסות · מבחני השוואה, מנה, שורש · לייבניץ</div>
+  <div class="progress">נושא <b>8</b> · זמן קריאה משוער: כ־30 דקות</div>
+</header>
+
+<!-- ============ 1. מהו טור ============ -->
+<section>
+  <h2><span class="num">1</span>מה זה טור, ומה ההבדל מסדרה?</h2>
+
+  <p>טור הוא <b>חיבור אינסופי</b> של איברי סדרה: \(\displaystyle\sum_{k=1}^{\infty} a_k = a_1+a_2+a_3+\dots\)</p>
+
+  <p>מגדירים אותו דרך <b>הסכומים החלקיים</b> \(S_n=\sum_{k=1}^{n}a_k\). הטור מתכנס אם סדרת הסכומים החלקיים \(S_n\) מתכנסת:</p>
+  <p>$$\sum_{k=1}^{\infty}a_k = \lim_{n\to\infty}S_n$$</p>
+
+  <h3>התנאי ההכרחי — האיבר חייב לשאוף לאפס</h3>
+  <p>לפני כל מבחן אחר, יש עובדה בסיסית אחת שחייבים להפנים:</p>
+  <div class="boxed">
+    אם הטור \(\displaystyle\sum a_n\) <b>מתכנס</b>, אז בהכרח \(a_n\to0\).
+  </div>
+  <p>במילים: כדי שסכום אינסופי יתייצב על מספר סופי, האיברים שמוסיפים בכל שלב חייבים לדעוך לאפס. אם הם אינם דועכים לאפס — אין שום סיכוי שהסכום יתכנס.</p>
+
+  <button class="reveal-btn deep" onclick="toggle(this)">🔍 הצג הסבר מעמיק — למה האיבר חייב לשאוף לאפס</button>
+  <div class="answer deep">
+    <p>ההוכחה נשענת על הקשר בין האיבר הכללי לסכומים החלקיים. שני סכומים חלקיים עוקבים נבדלים בדיוק באיבר אחד, ולכן:</p>
+    <p>$$a_n=S_n-S_{n-1}$$</p>
+    <p>אם הטור מתכנס, אז לפי ההגדרה \(S_n\to S\) עבור מספר סופי \(S\). גם \(S_{n-1}\to S\) (זו אותה סדרה בדיוק, רק מוזזת באינדקס אחד). לכן:</p>
+    <p>$$\lim_{n\to\infty}a_n=\lim_{n\to\infty}(S_n-S_{n-1})=S-S=0$$</p>
+    <p>זה מוכיח שהתכנסות הטור <b>גוררת</b> \(a_n\to0\) — תמיד.</p>
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">שים לב: הכיוון ההפוך אינו נכון</span>
+    התנאי \(a_n\to0\) הוא <b>הכרחי</b>, אבל <b>לא מספיק</b>. כלומר: אם \(a_n\not\to0\) הטור בוודאות מתבדר — אבל אם \(a_n\to0\), עדיין ייתכן שהטור מתבדר. הדוגמה הקלאסית: הטור ההרמוני \(\sum\frac1n\) — האיברים שואפים ל־0, ובכל זאת הטור <b>מתבדר</b>.
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">מבחן ההתבדרות — השימוש המעשי</span>
+    זו הבדיקה הראשונה שכדאי לעשות: אם האיבר הכללי <b>אינו</b> שואף ל־0, אפשר לעצור מיד — הטור מתבדר. אם כן שואף ל־0, הבדיקה לא הכריעה, וממשיכים למבחנים אחרים.
+  </div>
+</section>
+
+<!-- ============ 2. טורים מפורשים ============ -->
+<section>
+  <h2><span class="num">2</span>שני טורים ש"יודעים לחשב"</h2>
+
+  <div class="callout">
+    <span class="lead">הטור ההנדסי</span>
+    $$\sum_{k=0}^{\infty} a r^k \quad\text{מתכנס} \iff |r|<1, \qquad \text{ואז הסכום } = \frac{a}{1-r}$$
+    (החל מאינדקס \(m\): הסכום הוא \(\dfrac{a r^m}{1-r}\).)
+  </div>
+
+  <button class="reveal-btn deep" onclick="toggle(this)">🔍 הצג הסבר מעמיק — מאיפה מגיעה הנוסחה a/(1−r)</button>
+  <div class="answer deep">
+    <p>נחשב את הסכום החלקי במפורש. נסמן:</p>
+    <p>$$S_n=a+ar+ar^2+\dots+ar^{n-1}$$</p>
+    <p>נכפול את שני האגפים ב־\(r\):</p>
+    <p>$$rS_n=ar+ar^2+\dots+ar^{n-1}+ar^{n}$$</p>
+    <p>נחסר את השורה השנייה מהראשונה. כמעט כל המחוברים מתבטלים, ונשארים רק הראשון והאחרון:</p>
+    <p>$$S_n-rS_n=a-ar^n\ \Rightarrow\ S_n(1-r)=a(1-r^n)\ \Rightarrow\ S_n=\frac{a(1-r^n)}{1-r}$$</p>
+    <p>עכשיו לוקחים גבול, וכאן נכנס התנאי על \(r\). אם \(|r|<1\) אז \(r^n\to0\), ולכן:</p>
+    <p>$$S_n\to\frac{a(1-0)}{1-r}=\frac{a}{1-r}$$</p>
+    <p>אם \(|r|\ge1\) אז \(r^n\) אינו שואף ל־0 (הוא גדל או מתנודד), הסכום החלקי לא מתייצב, והטור מתבדר. <b>זו הסיבה</b> שצריך דווקא \(|r|<1\).</p>
+  </div>
+
+  <div class="callout">
+    <span class="lead">טור טלסקופי</span>
+    טור שבו איברים סמוכים מבטלים זה את זה (לרוב אחרי פירוק לשברים חלקיים), ונשאר מספר קבוע של מחוברים. מחשבים את הסכום החלקי במפורש ולוקחים גבול.
+  </div>
+
+  <button class="reveal-btn deep" onclick="toggle(this)">🔍 הצג הסבר מעמיק — למה טור טלסקופי עובד</button>
+  <div class="answer deep">
+    <p>הרעיון: כשמפרקים את האיבר להפרש של שני ביטויים סמוכים, \(a_k=b_k-b_{k+1}\), הסכום החלקי מתקפל על עצמו. נכתוב אותו במלואו:</p>
+    <p>$$S_n=(b_1-b_2)+(b_2-b_3)+(b_3-b_4)+\dots+(b_n-b_{n+1})$$</p>
+    <p>כל \(b\) פנימי מופיע פעמיים — פעם עם פלוס ופעם עם מינוס — ולכן מתבטל. נשארים רק שני הקצוות:</p>
+    <p>$$S_n=b_1-b_{n+1}$$</p>
+    <p>וזה בדיוק היתרון: במקום סכום של \(n\) מחוברים קיבלנו <b>ביטוי סגור</b> עם שני איברים בלבד, שקל מאוד לחשב עליו גבול כאשר \(n\to\infty\).</p>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · טור הנדסי</span>
+    <p>חשב את \(\displaystyle\sum_{k=0}^{\infty}\frac{2}{3^k}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">זה טור הנדסי עם \(a=2\) ו־\(r=\frac13\). מכיוון ש־\(|r|<1\) מתכנס:</p>
+      <p class="step">$$\frac{a}{1-r} = \frac{2}{1-\frac13} = \frac{2}{\frac23} = 3$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · טור טלסקופי</span>
+    <p>חשב את \(\displaystyle\sum_{k=1}^{\infty}\frac{1}{k(k+1)}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מפרקים לשברים חלקיים: \(\dfrac{1}{k(k+1)}=\dfrac1k-\dfrac{1}{k+1}\). הסכום החלקי:</p>
+      <p class="step">$$S_n = \left(1-\tfrac12\right)+\left(\tfrac12-\tfrac13\right)+\dots+\left(\tfrac1n-\tfrac{1}{n+1}\right) = 1-\frac{1}{n+1}$$</p>
+      <p class="step">לוקחים גבול:</p>
+      <p class="step">$$\lim_{n\to\infty}\left(1-\frac{1}{n+1}\right) = 1$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. מבחנים לאיברים חיוביים ============ -->
+<section>
+  <h2><span class="num">3</span>מבחני התכנסות (איברים אי-שליליים)</h2>
+
+  <p>לרוב לא מחשבים סכום, רק קובעים התכנסות. הנה ארסנל המבחנים — בטבלה מרוכזת, ואחריה דוגמאות.</p>
+
+  <table class="tbl">
+    <tr><th>המבחן</th><th>מתי משתמשים</th><th>הכלל</th></tr>
+    <tr><td>טור \(p\)</td><td>\(\sum\frac{1}{n^p}\)</td><td>מתכנס \(\iff p>1\)</td></tr>
+    <tr><td>השוואה</td><td>יש טור ידוע להשוות אליו</td><td>\(0\le a_n\le b_n\): גדול מתכנס → קטן מתכנס</td></tr>
+    <tr><td>השוואה גבולית</td><td>מנות פולינומים/שורשים</td><td>\(L=\lim\frac{a_n}{b_n}\) חיובי סופי → "חברים"</td></tr>
+    <tr><td>מנה (ד'לאמבר)</td><td>יש <b>עצרת</b> \(n!\)</td><td>\(L=\lim\left|\frac{a_{n+1}}{a_n}\right|<1\) → מתכנס</td></tr>
+    <tr><td>שורש (קושי)</td><td>יש \(n\) <b>במעריך</b></td><td>\(L=\lim\sqrt[n]{|a_n|}<1\) → מתכנס</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="lead">\(L=1\) — לא קובע</span>
+    במבחן המנה ובמבחן השורש, אם \(L=1\) המבחן <b>לא מכריע</b> — צריך לנסות מבחן אחר.
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">איך בוחרים מבחן — כלל אצבע</span>
+    <ul>
+      <li>מנת פולינומים/שורשים \(\to\) השוואה גבולית ל־\(\frac{1}{n^p}\).</li>
+      <li>יש עצרת \(\to\) מבחן המנה.</li>
+      <li>יש \(n\) במעריך (כמו \(3^n\) או \((\ldots)^n\)) \(\to\) מבחן השורש.</li>
+    </ul>
+  </div>
+
+  <button class="reveal-btn deep" onclick="toggle(this)">🔍 הצג הסבר מעמיק — למה מבחני המנה והשורש עובדים</button>
+  <div class="answer deep">
+    <p>שני המבחנים בעצם <b>משווים את הטור לטור הנדסי</b>, וזו הסיבה שהם עובדים.</p>
+    <p><b>מבחן המנה:</b> אם \(\left|\frac{a_{n+1}}{a_n}\right|\to L\), אז החל ממקום מסוים כל איבר קטן בערך פי \(L\) מקודמו: \(|a_{n+1}|\approx L\,|a_n|\). כלומר הזנב של הטור מתנהג כמו טור הנדסי עם מנה \(L\). אם \(L<1\) — זהו טור הנדסי מתכנס, ולכן הטור שלנו "קטן מטור הנדסי מתכנס" וגם הוא מתכנס. אם \(L>1\) האיברים גדלים ואינם שואפים ל־0, אז מתבדר. אם \(L=1\) הדמיון לטור הנדסי מתפרק — ולכן המבחן אינו מכריע.</p>
+    <p><b>מבחן השורש:</b> אם \(\sqrt[n]{|a_n|}\to L\), אז \(|a_n|\approx L^n\) — כלומר האיבר הכללי עצמו נראה כמו איבר של טור הנדסי \(\sum L^n\). שוב, \(L<1\) נותן טור הנדסי מתכנס להשוואה ולכן הטור מתכנס; \(L>1\) נותן איברים שמתפוצצים; \(L=1\) אינו מכריע.</p>
+    <p class="muted">בקצרה: בשני המבחנים \(L\) הוא "המנה האפקטיבית" של הטור, ואנחנו בודקים אם הוא מתנהג כמו טור הנדסי מתכנס או מתבדר.</p>
+  </div>
+
+  <button class="reveal-btn deep" onclick="toggle(this)">🔍 הצג הסבר מעמיק — למה מבחן ההשוואה עובד</button>
+  <div class="answer deep">
+    <p>מבחן ההשוואה נשען על היגיון פשוט של "כלוא בין חסמים". נניח \(0\le a_n\le b_n\) לכל \(n\).</p>
+    <p>אצל טור עם איברים אי־שליליים, סדרת הסכומים החלקיים היא <b>עולה</b> (כל איבר רק מוסיף). סדרה עולה מתכנסת אם ורק אם היא חסומה מלמעלה.</p>
+    <p>אם \(\sum b_n\) מתכנס לסכום \(B\), אז הסכומים החלקיים של \(\sum a_n\) חסומים: \(\sum_{k=1}^n a_k\le\sum_{k=1}^n b_k\le B\). סדרה עולה וחסומה — מתכנסת. לכן <b>הטור הקטן יותר מתכנס</b>.</p>
+    <p>ובכיוון ההפוך: אם \(\sum a_n\) מתבדר (הסכומים החלקיים בורחים לאינסוף), אז גם \(\sum b_n\) שגדול ממנו חייב להתבדר.</p>
+    <p class="muted">ההשוואה הגבולית היא גרסה גמישה של אותו רעיון: אם \(\frac{a_n}{b_n}\to L\) חיובי סופי, שני הטורים "באותו סדר גודל" ולכן מתכנסים או מתבדרים יחד.</p>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · השוואה גבולית</span>
+    <p>קבע אם \(\displaystyle\sum_{n=1}^{\infty}\frac{n+1}{n^3+2}\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">החזקה השלטת: מונה \(\sim n\), מכנה \(\sim n^3\), אז מתנהג כמו \(\frac{n}{n^3}=\frac{1}{n^2}\). משווים ל־\(b_n=\frac{1}{n^2}\):</p>
+      <p class="step">$$L=\lim_{n\to\infty}\frac{\frac{n+1}{n^3+2}}{\frac{1}{n^2}} = \lim_{n\to\infty}\frac{(n+1)n^2}{n^3+2}=1$$</p>
+      <p class="step">\(L=1\) חיובי סופי — "חברים". \(\sum\frac{1}{n^2}\) מתכנס (\(p=2>1\)), אז:</p>
+      <p class="step">$$\sum\frac{n+1}{n^3+2}\ \ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · מבחן המנה (עצרת)</span>
+    <p>קבע אם \(\displaystyle\sum_{n=1}^{\infty}\frac{2^n}{n!}\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">יש עצרת — מבחן המנה. מחשבים \(\frac{a_{n+1}}{a_n}\):</p>
+      <p class="step">$$\frac{a_{n+1}}{a_n} = \frac{2^{n+1}}{(n+1)!}\cdot\frac{n!}{2^n} = \frac{2}{n+1}$$</p>
+      <p class="step">לוקחים גבול:</p>
+      <p class="step">$$L=\lim_{n\to\infty}\frac{2}{n+1}=0<1 \ \Rightarrow\ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 5 · מבחן השורש (n במעריך)</span>
+    <p>קבע אם \(\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{2n+1}\right)^n\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">יש \(n\) במעריך — מבחן השורש:</p>
+      <p class="step">$$\sqrt[n]{a_n} = \frac{n}{2n+1}$$</p>
+      <p class="step">לוקחים גבול:</p>
+      <p class="step">$$L=\lim_{n\to\infty}\frac{n}{2n+1} = \frac12 < 1 \ \Rightarrow\ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. לייבניץ ============ -->
+<section>
+  <h2><span class="num">4</span>טורים מחליפי סימן — מבחן לייבניץ</h2>
+
+  <p>טור מהצורה \(\sum(-1)^n a_n\) עם \(a_n\ge0\).</p>
+
+  <div class="boxed">
+    מבחן לייבניץ: אם \(a_n\) <b>יורדת ל־0</b> (יורדת + \(a_n\to0\)) — הטור מתכנס.
+  </div>
+
+  <h3>התכנסות בהחלט ובתנאי</h3>
+  <div class="callout">
+    <ul>
+      <li>אם \(\sum|a_n|\) מתכנס \(\Rightarrow \sum a_n\) מתכנס — <b>מתכנס בהחלט</b>.</li>
+      <li>אם \(\sum a_n\) מתכנס אבל \(\sum|a_n|\) מתבדר — <b>מתכנס בתנאי</b> (למשל \(\sum\frac{(-1)^n}{n}\)).</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">חסם השגיאה בטור לייבניץ (חשוב למבחן!)</span>
+    כשמקרבים את סכום הטור ב־\(k\) האיברים הראשונים, השגיאה חסומה על ידי האיבר <b>הבא</b>:
+    $$|R_k| = \left|\,\sum a_n - S_k\,\right| \le a_{k+1}$$
+    שני סוגי שאלות: (1) נתון מספר איברים — מעריכים שגיאה; (2) נתון חסם שגיאה רצוי — מוצאים כמה איברים צריך. "עד הספרה העשרונית ה־\(k\)" פירושו שגיאה \(\le\frac12\cdot10^{-k}\).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 6 · לייבניץ + סיווג</span>
+    <p>קבע אם \(\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^n}{\sqrt{n}}\) מתכנס, ואם כן — בהחלט או בתנאי.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>לייבניץ:</b> \(a_n=\frac{1}{\sqrt n}\) יורדת ושואפת ל־0, אז הטור <b>מתכנס</b>.</p>
+      <p class="step"><b>בהחלט?</b> בודקים \(\sum|a_n|=\sum\frac{1}{\sqrt n}=\sum\frac{1}{n^{1/2}}\) — טור \(p\) עם \(p=\frac12<1\), מתבדר.</p>
+      <p class="step">מסקנה: הטור <b>מתכנס בתנאי</b> (מתכנס, אבל לא בהחלט).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. שאלות ============ -->
+<section>
+  <h2><span class="num">5</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> אם \(a_n\to0\), האם הטור \(\sum a_n\) בהכרח מתכנס?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>לא.</b> זה תנאי הכרחי אך לא מספיק. הדוגמה הנגדית: הטור ההרמוני \(\sum\frac1n\) — האיברים שואפים ל־0 אבל הטור מתבדר.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> איזה מבחן מתאים ל־\(\displaystyle\sum\frac{n!}{n^n}\), ולמה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>מבחן המנה</b>, כי יש עצרת. (מחשבים \(\frac{a_{n+1}}{a_n}\) ומקבלים גבול \(\frac1e<1\) — מתכנס.)</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> במבחן המנה קיבלת \(L=1\). מה המסקנה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>המבחן לא מכריע.</b> כשהגבול הוא בדיוק 1, אי אפשר להסיק כלום ממבחן המנה — צריך לנסות מבחן אחר (למשל השוואה או השוואה גבולית).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> מהו חסם השגיאה כשמקרבים \(\sum\frac{(-1)^n}{n^2}\) ב־5 האיברים הראשונים?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>לפי לייבניץ, השגיאה חסומה על ידי האיבר הבא — האיבר השישי: \(|R_5|\le a_6=\frac{1}{6^2}=\frac{1}{36}\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. תרגיל ============ -->
+<section>
+  <h2><span class="num">6</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>קבע התכנסות לכל אחד ונמק (איזה מבחן):</p>
+    <p>א. \(\displaystyle\sum_{n=1}^{\infty}\frac{3^n}{n!}\) &nbsp;&nbsp;&nbsp; ב. \(\displaystyle\sum_{n=1}^{\infty}\frac{2n^2+1}{n^4+n}\)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> יש עצרת — מבחן המנה:</p>
+      <p class="step">$$\frac{a_{n+1}}{a_n}=\frac{3^{n+1}}{(n+1)!}\cdot\frac{n!}{3^n}=\frac{3}{n+1}\to 0<1 \ \Rightarrow\ \text{מתכנס.}$$</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> מנת פולינומים — השוואה גבולית. חזקה שלטת: \(\frac{2n^2}{n^4}=\frac{2}{n^2}\), משווים ל־\(\frac{1}{n^2}\):</p>
+      <p class="step">$$L=\lim_{n\to\infty}\frac{\frac{2n^2+1}{n^4+n}}{\frac{1}{n^2}}=\lim_{n\to\infty}\frac{(2n^2+1)n^2}{n^4+n}=2$$</p>
+      <p class="step">\(L=2\) חיובי סופי, ו־\(\sum\frac{1}{n^2}\) מתכנס (\(p=2>1\)) \(\Rightarrow\) <b>מתכנס.</b></p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 8</span>
+  <span class="pill">הבא → נושא 9: טורי חזקות</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · טורים מספריים
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

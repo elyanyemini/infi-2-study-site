@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינטגרלים · נושא 5 · אינטגרלים מוכללים ומבחני התכנסות</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · אינטגרלים</div>
+  <h1>נושא 5 — אינטגרלים מוכללים</h1>
+  <div class="sub">התכנסות והתבדרות · מבחני השוואה · התכנסות בהחלט</div>
+  <div class="progress">נושא <b>5</b> מתוך 5 · הנושא האחרון · זמן קריאה משוער: כ־25 דקות</div>
+</header>
+
+<!-- ============ 1. מהו ============ -->
+<section>
+  <h2><span class="num">1</span>מה זה אינטגרל מוכלל?</h2>
+
+  <p>עד עכשיו חישבנו אינטגרלים על קטע סגור וסופי, עם פונקציה חסומה. אינטגרל <b>מוכלל</b> (או "לא אמיתי") הוא אינטגרל שבו משהו מתקלקל — או שהתחום אינסופי, או שהפונקציה מתפוצצת לאינסוף בנקודה כלשהי.</p>
+
+  <p>הרעיון: לא מחשבים ישירות, אלא דרך <b>גבול</b>. אם הגבול קיים (מספר סופי) — האינטגרל <b>מתכנס</b>. אם הגבול אינסופי או לא קיים — האינטגרל <b>מתבדר</b>.</p>
+
+  <h3>שני סוגי אי־ממשיות</h3>
+
+  <div class="callout">
+    <span class="lead">סוג 1 — תחום אינסופי</span>
+    $$\int_a^{\infty} f(x)\,dx = \lim_{b\to\infty}\int_a^{b} f(x)\,dx$$
+  </div>
+
+  <div class="callout">
+    <span class="lead">סוג 2 — פונקציה לא חסומה (בעיה בנקודת קצה, למשל ב־\(a\))</span>
+    $$\int_a^{b} f(x)\,dx = \lim_{c\to a^{+}}\int_c^{b} f(x)\,dx$$
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">כמה בעיות באינטגרל אחד</span>
+    אם יש כמה נקודות בעייתיות (למשל גם אינסוף וגם נקודה שבה הפונקציה מתפוצצת), <b>מפצלים</b> לסכום אינטגרלים שבכל אחד בעיה אחת בלבד. האינטגרל כולו מתכנס רק אם <b>כולם</b> מתכנסים. בעיות שונות לא יכולות "לקזז" זו את זו.
+  </div>
+</section>
+
+<!-- ============ 2. p ============ -->
+<section>
+  <h2><span class="num">2</span>האינטגרל הבסיסי — "בנק" ההשוואה</h2>
+
+  <p>זהו האינטגרל שאליו משווים כמעט תמיד. חשוב לזכור בעל פה את שני המקרים ההפוכים שלו:</p>
+
+  <table class="tbl">
+    <tr><th>האינטגרל</th><th>מתכנס כאשר</th><th>הזיכרון</th></tr>
+    <tr><td>\(\displaystyle\int_1^{\infty}\frac{1}{x^p}\,dx\) (באינסוף)</td><td>\(p>1\)</td><td>באינסוף — צריך חזקה <b>גדולה</b></td></tr>
+    <tr><td>\(\displaystyle\int_0^{1}\frac{1}{x^p}\,dx\) (בנקודה 0)</td><td>\(p<1\)</td><td>ב־0 — צריך חזקה <b>קטנה</b></td></tr>
+  </table>
+
+  <div class="callout tip">
+    <span class="lead">כלל אצבע לזיהוי החזקה השלטת</span>
+    <ul>
+      <li><b>בעיה באינסוף</b> — החזקה ה<b>גבוהה</b> קובעת את ההתנהגות.</li>
+      <li><b>בעיה ב־0</b> — החזקה ה<b>נמוכה</b> קובעת.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · חישוב ישיר דרך גבול</span>
+    <p>בדוק אם \(\displaystyle\int_1^{\infty}\frac{1}{x^2}\,dx\) מתכנס, ואם כן — לכמה.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מחליפים את האינסוף בגבול:</p>
+      <p class="step">$$\lim_{b\to\infty}\int_1^{b} x^{-2}\,dx = \lim_{b\to\infty}\left[-\frac1x\right]_1^{b} = \lim_{b\to\infty}\left(-\frac1b + 1\right)$$</p>
+      <p class="step">כש־\(b\to\infty\) האיבר \(\frac1b\to0\):</p>
+      <p class="step">$$= 0+1 = 1$$</p>
+      <p class="step muted">מתכנס (וגם ל־1). זה מסתדר עם הכלל: \(p=2>1\). ✓</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. מבחני השוואה ============ -->
+<section>
+  <h2><span class="num">3</span>מבחני התכנסות (כשאי אפשר לחשב ישירות)</h2>
+
+  <p>לרוב אי אפשר או לא צריך לחשב את האינטגרל — רק לקבוע אם הוא מתכנס. לזה משתמשים במבחני השוואה.</p>
+
+  <h3>מבחן ההשוואה</h3>
+  <div class="callout">
+    אם \(0\le f\le g\) בתחום, אז:
+    <ul>
+      <li>\(\int g\) מתכנס \(\Rightarrow \int f\) מתכנס (הקטן חסום מלמעלה על ידי משהו סופי).</li>
+      <li>\(\int f\) מתבדר \(\Rightarrow \int g\) מתבדר (הגדול מעל משהו אינסופי).</li>
+    </ul>
+  </div>
+
+  <h3>מבחן ההשוואה הגבולי (לרוב נוח יותר)</h3>
+  <div class="callout">
+    עבור \(f,g\ge0\), מחשבים \(\displaystyle L=\lim \frac{f}{g}\) (כש־\(x\) שואף לנקודה הבעייתית):
+    <ul>
+      <li>\(L\) חיובי וסופי \(\Leftarrow\) \(\int f\) ו־\(\int g\) "חברים" — אותה התנהגות (שניהם מתכנסים או שניהם מתבדרים).</li>
+      <li>\(L=0\) \(\Leftarrow\) אם \(\int g\) מתכנס אז גם \(\int f\).</li>
+      <li>\(L=\infty\) \(\Leftarrow\) אם \(\int f\) מתכנס אז גם \(\int g\).</li>
+    </ul>
+    בפועל: משווים ל־\(\frac{1}{x^p}\) עם ה־\(p\) של החזקה השלטת, ורואים איך מתנהג הבסיס.
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">אי־שוויונות שימושיים למבחן ההשוואה</span>
+    \(|\sin x|\le1\), &nbsp; \(|\cos x|\le1\), &nbsp; \(\arctan x\le\frac\pi2\), &nbsp; \(\ln(1+x)\le x\) עבור \(x\ge0\).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · מבחן השוואה גבולי</span>
+    <p>קבע אם \(\displaystyle\int_1^{\infty}\frac{x}{x^3+2}\,dx\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">בעיה באינסוף — מסתכלים על החזקה השלטת. במונה \(x\) (חזקה 1), במכנה \(x^3\) (חזקה 3). ההתנהגות דומה ל:</p>
+      <p class="step">$$\frac{x}{x^3} = \frac{1}{x^2} \quad\Rightarrow\quad g(x)=\frac{1}{x^2}\ \ (p=2)$$</p>
+      <p class="step">מחשבים את הגבול:</p>
+      <p class="step">$$L=\lim_{x\to\infty}\frac{\frac{x}{x^3+2}}{\frac{1}{x^2}} = \lim_{x\to\infty}\frac{x^3}{x^3+2} = 1$$</p>
+      <p class="step">\(L=1\) חיובי וסופי, אז שני האינטגרלים "חברים". מכיוון ש־\(\int\frac{1}{x^2}\) מתכנס (\(p=2>1\)):</p>
+      <p class="step">$$\int_1^{\infty}\frac{x}{x^3+2}\,dx \ \ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · מבחן השוואה עם חסם</span>
+    <p>קבע אם \(\displaystyle\int_1^{\infty}\frac{2+\sin x}{x^2}\,dx\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מכיוון ש־\(-1\le\sin x\le1\), המונה חסום: \(0<2+\sin x\le 3\). לכן:</p>
+      <p class="step">$$0\le \frac{2+\sin x}{x^2} \le \frac{3}{x^2}$$</p>
+      <p class="step">האינטגרל \(\int_1^{\infty}\frac{3}{x^2}\,dx\) מתכנס (\(p=2>1\)). לפי מבחן ההשוואה, גם הקטן ממנו:</p>
+      <p class="step">$$\int_1^{\infty}\frac{2+\sin x}{x^2}\,dx \ \ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · בעיה בנקודה 0</span>
+    <p>קבע אם \(\displaystyle\int_0^{1}\frac{1}{\sqrt{x}}\,dx\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">הבעיה ב־\(x=0\) (שם הפונקציה מתפוצצת). זה בדיוק \(\frac{1}{x^p}\) עם \(p=\tfrac12\).</p>
+      <p class="step">לפי הכלל, בבעיה ב־0 מתכנס כאשר \(p<1\). כאן \(p=\tfrac12<1\), אז מתכנס. נאמת בגבול:</p>
+      <p class="step">$$\lim_{c\to0^{+}}\int_c^{1} x^{-1/2}\,dx = \lim_{c\to0^{+}}\big[2\sqrt{x}\big]_c^{1} = \lim_{c\to0^{+}}\big(2-2\sqrt{c}\big) = 2$$</p>
+      <p class="step">מתכנס (ל־2). ✓</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. התכנסות בהחלט ============ -->
+<section>
+  <h2><span class="num">4</span>התכנסות בהחלט (לפונקציות שמחליפות סימן)</h2>
+
+  <p>מבחני ההשוואה דורשים פונקציה <b>אי־שלילית</b>. אבל פונקציות כמו \(\sin x\) ו־\(\cos x\) מחליפות סימן. הפתרון: לעבור ל<b>ערך מוחלט</b>.</p>
+
+  <div class="boxed">
+    אם \(\displaystyle\int |f|\) מתכנס, אז \(\displaystyle\int f\) מתכנס.
+  </div>
+
+  <p>אז אם רוצים להראות שאינטגרל עם \(\sin/\cos\) מתכנס — בודקים את \(\int|f|\) עם מבחני ההשוואה הרגילים. אם \(\int|f|\) מתכנס, גמרנו.</p>
+
+  <div class="callout warn">
+    <span class="lead">שלוש האפשרויות</span>
+    <ul>
+      <li><b>מתכנס בהחלט</b> — גם \(\int f\) וגם \(\int|f|\) מתכנסים.</li>
+      <li><b>מתכנס בתנאי</b> — \(\int f\) מתכנס אבל \(\int|f|\) מתבדר (למשל \(\int_1^{\infty}\frac{\sin x}{x}\,dx\)).</li>
+      <li><b>מתבדר.</b></li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 5 · התכנסות בהחלט</span>
+    <p>קבע אם \(\displaystyle\int_1^{\infty}\frac{\sin x}{x^2}\,dx\) מתכנס.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">הפונקציה מחליפה סימן, אז עוברים לערך מוחלט ומשתמשים ב־\(|\sin x|\le1\):</p>
+      <p class="step">$$\left|\frac{\sin x}{x^2}\right| = \frac{|\sin x|}{x^2} \le \frac{1}{x^2}$$</p>
+      <p class="step">\(\int_1^{\infty}\frac{1}{x^2}\,dx\) מתכנס (\(p=2>1\)), אז לפי השוואה \(\int|f|\) מתכנס — כלומר האינטגרל מתכנס <b>בהחלט</b>, ובפרט מתכנס:</p>
+      <p class="step">$$\int_1^{\infty}\frac{\sin x}{x^2}\,dx \ \ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. שאלת 3 האינטגרלים ============ -->
+<section>
+  <h2><span class="num">5</span>השאלה שחוזרת כמעט בכל מבחן</h2>
+
+  <div class="callout tip">
+    <span class="lead">"סווג שלושה אינטגרלים מוכללים"</span>
+    כמעט בכל מבחן יש שאלה עם 3 אינטגרלים שצריך לקבוע לכל אחד אם מתכנס או מתבדר. זו שאלה "בטוחה" — כדאי לשלוט בה מצוין. אלגוריתם העבודה:
+    <ol>
+      <li>זהה את הנקודה הבעייתית (אינסוף? נקודה שבה הפונקציה מתפוצצת?).</li>
+      <li>זהה את החזקה השלטת (באינסוף — הגבוהה; ב־0 — הנמוכה).</li>
+      <li>השווה (גבולית) ל־\(\frac{1}{x^p}\) המתאים.</li>
+      <li>אם יש \(\sin/\cos\) שמחליף סימן — עבור לערך מוחלט.</li>
+    </ol>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 6 · סיווג מהיר</span>
+    <p>לכל אחד קבע התכנסות: &nbsp; א. \(\displaystyle\int_1^{\infty}\frac{1}{\sqrt{x}}\,dx\) &nbsp;&nbsp; ב. \(\displaystyle\int_1^{\infty}\frac{x^2}{x^4+1}\,dx\)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> בעיה באינסוף, זה \(\frac{1}{x^p}\) עם \(p=\tfrac12\). באינסוף צריך \(p>1\), אבל \(\tfrac12<1\):</p>
+      <p class="step">$$\Rightarrow \ \ \text{מתבדר.}$$</p>
+      <p class="step muted">(אותה פונקציה בדיוק שהתכנסה על \([0,1]\) — מתבדרת על \([1,\infty)\). הכל תלוי איפה הבעיה!)</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> באינסוף החזקה השלטת: \(\frac{x^2}{x^4}=\frac{1}{x^2}\), כלומר \(p=2\). מבחן גבולי:</p>
+      <p class="step">$$L=\lim_{x\to\infty}\frac{\frac{x^2}{x^4+1}}{\frac{1}{x^2}} = \lim_{x\to\infty}\frac{x^4}{x^4+1}=1$$</p>
+      <p class="step">חבר של \(\frac{1}{x^2}\) שמתכנס (\(p=2>1\)):</p>
+      <p class="step">$$\Rightarrow \ \ \text{מתכנס.}$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. שאלות ============ -->
+<section>
+  <h2><span class="num">6</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> עבור \(\displaystyle\int_1^{\infty}\frac{1}{x^p}\,dx\) — לאילו \(p\) מתכנס? ולמה זה הפוך מהמקרה של \(\int_0^1\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>באינסוף מתכנס כאשר <b>\(p>1\)</b> (צריך שהפונקציה תדעך מהר מספיק). ב־0, לעומת זאת, מתכנס כאשר \(p<1\) — כי שם הבעיה היא שהפונקציה מתפוצצת, וחזקה קטנה יותר מתפוצצת לאט יותר. שתי בעיות הפוכות, שני תנאים הפוכים.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> באינטגרל עם בעיה באינסוף, על איזו חזקה מסתכלים — הגבוהה או הנמוכה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>הגבוהה.</b> באינסוף האיבר עם החזקה הגבוהה ביותר שולט בהתנהגות. (ב־0 — הפוך: החזקה הנמוכה שולטת.)</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> איך בודקים התכנסות של \(\int\frac{\cos x}{x^3}\), אם הפונקציה מחליפה סימן?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>עוברים ל<b>ערך מוחלט</b>: \(\left|\frac{\cos x}{x^3}\right|\le\frac{1}{x^3}\). מכיוון ש־\(\int\frac{1}{x^3}\) מתכנס (\(p=3>1\)), האינטגרל מתכנס בהחלט — ובפרט מתכנס.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> אינטגרל מפוצל לשני חלקים, אחד מתכנס והשני מתבדר. מה המסקנה על השלם?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>מתבדר.</b> אינטגרל מוכלל מתכנס רק אם כל חלקיו מתכנסים. בעיות בתחומים שונים לא מקזזות — מספיק שאחד מתבדר כדי שהשלם יתבדר.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. תרגיל ============ -->
+<section>
+  <h2><span class="num">7</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>לכל אחד מהאינטגרלים קבע אם מתכנס או מתבדר, ונמק:</p>
+    <p>א. \(\displaystyle\int_1^{\infty}\frac{1}{x^2+x}\,dx\) &nbsp;&nbsp;&nbsp; ב. \(\displaystyle\int_1^{\infty}\frac{x+1}{\sqrt{x^3}}\,dx\)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> בעיה באינסוף. חזקה שלטת במכנה: \(x^2\), אז משווים ל־\(\frac{1}{x^2}\) (\(p=2\)):</p>
+      <p class="step">$$L=\lim_{x\to\infty}\frac{\frac{1}{x^2+x}}{\frac{1}{x^2}} = \lim_{x\to\infty}\frac{x^2}{x^2+x}=1$$</p>
+      <p class="step">חבר של \(\frac{1}{x^2}\) שמתכנס (\(p=2>1\)) \(\Leftarrow\) <b>מתכנס.</b></p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> נסדר: \(\frac{x+1}{\sqrt{x^3}}=\frac{x+1}{x^{3/2}}\). החזקה השלטת: מונה \(\sim x\), מכנה \(x^{3/2}\), כלומר \(\frac{x}{x^{3/2}}=\frac{1}{x^{1/2}}\) — משווים ל־\(\frac{1}{x^{1/2}}\) (\(p=\tfrac12\)):</p>
+      <p class="step">$$L=\lim_{x\to\infty}\frac{\frac{x+1}{x^{3/2}}}{\frac{1}{x^{1/2}}} = \lim_{x\to\infty}\frac{(x+1)x^{1/2}}{x^{3/2}} = \lim_{x\to\infty}\frac{x+1}{x}=1$$</p>
+      <p class="step">חבר של \(\frac{1}{x^{1/2}}\) שמתבדר (\(p=\tfrac12<1\)) \(\Leftarrow\) <b>מתבדר.</b></p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">סיימת את כל חמשת הנושאים!</span>
+    כיסינו את כל נושא האינטגרלים: אינטגרל לא מסוים וטכניקות (טבלה, הצבה, בחלקים, שברים חלקיים), אינטגרל מסוים והמשפט היסודי, ואינטגרלים מוכללים. השלב הבא המומלץ לפי תוכנית הלימוד: לתרגל את "שאלת שלושת האינטגרלים" מתוך מבחני העבר.
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 5 — ואת כל האינטגרלים!</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · נושא 5 מתוך 5
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

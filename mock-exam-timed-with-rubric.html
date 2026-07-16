@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מבחן דמה מלא · אינפי 2 · תנאי זמן + מחוון</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  .progress .hot{color:var(--warn); font-weight:700;}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+  /* --- טיימר --- */
+  .clock{font-size:56px; font-weight:800; text-align:center; letter-spacing:2px; color:var(--accent2); font-variant-numeric:tabular-nums; margin:6px 0;}
+  .timer-msg{text-align:center; color:var(--warn); font-weight:800; font-size:22px; min-height:26px;}
+  .timer-btns{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+  .timer-btn{background:var(--accent); color:#0e1020; border:none; border-radius:10px; padding:10px 22px; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; transition:filter .15s;}
+  .timer-btn.reset{background:var(--panel2); color:var(--ink); border:1px solid var(--line);}
+  .timer-btn:hover{filter:brightness(1.1);}
+  .points{display:inline-block; background:var(--warn); color:#241a00; font-weight:800; padding:1px 10px; border-radius:14px; font-size:14px; margin-inline-start:8px;}
+  .grade-split{background:#10231b; border-top:1px dashed #285c46; margin-top:12px; padding-top:8px; font-size:15px; color:var(--muted);}
+  .grade-split b{color:var(--accent2);}
+  .final{background:#0e2b20; border:1px solid var(--ok); border-radius:10px; padding:8px 14px; margin:12px 0; font-weight:700;}
+  svg.sketch{background:#0e1220; border:1px solid var(--line); border-radius:10px; display:block; margin:12px auto; max-width:100%;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · מבחן דמה מלא</div>
+  <h1>מבחן דמה — תנאי זמן + מחוון פתרונות</h1>
+  <div class="sub">3 שעות · 100 נקודות · 10 שאלות</div>
+  <div class="progress"><span class="hot">מבחן מקורי בסגנון מבחני העבר של הקורס (612107)</span></div>
+</header>
+
+<!-- ============ טיימר ============ -->
+<section>
+  <h2><span class="num">⏱</span>טיימר — ספירה לאחור ל־3 שעות</h2>
+  <div id="clock" class="clock">03:00:00</div>
+  <div id="timer-msg" class="timer-msg"></div>
+  <div class="timer-btns">
+    <button class="timer-btn" onclick="startTimer()">התחל מבחן</button>
+    <button class="timer-btn" onclick="pauseTimer()">השהה</button>
+    <button class="timer-btn reset" onclick="resetTimer()">אפס</button>
+  </div>
+</section>
+
+<!-- ============ הנחיות ============ -->
+<section>
+  <h2><span class="num">i</span>הנחיות</h2>
+  <ul>
+    <li>משך הבחינה: <b>3 שעות</b>. סה"כ <b>100 נקודות</b> ב־10 שאלות.</li>
+    <li>יש לנמק כל שלב. תשובה ללא הצדקה לא תזכה בניקוד מלא.</li>
+    <li>מותר להשתמש בכל משפט שנלמד בקורס, בציון שמו.</li>
+    <li>העדיפו לפתור לבד תחת שעון לפני שאתם פותחים את המחוון.</li>
+  </ul>
+  <div class="callout warn">
+    <span class="lead">מחוון — לפתיחה רק אחרי שסיימת</span>
+    מתחת לכל שאלה יש כפתור צהוב־כתום שחושף פתרון מלא, תשובה סופית מודגשת, וחלוקת ניקוד. אל תפתחו אותו לפני שניסיתם לפתור בעצמכם — זה הכלי הכי שימושי בהכנה למבחן.
+  </div>
+</section>
+
+<!-- ============ חלק א' ============ -->
+<section>
+  <h2><span class="num">א</span>חלק א' — שאלות פתוחות גדולות (40 נק')</h2>
+  <p class="muted">שתי שאלות, 20 נקודות כל אחת. נמקו בפירוט.</p>
+</section>
+
+<!-- ---------- שאלה 1 ---------- -->
+<section>
+  <h2><span class="num">1</span>חקירת פונקציה מלאה <span class="points">20 נק'</span></h2>
+  <p>חִקרו את הפונקציה $f(x)=x^{2}e^{-x}$ לפי הסעיפים הבאים:</p>
+  <ol>
+    <li>תחום הגדרה ונקודות חיתוך עם הצירים.</li>
+    <li>אסימפטוטות (אנכיות, אופקיות ומשופעות).</li>
+    <li>תחומי עלייה וירידה ונקודות קיצון מקומי.</li>
+    <li>תחומי קמירות וקעירות ונקודות פיתול.</li>
+    <li>שרטוט סכמטי של גרף הפונקציה.</li>
+  </ol>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <p class="muted">לחצו כדי לחשוף את הפתרון.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>1. תחום הגדרה וחיתוכים.</b> $f$ מוגדרת לכל $x\in\mathbb{R}$ (מכפלה של פולינום ואקספוננט). חיתוך עם הצירים: $f(x)=0 \Leftrightarrow x^{2}=0 \Leftrightarrow x=0$, כלומר הגרף עובר דרך הראשית $(0,0)$ בלבד. כמו כן $f(x)=x^{2}e^{-x}\ge 0$ לכל $x$, עם שוויון רק ב־$x=0$.</p>
+
+      <p class="step"><b>2. אסימפטוטות.</b> אין נקודות אי־רציפות, לכן אין אסימפטוטות אנכיות. כאשר $x\to+\infty$:
+      $$\lim_{x\to\infty} x^{2}e^{-x}=\lim_{x\to\infty}\frac{x^{2}}{e^{x}}=0$$
+      (לפי לופיטל פעמיים, האקספוננט גובר על הפולינום), ולכן $y=0$ היא אסימפטוטה אופקית ב־$+\infty$. כאשר $x\to-\infty$: $e^{-x}\to+\infty$ ו־$x^{2}\to+\infty$, לכן $f(x)\to+\infty$; ומכיוון ש־$\dfrac{f(x)}{x}=xe^{-x}\to-\infty$, אין אסימפטוטה (אופקית או משופעת) ב־$-\infty$.</p>
+
+      <p class="step"><b>3. עלייה/ירידה וקיצון.</b>
+      $$f'(x)=2xe^{-x}+x^{2}(-e^{-x})=e^{-x}\,x(2-x)$$
+      מאחר ש־$e^{-x}>0$ תמיד, סימן $f'$ נקבע לפי $x(2-x)$. נקודות חשודות: $x=0,\ x=2$.</p>
+      <table class="tbl">
+        <tr><th>$x$</th><th>$x&lt;0$</th><th>$0&lt;x&lt;2$</th><th>$x&gt;2$</th></tr>
+        <tr><td>$f'$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+        <tr><td>$f$</td><td>יורדת</td><td>עולה</td><td>יורדת</td></tr>
+      </table>
+      <p class="step">מינימום מקומי (וגם מוחלט) ב־$(0,0)$; מקסימום מקומי ב־$\left(2,\dfrac{4}{e^{2}}\right)$, כאשר $\dfrac{4}{e^{2}}\approx 0.541$.</p>
+
+      <p class="step"><b>4. קמירות/קעירות ופיתול.</b>
+      $$f''(x)=\big(e^{-x}(2x-x^{2})\big)'=e^{-x}\big(x^{2}-4x+2\big)$$
+      $f''(x)=0 \Leftrightarrow x^{2}-4x+2=0 \Leftrightarrow x=2\pm\sqrt2$. הביטוי $x^{2}-4x+2$ חיובי מחוץ לשורשים ושלילי ביניהם:</p>
+      <table class="tbl">
+        <tr><th>$x$</th><th>$x&lt;2-\sqrt2$</th><th>$2-\sqrt2&lt;x&lt;2+\sqrt2$</th><th>$x&gt;2+\sqrt2$</th></tr>
+        <tr><td>$f''$</td><td>$+$</td><td>$-$</td><td>$+$</td></tr>
+        <tr><td>$f$</td><td>קמורה</td><td>קעורה</td><td>קמורה</td></tr>
+      </table>
+      <p class="step">שתי נקודות פיתול: ב־$x=2-\sqrt2\approx0.59$ (שם $f\approx0.19$) וב־$x=2+\sqrt2\approx3.41$ (שם $f\approx0.38$).</p>
+
+      <p class="step"><b>5. שרטוט סכמטי.</b> הענף השמאלי יורד מ־$+\infty$ (ב־$-\infty$) אל מינימום בראשית $(0,0)$, עולה עד מקסימום $\left(2,\tfrac{4}{e^{2}}\right)$, ואז יורד ומתקרב לאסימפטוטה $y=0$ מלמעלה:</p>
+      <svg class="sketch" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="200" x2="390" y2="200" stroke="#2a2f4a" stroke-width="1.5"/>
+        <line x1="108" y1="20" x2="108" y2="220" stroke="#2a2f4a" stroke-width="1.5"/>
+        <line x1="30" y1="200" x2="390" y2="200" stroke="#8ce0c0" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+        <path d="M49,32 L62,52 L85,175 L108,200 L135,190 L153,181 L199,170 L244,176 L289,184 L335,191 L380,195"
+              fill="none" stroke="#7aa2ff" stroke-width="2.5"/>
+        <circle cx="108" cy="200" r="4" fill="#ffcf7a"/>
+        <circle cx="199" cy="170" r="4" fill="#8ce0c0"/>
+        <text x="112" y="216" fill="#a6adc8" font-size="12">מינימום (0,0)</text>
+        <text x="205" y="164" fill="#a6adc8" font-size="12">מקס' (2, 4/e²)</text>
+        <text x="350" y="192" fill="#a6adc8" font-size="12">y=0</text>
+      </svg>
+
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> תחום וחיתוכים 3 · אסימפטוטות 4 · $f'$ + קיצון 5 · $f''$ + פיתול 5 · שרטוט 3.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 2 ---------- -->
+<section>
+  <h2><span class="num">2</span>הוכחה מבוססת משפט <span class="points">20 נק'</span></h2>
+  <p><b>א. (10 נק')</b> הוכיחו שלכל $x&gt;0$ מתקיים:
+  $$e^{x} &gt; 1+x+\frac{x^{2}}{2}$$</p>
+  <p><b>ב. (10 נק')</b> מצאו כמה פתרונות ממשיים יש למשוואה $x^{3}-3x+1=0$, והוכיחו את קביעתכם.</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>סעיף א'.</b> נגדיר עוזר־פונקציה $h(x)=e^{x}-1-x-\dfrac{x^{2}}{2}$, המוגדרת וגזירה בכל $\mathbb{R}$.</p>
+      <p class="step">נחשב $h(0)=e^{0}-1-0-0=0$.</p>
+      <p class="step">נגזרת ראשונה: $h'(x)=e^{x}-1-x$, וגם $h'(0)=1-1-0=0$.</p>
+      <p class="step">נגזרת שנייה: $h''(x)=e^{x}-1$. עבור $x&gt;0$ מתקיים $e^{x}&gt;1$, ולכן $h''(x)&gt;0$ — כלומר $h'$ עולה ממש על $[0,\infty)$.</p>
+      <p class="step">מכיוון ש־$h'(0)=0$ ו־$h'$ עולה ממש, נובע $h'(x)&gt;0$ לכל $x&gt;0$; לכן $h$ עולה ממש על $[0,\infty)$.</p>
+      <p class="step">מכיוון ש־$h(0)=0$ ו־$h$ עולה ממש, נובע $h(x)&gt;0$ לכל $x&gt;0$, כלומר $e^{x}&gt;1+x+\dfrac{x^{2}}{2}$. $\blacksquare$</p>
+      <div class="final">תשובה סופית (א'): האי־שוויון מתקיים לכל $x&gt;0$ (הוכחה במונוטוניות כפולה).</div>
+
+      <p class="step"><b>סעיף ב'.</b> נסמן $f(x)=x^{3}-3x+1$, פולינום רציף וגזיר בכל $\mathbb{R}$.</p>
+      <p class="step"><b>קיום (משפט ערך הביניים):</b> נבדוק סימנים:
+      $$f(-2)=-8+6+1=-1&lt;0,\quad f(-1)=-1+3+1=3&gt;0,$$
+      $$f(1)=1-3+1=-1&lt;0,\quad f(2)=8-6+1=3&gt;0.$$
+      $f$ רציפה ומחליפה סימן בשלושה קטעים: יש שורש ב־$(-2,-1)$, שורש ב־$(-1,1)$ ושורש ב־$(1,2)$. לכן יש <b>לפחות 3</b> שורשים.</p>
+      <p class="step"><b>חסם עליון על המספר (מונוטוניות / רול):</b> $f'(x)=3x^{2}-3=3(x-1)(x+1)$, ולכן ל־$f'$ בדיוק שני אפסים $x=\pm1$. לפי משפט רול, בין כל שני שורשים של $f$ יש אפס של $f'$; אילו היו לפחות 4 שורשים ל־$f$, היו ל־$f'$ לפחות 3 אפסים — בסתירה לכך שיש רק שניים. לכן ל־$f$ <b>לכל היותר 3</b> שורשים.</p>
+      <p class="step">משילוב שני החלקים: למשוואה יש <b>בדיוק 3</b> פתרונות ממשיים.</p>
+      <div class="final">תשובה סופית (ב'): בדיוק 3 פתרונות ממשיים (אחד בכל אחד מהקטעים $(-2,-1),\,(-1,1),\,(1,2)$).</div>
+
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> א' — בניית העוזר וערכי $h(0),h'(0)$ 3, טיעון $h''&gt;0\Rightarrow h'&gt;0$ 4, מסקנה 3. ב' — קיום ב־IVT 5, חסם ב־רול/מונוטוניות 4, מסקנה 1.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ חלק ב' ============ -->
+<section>
+  <h2><span class="num">ב</span>חלק ב' — שאלות בינוניות (60 נק')</h2>
+  <p class="muted">שמונה שאלות. ניקוד מצוין ליד כל שאלה.</p>
+</section>
+
+<!-- ---------- שאלה 3 ---------- -->
+<section>
+  <h2><span class="num">3</span>סדרה רקורסיבית <span class="points">10 נק'</span></h2>
+  <p>נתונה הסדרה $a_{1}=1$, ו־$a_{n+1}=\sqrt{6+a_{n}}$ לכל $n\ge1$. הוכיחו שהסדרה חסומה ומונוטונית, הסיקו שהיא מתכנסת, וחשבו את גבולה.</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>מועמד לגבול.</b> אם קיים גבול סופי $L\ge0$, אז מרציפות השורש $L=\sqrt{6+L}$, כלומר $L^{2}-L-6=0$, ומכאן $(L-3)(L+2)=0$. מאחר ש־$L\ge0$, המועמד היחיד הוא $L=3$.</p>
+      <p class="step"><b>חסימות (אינדוקציה):</b> נראה $1\le a_{n}&lt;3$ לכל $n$. בסיס: $a_{1}=1\in[1,3)$. צעד: נניח $1\le a_{n}&lt;3$; אז $7\le 6+a_{n}&lt;9$, ובהוצאת שורש (פונקציה עולה) $\sqrt7\le a_{n+1}&lt;3$. מאחר ש־$\sqrt7&gt;1$, מתקיים $1\le a_{n+1}&lt;3$. לכן הסדרה חסומה.</p>
+      <p class="step"><b>מונוטוניות:</b> נבחן את ההפרש בריבועים (כל האיברים חיוביים):
+      $$a_{n+1}^{2}-a_{n}^{2}=(6+a_{n})-a_{n}^{2}=-(a_{n}-3)(a_{n}+2).$$
+      עבור $a_{n}\in[1,3)$ מתקיים $a_{n}-3&lt;0$ ו־$a_{n}+2&gt;0$, ולכן $a_{n+1}^{2}-a_{n}^{2}&gt;0$. מאחר ששני האיברים חיוביים, נובע $a_{n+1}&gt;a_{n}$ — הסדרה <b>עולה ממש</b>.</p>
+      <p class="step"><b>מסקנה:</b> סדרה מונוטונית עולה וחסומה מלעיל $\Leftarrow$ מתכנסת (משפט הסדרות המונוטוניות). הגבול הוא המועמד היחיד:</p>
+      <div class="final">תשובה סופית: הסדרה מתכנסת ו־$\displaystyle\lim_{n\to\infty}a_{n}=3$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> מציאת מועמד לגבול 2 · חסימות באינדוקציה 4 · מונוטוניות 3 · מסקנת התכנסות 1.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 4 ---------- -->
+<section>
+  <h2><span class="num">4</span>גבול במשפט הסנדוויץ' <span class="points">8 נק'</span></h2>
+  <p>חשבו את הגבול הבא והצדיקו באמצעות משפט הסנדוויץ':
+  $$\lim_{n\to\infty}\sum_{k=1}^{n}\frac{n}{n^{2}+k}$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נסמן $S_{n}=\displaystyle\sum_{k=1}^{n}\frac{n}{n^{2}+k}$. לכל $1\le k\le n$ מתקיים $n^{2}+1\le n^{2}+k\le n^{2}+n$, ולכן (המונה $n&gt;0$ קבוע):
+      $$\frac{n}{n^{2}+n}\le \frac{n}{n^{2}+k}\le \frac{n}{n^{2}+1}.$$</p>
+      <p class="step">בסכימה על $n$ איברים מקבלים חסמים:
+      $$\underbrace{n\cdot\frac{n}{n^{2}+n}}_{=\,\frac{n^{2}}{n^{2}+n}}\ \le\ S_{n}\ \le\ \underbrace{n\cdot\frac{n}{n^{2}+1}}_{=\,\frac{n^{2}}{n^{2}+1}}.$$</p>
+      <p class="step">גבולות הקצוות:
+      $$\lim_{n\to\infty}\frac{n^{2}}{n^{2}+n}=\lim_{n\to\infty}\frac{1}{1+\frac1n}=1,\qquad \lim_{n\to\infty}\frac{n^{2}}{n^{2}+1}=1.$$</p>
+      <p class="step">שני החסמים שואפים ל־$1$, ולכן לפי משפט הסנדוויץ' גם $S_{n}\to1$.</p>
+      <div class="final">תשובה סופית: הגבול שווה $1$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> חסימת האיבר הכללי 3 · בניית שני החסמים לסכום 3 · חישוב הגבולות ומסקנת סנדוויץ' 2.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 5 ---------- -->
+<section>
+  <h2><span class="num">5</span>שלושה אינטגרלים מוכללים <span class="points">10 נק'</span></h2>
+  <p>נתונים שלושת האינטגרלים המוכללים:
+  $$A=\int_{0}^{1}\frac{\ln x}{x^{2}}\,dx,\qquad B=\int_{1}^{\infty}\frac{\ln x}{x^{2}}\,dx,\qquad C=\int_{0}^{\infty}\frac{\ln x}{x^{2}}\,dx.$$
+  עבור כל אחד קבעו אם הוא מתכנס בהחלט, מתכנס בתנאי, או מתבדר. הוכיחו.</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>האינטגרל $B$.</b> על $[1,\infty)$ מתקיים $\ln x\ge0$, אז האינטגרנד אי־שלילי. באמצעות אינטגרציה בחלקים ($u=\ln x,\ dv=x^{-2}dx,\ v=-x^{-1}$):
+      $$\int_{1}^{t}\frac{\ln x}{x^{2}}\,dx=\Big[-\frac{\ln x}{x}\Big]_{1}^{t}+\int_{1}^{t}\frac{dx}{x^{2}}=-\frac{\ln t}{t}+\Big[-\frac1x\Big]_{1}^{t}=-\frac{\ln t}{t}-\frac1t+1.$$
+      כאשר $t\to\infty$: $\dfrac{\ln t}{t}\to0$ ו־$\dfrac1t\to0$, ולכן $B=1$. מכיוון שהאינטגרנד אי־שלילי, ההתכנסות היא <b>בהחלט</b>.</p>
+      <p class="step"><b>האינטגרל $A$.</b> על $(0,1)$ מתקיים $\ln x&lt;0$, אז האינטגרנד שלילי (סימן קבוע). לכל $0&lt;x&lt;\dfrac1e$ מתקיים $|\ln x|&gt;1$, ולכן
+      $$\left|\frac{\ln x}{x^{2}}\right|=\frac{|\ln x|}{x^{2}}&gt;\frac{1}{x^{2}}.$$
+      אבל $\displaystyle\int_{0}^{1/e}\frac{dx}{x^{2}}$ מתבדר (חזקה $p=2\ge1$ בנקודת הבעיה $0$). לפי מבחן ההשוואה, $\displaystyle\int_{0}^{1/e}\frac{|\ln x|}{x^{2}}dx$ מתבדר, ומכיוון שהאינטגרנד בעל סימן קבוע — <b>$A$ מתבדר</b> (אל $-\infty$).</p>
+      <p class="step"><b>האינטגרל $C$.</b> $C=A+B$. מאחר ש־$B$ מתכנס אך $A$ מתבדר, <b>$C$ מתבדר</b>.</p>
+      <div class="final">תשובה סופית: $A$ מתבדר · $B$ מתכנס בהחלט (וערכו $1$) · $C$ מתבדר.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> $B$ (חישוב + סוג התכנסות) 4 · $A$ (השוואה + מסקנה) 4 · $C$ 2.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 6 ---------- -->
+<section>
+  <h2><span class="num">6</span>גבול עם אינטגרל (משפט יסודי + לופיטל) <span class="points">8 נק'</span></h2>
+  <p>חשבו:
+  $$\lim_{x\to0}\frac{\displaystyle\int_{0}^{x}\big(e^{t^{2}}-1\big)\,dt}{x^{3}}.$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">כאשר $x\to0$ המונה שואף ל־$\displaystyle\int_{0}^{0}=0$ והמכנה ל־$0$ — צורה $\dfrac00$. נפעיל לופיטל. לפי המשפט היסודי, נגזרת המונה היא $e^{x^{2}}-1$, ונגזרת המכנה היא $3x^{2}$:
+      $$\lim_{x\to0}\frac{\int_{0}^{x}(e^{t^{2}}-1)\,dt}{x^{3}}=\lim_{x\to0}\frac{e^{x^{2}}-1}{3x^{2}}.$$</p>
+      <p class="step">משתמשים בגבול הידוע $\dfrac{e^{u}-1}{u}\to1$ עם $u=x^{2}\to0$:
+      $$\lim_{x\to0}\frac{e^{x^{2}}-1}{3x^{2}}=\frac13\lim_{x\to0}\frac{e^{x^{2}}-1}{x^{2}}=\frac13\cdot1=\frac13.$$</p>
+      <div class="final">תשובה סופית: הגבול שווה $\dfrac13$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> זיהוי $\tfrac00$ + גזירת המונה במשפט היסודי 4 · פישוט וחישוב הגבול 4.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 7 ---------- -->
+<section>
+  <h2><span class="num">7</span>אינטגרל בשברים חלקיים <span class="points">8 נק'</span></h2>
+  <p>חשבו את האינטגרל המסוים:
+  $$\int_{0}^{1}\frac{3x+5}{(x+1)(x+3)}\,dx.$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>פירוק לשברים חלקיים:</b> $\dfrac{3x+5}{(x+1)(x+3)}=\dfrac{A}{x+1}+\dfrac{B}{x+3}$, כלומר $3x+5=A(x+3)+B(x+1)$.</p>
+      <p class="step">הצבת $x=-1$: $2=2A\Rightarrow A=1$. הצבת $x=-3$: $-4=-2B\Rightarrow B=2$. לכן
+      $$\frac{3x+5}{(x+1)(x+3)}=\frac{1}{x+1}+\frac{2}{x+3}.$$</p>
+      <p class="step"><b>אינטגרציה:</b>
+      $$\int_{0}^{1}\!\left(\frac{1}{x+1}+\frac{2}{x+3}\right)dx=\Big[\ln|x+1|+2\ln|x+3|\Big]_{0}^{1}.$$</p>
+      <p class="step">הצבת גבולות:
+      $$=(\ln2+2\ln4)-(\ln1+2\ln3)=\ln2+\ln16-\ln9=\ln\frac{32}{9}.$$</p>
+      <div class="final">תשובה סופית: $\displaystyle\int_{0}^{1}\frac{3x+5}{(x+1)(x+3)}\,dx=\ln\frac{32}{9}$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> פירוק ומציאת $A,B$ 4 · אינטגרציה 2 · הצבת גבולות ופישוט 2.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 8 ---------- -->
+<section>
+  <h2><span class="num">8</span>תחום התכנסות של טור חזקות <span class="points">6 נק'</span></h2>
+  <p>מצאו את תחום ההתכנסות (כולל בדיקת הקצוות) של הטור:
+  $$\sum_{n=1}^{\infty}\frac{(x-1)^{n}}{n\,3^{n}}.$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>רדיוס (מבחן המנה):</b>
+      $$\lim_{n\to\infty}\left|\frac{(x-1)^{n+1}}{(n+1)3^{n+1}}\cdot\frac{n\,3^{n}}{(x-1)^{n}}\right|=|x-1|\cdot\frac13\lim_{n\to\infty}\frac{n}{n+1}=\frac{|x-1|}{3}.$$
+      הטור מתכנס בהחלט כאשר $\dfrac{|x-1|}{3}&lt;1$, כלומר $|x-1|&lt;3$; רדיוס $R=3$, והתחום הפנימי הוא $(-2,4)$.</p>
+      <p class="step"><b>קצה $x=4$:</b> הטור הופך ל־$\displaystyle\sum_{n=1}^{\infty}\frac{3^{n}}{n\,3^{n}}=\sum_{n=1}^{\infty}\frac1n$ — הטור ההרמוני, <b>מתבדר</b>.</p>
+      <p class="step"><b>קצה $x=-2$:</b> הטור הופך ל־$\displaystyle\sum_{n=1}^{\infty}\frac{(-3)^{n}}{n\,3^{n}}=\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}$ — טור מתחלף שאיבריו $\tfrac1n\downarrow0$; לפי לייבניץ <b>מתכנס</b> (בתנאי).</p>
+      <div class="final">תשובה סופית: תחום ההתכנסות הוא $[-2,\,4)$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> רדיוס במבחן המנה 3 · בדיקת שני הקצוות 3.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 9 ---------- -->
+<section>
+  <h2><span class="num">9</span>טור מתחלף והערכת שגיאה <span class="points">5 נק'</span></h2>
+  <p>נתון הטור $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}$.</p>
+  <p>א. קבעו אם הוא מתכנס בהחלט או בתנאי, ונמקו. ב. מהו מספר האיברים המינימלי שיש לסכום כדי להבטיח שגיאה קטנה מ־$0.01$?</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א. סוג ההתכנסות.</b> טור הערכים המוחלטים הוא $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$, טור $p$ עם $p=2&gt;1$ — מתכנס. לכן הטור הנתון <b>מתכנס בהחלט</b>.</p>
+      <p class="step"><b>ב. הערכת שגיאה (לייבניץ).</b> האיברים $b_{n}=\dfrac{1}{n^{2}}$ יורדים ל־$0$, ולכן השגיאה בקירוב בסכום חלקי עד האיבר ה־$N$ חסומה באיבר הראשון שהושמט:
+      $$|R_{N}|\le b_{N+1}=\frac{1}{(N+1)^{2}}.$$
+      דורשים $\dfrac{1}{(N+1)^{2}}&lt;0.01$, כלומר $(N+1)^{2}&gt;100$, כלומר $N+1&gt;10$, ומכאן $N\ge10$.</p>
+      <p class="step">בדיקה: $N=10$ נותן $b_{11}=\dfrac{1}{121}\approx0.0083&lt;0.01$ ✓; $N=9$ נותן $b_{10}=\dfrac{1}{100}=0.01$, שאינו קטן ממש מ־$0.01$ ✗.</p>
+      <div class="final">תשובה סופית: מתכנס בהחלט; יש לסכום לפחות <b>10 איברים</b> ($n=1,\dots,10$).</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> קביעת התכנסות בהחלט 2 · חסם השגיאה והפתרון ל־$N$ 3.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 10 ---------- -->
+<section>
+  <h2><span class="num">10</span>גבול בעזרת טור מקלורן <span class="points">5 נק'</span></h2>
+  <p>חשבו, באמצעות פיתוח לטור מקלורן, את הגבול:
+  $$\lim_{x\to0}\frac{\cos x-1+\dfrac{x^{2}}{2}}{x^{4}}.$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">טור מקלורן של קוסינוס:
+      $$\cos x=1-\frac{x^{2}}{2}+\frac{x^{4}}{24}-\frac{x^{6}}{720}+\cdots$$</p>
+      <p class="step">לכן במונה:
+      $$\cos x-1+\frac{x^{2}}{2}=\frac{x^{4}}{24}-\frac{x^{6}}{720}+\cdots$$</p>
+      <p class="step">מחלקים ב־$x^{4}$:
+      $$\frac{\cos x-1+\frac{x^{2}}{2}}{x^{4}}=\frac{1}{24}-\frac{x^{2}}{720}+\cdots\ \xrightarrow[x\to0]{}\ \frac{1}{24}.$$</p>
+      <div class="final">תשובה סופית: הגבול שווה $\dfrac{1}{24}$.</div>
+      <div class="grade-split">
+        <b>חלוקת ניקוד:</b> פיתוח $\cos x$ עד סדר 4 3 · חלוקה וחישוב הגבול 2.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- סיכום ---------- -->
+<section>
+  <h2><span class="num">✓</span>סיכום ניקוד</h2>
+  <table class="tbl">
+    <tr><th>שאלה</th><th>נושא</th><th>ניקוד</th></tr>
+    <tr><td>1</td><td>חקירת פונקציה מלאה + שרטוט</td><td>20</td></tr>
+    <tr><td>2</td><td>אי־שוויון (מונוטוניות) + מספר פתרונות (ערך ביניים/רול)</td><td>20</td></tr>
+    <tr><td>3</td><td>סדרה רקורסיבית</td><td>10</td></tr>
+    <tr><td>4</td><td>גבול במשפט הסנדוויץ'</td><td>8</td></tr>
+    <tr><td>5</td><td>שלושה אינטגרלים מוכללים</td><td>10</td></tr>
+    <tr><td>6</td><td>גבול עם אינטגרל (משפט יסודי + לופיטל)</td><td>8</td></tr>
+    <tr><td>7</td><td>אינטגרל בשברים חלקיים</td><td>8</td></tr>
+    <tr><td>8</td><td>תחום התכנסות של טור חזקות</td><td>6</td></tr>
+    <tr><td>9</td><td>טור מתחלף + הערכת שגיאה</td><td>5</td></tr>
+    <tr><td>10</td><td>גבול בעזרת טור מקלורן</td><td>5</td></tr>
+    <tr><td colspan="2"><b>סה"כ</b></td><td><b>100</b></td></tr>
+  </table>
+  <div class="callout tip">
+    <span class="lead">בהצלחה! 🎓</span>
+    מומלץ להריץ את המבחן פעם אחת בתנאי זמן מלאים (טיימר על 03:00:00, מחוון סגור), ורק בסוף לבדוק מול הפתרונות.
+  </div>
+</section>
+
+<footer>
+  אינפי 2 · מבחן דמה מקורי בסגנון מבחני העבר · תרגול עצמי בתנאי זמן
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+
+/* ===== טיימר ספירה לאחור ל-3 שעות ===== */
+var TOTAL = 3 * 60 * 60;     // 3 שעות בשניות
+var remaining = TOTAL;
+var timerId = null;
+var running = false;
+
+function fmt(s){
+  var h = Math.floor(s / 3600);
+  var m = Math.floor((s % 3600) / 60);
+  var sec = s % 60;
+  function p(n){ return (n < 10 ? '0' : '') + n; }
+  return p(h) + ':' + p(m) + ':' + p(sec);
+}
+function render(){
+  document.getElementById('clock').textContent = fmt(remaining);
+}
+function tick(){
+  if(remaining > 0){
+    remaining--;
+    render();
+  } else {
+    clearInterval(timerId);
+    timerId = null;
+    running = false;
+    document.getElementById('clock').textContent = '00:00:00';
+    document.getElementById('timer-msg').textContent = 'הזמן נגמר';
+  }
+}
+function startTimer(){
+  if(running || remaining <= 0) return;
+  running = true;
+  document.getElementById('timer-msg').textContent = '';
+  timerId = setInterval(tick, 1000);
+}
+function pauseTimer(){
+  running = false;
+  if(timerId){ clearInterval(timerId); timerId = null; }
+}
+function resetTimer(){
+  pauseTimer();
+  remaining = TOTAL;
+  render();
+  document.getElementById('timer-msg').textContent = '';
+}
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינפי 2 · דף תרגול מרוכז — שאלות ממבחני עבר</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  .progress .hot{color:var(--warn); font-weight:700;}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  .src{color:var(--muted); font-size:14px; margin-top:4px;}
+  .fin{background:var(--panel2); border:1px solid var(--accent2); border-radius:10px; padding:8px 14px; margin-top:12px;}
+  .fin b{color:var(--accent2);}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · תרגול</div>
+  <h1>דף תרגול מרוכז — שאלות ממבחני עבר</h1>
+  <div class="sub">שאלות אמיתיות ממבחני עבר, מסודרות לפי 8 נושאים, עם פתרון ותשובה סופית</div>
+  <div class="progress"><span class="hot">38 שאלות · 8 נושאים</span> · לחצו על "הצג פתרון" בכל שאלה כדי לחשוף את הפתרון</div>
+</header>
+
+<!-- ============ 1. אינטגרלים — טכניקות ============ -->
+<section>
+  <h2><span class="num">1</span>אינטגרלים — טכניקות (הצבה, בחלקים, שברים חלקיים)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 1.1 · שברים חלקיים</span>
+    <p>חשבו את האינטגרל המסוים: \(\displaystyle\int_1^2 \frac{dx}{(x+1)(x+2)^2}\).</p>
+    <p class="src">מתוך: מבחן מועד א' סמסטר קיץ 2024 (חלק ב', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">פירוק לשברים חלקיים: \(\dfrac{1}{(x+1)(x+2)^2}=\dfrac{A}{x+1}+\dfrac{B}{x+2}+\dfrac{C}{(x+2)^2}\).</p>
+      <p class="step">מהזהות \(1=A(x+2)^2+B(x+1)(x+2)+C(x+1)\) מקבלים \(A=1,\ B=-1,\ C=-1\).</p>
+      <p class="step">קדומה: \(\displaystyle\int\frac{dx}{(x+1)(x+2)^2}=\ln|x+1|-\ln|x+2|+\frac{1}{x+2}+\text{const}\).</p>
+      <p class="step">הצבת גבולות: \(\left[\ln3-\ln4+\tfrac14\right]-\left[\ln2-\ln3+\tfrac13\right]=2\ln3-\ln4-\ln2-\tfrac1{12}=\ln\tfrac98-\tfrac1{12}\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(\displaystyle\int_1^2 \frac{dx}{(x+1)(x+2)^2}=\ln\frac98-\frac1{12}\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 1.2 · אינטגרציה בחלקים</span>
+    <p>חשבו את ערכו של האינטגרל: \(\displaystyle\int_0^{\pi/4} \frac{x}{\cos^2 x}\,dx\).</p>
+    <p class="src">מתוך: מבחן מועד ב' סמסטר קיץ 2024 (חלק ב', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">בחלקים עם \(u=x,\ dv=\dfrac{dx}{\cos^2 x}\Rightarrow v=\tan x\):</p>
+      <p class="step">$$\int_0^{\pi/4}\frac{x}{\cos^2x}dx=\Big[x\tan x\Big]_0^{\pi/4}-\int_0^{\pi/4}\tan x\,dx=\Big[x\tan x+\ln|\cos x|\Big]_0^{\pi/4}$$</p>
+      <p class="step">\(=\dfrac\pi4\cdot1+\ln\dfrac{1}{\sqrt2}-(0+\ln1)=\dfrac\pi4-\dfrac12\ln2\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(\displaystyle\int_0^{\pi/4} \frac{x}{\cos^2 x}\,dx=\frac\pi4-\frac12\ln2\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 1.3 · בחלקים (פעמיים)</span>
+    <p>חשבו את ערכו של האינטגרל המסוים: \(\displaystyle\int_1^e \frac{\ln^2 x}{x^2}\,dx\).</p>
+    <p class="src">מתוך: תשפ"ד סמסטר ב' מועד ב' (חלק ב', שאלה 4)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">באינטגרציה בחלקים פעמיים מתקבלת הקדומה:</p>
+      <p class="step">$$\int\frac{\ln^2x}{x^2}dx=-\frac{\ln^2x+2\ln x+2}{x}+C$$</p>
+      <p class="step">הצבת גבולות: \(\left[-\dfrac{\ln^2x+2\ln x+2}{x}\right]_1^e=\left(-\dfrac{1+2+2}{e}\right)-\left(-\dfrac{2}{1}\right)=-\dfrac5e+2\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(\displaystyle\int_1^e \frac{\ln^2 x}{x^2}\,dx=2-\frac5e\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 1.4 · בחלקים + שברים חלקיים</span>
+    <p>מצאו את האינטגרל הלא-מסוים: \(\displaystyle\int\frac{\ln(x+1)}{x^2}\,dx\).</p>
+    <p class="src">מתוך: תשפ"ו סמסטר א' מועד א' (חלק סגור, שאלה 4)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">בחלקים: \(u=\ln(x+1)\Rightarrow du=\dfrac{dx}{x+1}\); \(dv=\dfrac{dx}{x^2}\Rightarrow v=-\dfrac1x\).</p>
+      <p class="step">$$\int\frac{\ln(x+1)}{x^2}dx=-\frac{\ln(x+1)}{x}+\int\frac{dx}{x(x+1)}$$</p>
+      <p class="step">כעת שברים חלקיים: \(\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac1{x+1}\), ולכן האינטגרל \(=\ln|x|-\ln|x+1|\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(\displaystyle\int\frac{\ln(x+1)}{x^2}dx=-\frac{\ln(x+1)}{x}+\ln\left|\frac{x}{x+1}\right|+C\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 1.5 · מציאת קדומה (שברים חלקיים עם ריבועי)</span>
+    <p>תהי \(F(x)\) קדומה של \(f(x)=\dfrac{x^2+1}{(x^2-2x+3)(x-1)}\) בקטע \((1,\infty)\), המקיימת \(F(1+\sqrt2)=\dfrac{\sqrt2}{4}\pi\). מהו \(F(1+\sqrt6)\)?</p>
+    <p class="src">מתוך: תשפ"ד סמסטר ב' מועד ב' (חלק ב', שאלה 5)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">פירוק: \(\dfrac{x^2+1}{(x^2-2x+3)(x-1)}=\dfrac{1}{x-1}+\dfrac{2}{x^2-2x+3}\), ומכיוון ש\(x^2-2x+3=(x-1)^2+2\):</p>
+      <p class="step">$$F(x)=\sqrt2\arctan\!\left(\frac{x-1}{\sqrt2}\right)+\ln(x-1)+C$$</p>
+      <p class="step">מהתנאי: \(\sqrt2\cdot\tfrac\pi4+\tfrac12\ln2+C=\tfrac{\sqrt2}{4}\pi\Rightarrow C=-\tfrac12\ln2\).</p>
+      <p class="step">\(F(1+\sqrt6)=\sqrt2\arctan(\sqrt3)+\ln(\sqrt6)-\tfrac12\ln2=\sqrt2\cdot\tfrac\pi3+\tfrac12\ln3\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(F(1+\sqrt6)=\dfrac{\sqrt2}{3}\pi+\dfrac{\ln3}{2}\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. אינטגרל מסוים ומשפט יסודי ============ -->
+<section>
+  <h2><span class="num">2</span>אינטגרל מסוים ומשפט יסודי (גבול עם אינטגרל, לופיטל, ערך ממוצע)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 2.1 · משפט יסודי + קיצון</span>
+    <p>עבור \(\dfrac{\pi}{4}\le x\le\pi\) מוגדרת \(g(x)=\displaystyle\int_{\pi/4}^{x}(t^6+5t^4+9)(\cos t)^3\,dt\). עבור איזה \(x\) בתחום מקבלת \(g\) את ערכה המקסימלי?</p>
+    <p class="src">מתוך: מבחן מועד א' סמסטר קיץ 2024 (חלק ב', שאלה 5)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">לפי המשפט היסודי: \(g'(x)=(x^6+5x^4+9)(\cos x)^3\).</p>
+      <p class="step">הגורם \(x^6+5x^4+9>0\) תמיד, ולכן סימן \(g'\) כסימן \(\cos x\).</p>
+      <p class="step">בקטע \(\left[\tfrac\pi4,\pi\right]\): \(g'>0\) עד \(x=\tfrac\pi2\) ו-\(g'<0\) אחריה — מקסימום ב-\(x=\tfrac\pi2\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(x=\dfrac{\pi}{2}\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 2.2 · גבול עם אינטגרל + לופיטל</span>
+    <p>חשבו: \(\displaystyle\lim_{x\to0^+}\frac{\int_0^{2x}t^{1+t}\,dt}{x^2}\).</p>
+    <p class="src">מתוך: מבחן מועד ב' סמסטר קיץ 2024 (חלק ב', שאלה 5)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">צורה \(\tfrac00\). לפי לופיטל (עם נגזרת המונה דרך המשפט היסודי, \(\tfrac{d}{dx}\int_0^{2x}t^{1+t}dt=(2x)^{1+2x}\cdot2\)):</p>
+      <p class="step">$$=\lim_{x\to0^+}\frac{2(2x)^{1+2x}}{2x}=\lim_{x\to0^+}2\,(2x)^{2x}$$</p>
+      <p class="step">ומכיוון ש-\(\lim_{t\to0^+}t^t=e^{\lim t\ln t}=e^0=1\), מקבלים \(2\cdot1=2\).</p>
+      <div class="fin"><b>תשובה סופית:</b> \(\displaystyle\lim_{x\to0^+}\frac{\int_0^{2x}t^{1+t}dt}{x^2}=2\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 2.3 · ערך ממוצע</span>
+    <p>מהו הערך הממוצע (\(f_{ave}\)) של \(f(x)=\arcsin(x)\) בקטע \([0,1]\)?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 12)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">\(f_{ave}=\dfrac1{1-0}\displaystyle\int_0^1\arcsin x\,dx\). בחלקים עם \(u=\arcsin x,\ dv=dx\):</p>
+      <p class="step">$$=\Big[x\arcsin x\Big]_0^1-\int_0^1\frac{x}{\sqrt{1-x^2}}dx=\frac\pi2+\Big[\sqrt{1-x^2}\Big]_0^1=\frac\pi2+(0-1)$$</p>
+      <div class="fin"><b>תשובה סופית:</b> \(f_{ave}=\dfrac{\pi-2}{2}\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 2.4 · גבול של יחס אינטגרלים (לופיטל כפול)</span>
+    <p>חשבו: \(\displaystyle\lim_{x\to\infty}\frac{\left(\int_0^x e^{t^2}dt\right)^2}{\int_0^x e^{2t^2}dt}\).</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד ב' (שאלה 12)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נסמן \(F(x)=\int_0^x e^{t^2}dt\). צורה \(\tfrac\infty\infty\); לופיטל:</p>
+      <p class="step">$$\lim_{x\to\infty}\frac{2F(x)e^{x^2}}{e^{2x^2}}=\lim_{x\to\infty}\frac{2F(x)}{e^{x^2}}\ \overset{\text{לופיטל שוב}}{=}\ \lim_{x\to\infty}\frac{2e^{x^2}}{2xe^{x^2}}=\lim_{x\to\infty}\frac1x=0$$</p>
+      <div class="fin"><b>תשובה סופית:</b> הגבול שווה \(0\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 2.5 · אינטגרל עם שני גבולות תלויים ב-x</span>
+    <p>חשבו: \(\displaystyle\lim_{x\to0}\frac{\int_{\sin x}^{\ln(1+x)} t^2\,dt}{\tan x}\).</p>
+    <p class="src">מתוך: תשפ"ה סמסטר א' מועד א' (חלק ב', שאלה 3)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">בנקודה \(x=0\): שני גבולות האינטגרציה מתאפסים והאינטגרל \(=0\), וגם \(\tan0=0\) — צורה \(\tfrac00\).</p>
+      <p class="step">לופיטל עם כלל שרשרת על גבולות האינטגרציה:</p>
+      <p class="step">$$=\lim_{x\to0}\frac{\ln^2(1+x)\cdot\frac{1}{x+1}-\sin^2x\cdot\cos x}{\frac{1}{\cos^2x}}=\frac{0-0}{1}=0$$</p>
+      <div class="fin"><b>תשובה סופית:</b> הגבול שווה \(0\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. אינטגרלים מוכללים ============ -->
+<section>
+  <h2><span class="num">3</span>אינטגרלים מוכללים ומבחני התכנסות</h2>
+
+  <div class="callout tip">
+    <span class="lead">שאלת "שלושת האינטגרלים" — הקלאסיקה החוזרת</span>
+    כמעט בכל מבחן מופיעה שאלה שבה נותנים שלושה אינטגרלים \(A,B,C\) ושואלים אילו מתכנסים ואילו מתבדרים. הכלי המרכזי: <b>מבחן ההשוואה הגבולי</b> מול \(\int\frac{dx}{x^p}\) (מתכנס באינסוף אם \(p>1\), מתכנס ליד 0 אם \(p<1\)).
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 3.1 · שלושת האינטגרלים</span>
+    <p>נתונים: \(\displaystyle A=\int_0^1\frac{-\sin(1/x)}{x^2}dx,\quad B=\int_0^1 x^3\ln x\,dx,\quad C=\int_{-1}^{\infty}\frac{dx}{x^2+4x+5}\). אילו מתכנסים ואילו מתבדרים?</p>
+    <p class="src">מתוך: מבחן מועד א' סמסטר קיץ 2024 (חלק ב', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\):</b> בהצבה \(u=\tfrac1x\) הקדומה היא \(-\cos(1/x)\); כאשר \(x\to0^+\) הביטוי \(\cos(1/x)\) מתנדנד וללא גבול — \(A\) <b>מתבדר</b>.</p>
+      <p class="step"><b>\(B\):</b> בחלקים \(=\left[\tfrac{x^4}{4}\ln x-\tfrac{x^4}{16}\right]_0^1=-\tfrac1{16}\) — <b>מתכנס</b>.</p>
+      <p class="step"><b>\(C\):</b> \(=\arctan(x+2)\big|_{-1}^\infty=\tfrac\pi2-\tfrac\pi4=\tfrac\pi4\) — <b>מתכנס</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(A\) מתבדר, \(B\) ו-\(C\) מתכנסים.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 3.2 · שלושת האינטגרלים</span>
+    <p>נתונים: \(\displaystyle A=\int_0^1\frac{dx}{1-\cos x},\quad B=\int_{3\pi/4}^{\pi}\frac{dx}{1+\cos x},\quad C=\int_1^2\frac{x}{\sqrt{x-1}}dx\). אילו מתכנסים?</p>
+    <p class="src">מתוך: מבחן מועד ב' סמסטר קיץ 2024 (חלק ב', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\):</b> ליד \(0\), \(1-\cos x=2\sin^2\tfrac x2\sim\tfrac{x^2}{2}\), ולכן האינטגרנד \(\sim\tfrac{2}{x^2}\). לפי מבחן p (\(p=2>1\)) — <b>מתבדר</b>.</p>
+      <p class="step"><b>\(B\):</b> \(=\tan\tfrac x2\big|_{3\pi/4}^{\pi}\to\infty\) (אי-רציפות ב-\(x=\pi\)) — <b>מתבדר</b>.</p>
+      <p class="step"><b>\(C\):</b> \(=\int_1^2\!\left(\sqrt{x-1}+\tfrac{1}{\sqrt{x-1}}\right)dx=\tfrac23+2=\tfrac83\) — <b>מתכנס</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(A,B\) מתבדרים, \(C\) מתכנס.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 3.3 · שלושת האינטגרלים</span>
+    <p>נתונים: \(\displaystyle A=\int_{-1}^{2}x^2\ln|x|\,dx,\quad B=\int_1^2\frac{dx}{\sqrt{4-x^2}},\quad C=\int_4^{\infty}\frac{4x^2}{x^4+x^2+4}dx\). אילו מתכנסים?</p>
+    <p class="src">מתוך: מבחן מועד מיוחד קיץ 2024 (חלק ב', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\):</b> אינטגרל מסוג \(\int x^2\ln x\,dx\) ליד \(0\) (משני צדדי \(x=0\)) — \(\lim_{x\to0}x^3\ln x=0\), ולכן <b>מתכנס</b>.</p>
+      <p class="step"><b>\(B\):</b> \(=\arcsin\tfrac x2\big|_1^2\), הנקודה \(x=2\) נותנת \(\arcsin1=\tfrac\pi2\) סופי — <b>מתכנס</b>.</p>
+      <p class="step"><b>\(C\):</b> השוואה גבולית עם \(\tfrac{1}{x^2}\): \(\lim\tfrac{4x^4}{x^4+x^2+4}=4\), ומכיוון ש-\(\int_4^\infty\tfrac{dx}{x^2}\) מתכנס (\(p=2\)) — <b>מתכנס</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(A,B,C\) — כולם מתכנסים.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 3.4 · התכנסות עם פרמטר</span>
+    <p>יהי \(a\) פרמטר ממשי. האינטגרל \(\displaystyle\int_1^{\infty}\frac{1}{x^a}\sin\!\left(\frac1{x^5}\right)\cos\!\left(\frac1{x^4}\right)dx\) מתכנס אם ורק אם?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 9)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">כאשר \(x\to\infty\): \(\sin(1/x^5)\sim\tfrac1{x^5}\) ו-\(\cos(1/x^4)\to1\), ולכן האינטגרנד \(\sim\dfrac{1}{x^{a+5}}\).</p>
+      <p class="step">לפי מבחן ההשוואה הגבולי עם \(\int_1^\infty\tfrac{dx}{x^{a+5}}\): מתכנס אם ורק אם \(a+5>1\).</p>
+      <div class="fin"><b>תשובה סופית:</b> מתכנס אם ורק אם \(a>-4\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 3.5 · פיצול הקטע ל-A,B,C</span>
+    <p>נתונים: \(\displaystyle A=\int_1^{\infty}\frac{\sqrt[3]{x}}{3x+\arctan x}dx,\ B=\int_0^{\infty}\frac{\sqrt[3]{x}}{3x+\arctan x}dx,\ C=\int_0^1\frac{\sqrt[3]{x}}{3x+\arctan x}dx\). אילו מתכנסים?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 11)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\) (התנהגות באינסוף):</b> האינטגרנד \(\sim\tfrac13 x^{-2/3}\); מכיוון ש-\(\int_1^\infty x^{-2/3}dx\) מתבדר (\(p=\tfrac23<1\)) — \(A\) <b>מתבדר</b>.</p>
+      <p class="step"><b>\(C\) (התנהגות ליד 0):</b> \(3x+\arctan x\sim4x\), האינטגרנד \(\sim\tfrac14 x^{-2/3}\); מכיוון ש-\(\int_0^1 x^{-2/3}dx\) מתכנס — \(C\) <b>מתכנס</b>.</p>
+      <p class="step"><b>\(B=C+A\):</b> \(C\) סופי אך \(A\) מתבדר, לכן \(B\) <b>מתבדר</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(C\) מתכנס, \(A\) ו-\(B\) מתבדרים.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. סדרות ============ -->
+<section>
+  <h2><span class="num">4</span>סדרות (גבולות, סנדוויץ', מונוטוניות וחסימות, רקורסיה, תת-סדרות)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 4.1 · סנדוויץ'</span>
+    <p>נתונה \(a_n=\sqrt[n]{a^n+b^n}\) כאשר \(a,b\) טבעיים ו-\(a>b\). מהו גבול הסדרה?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 3)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">חסימה דו-צדדית: \(a=\sqrt[n]{a^n}\le\sqrt[n]{a^n+b^n}\le\sqrt[n]{2a^n}=2^{1/n}a\).</p>
+      <p class="step">כאשר \(n\to\infty\), \(2^{1/n}\to1\), ולפי כלל הסנדוויץ' \(a_n\to a\).</p>
+      <div class="fin"><b>תשובה סופית:</b> הסדרה מתכנסת, וגבולה \(a\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 4.2 · סדרה רקורסיבית</span>
+    <p>סדרה: \(a_1=1\), ולכל \(n\ge1\): \(a_{n+1}=\sqrt{a_n}+6\). מהו הגבול?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 4)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">באינדוקציה: הסדרה עולה וחסומה מלעיל ע"י 9 (\(1\le a_n\le a_{n+1}\le9\)), ולכן מתכנסת לגבול \(L\).</p>
+      <p class="step">בגבול: \(L=\sqrt L+6\). הצבה \(t=\sqrt L\ge0\): \(t^2-t-6=0\Rightarrow(t-3)(t+2)=0\Rightarrow t=3\).</p>
+      <p class="step">לכן \(L=t^2=9\).</p>
+      <div class="fin"><b>תשובה סופית:</b> הסדרה מתכנסת, וגבולה \(9\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 4.3 · תת-סדרות</span>
+    <p>נתונה \(a_n=(-1)^{[\sqrt n]}\left(1+\dfrac1n\right)^n\), כאשר \([x]\) הוא הערך השלם. האם הסדרה מתכנסת?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 7)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">עבור \(n=(2m)^2\): \([\sqrt n]=2m\) זוגי, ו-\(a_n\to e\).</p>
+      <p class="step">עבור \(n=(2m+1)^2\): \([\sqrt n]=2m+1\) אי-זוגי, ו-\(a_n\to -e\).</p>
+      <p class="step">שתי תת-סדרות עם גבולות שונים (\(e\ne-e\)) \(\Leftarrow\) אין גבול יחיד.</p>
+      <div class="fin"><b>תשובה סופית:</b> הסדרה מתבדרת.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 4.4 · גבול בעזרת צמוד</span>
+    <p>נתונה \(a_n=\sqrt{9^n-2^n}-\sqrt{9^n-3^n}\). מהו הגבול?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד ב' (שאלה 4)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">הרחבה בצמוד: \(a_n=\dfrac{3^n-2^n}{\sqrt{9^n-2^n}+\sqrt{9^n-3^n}}\).</p>
+      <p class="step">מוציאים \(3^n\) ממונה ומכנה: \(a_n=\dfrac{1-(2/3)^n}{\sqrt{1-(2/9)^n}+\sqrt{1-(1/3)^n}}\to\dfrac{1}{\sqrt1+\sqrt1}\).</p>
+      <div class="fin"><b>תשובה סופית:</b> הסדרה מתכנסת, וגבולה \(\dfrac12\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 4.5 · מונוטוניות + חסימות (רקורסיה)</span>
+    <p>סדרה רקורסיבית: \(a_{n+1}=\sqrt{5a_n-4},\ a_1=2\). איזו טענה נכונה?</p>
+    <p class="src">מתוך: תשפ"ה סמסטר א' מועד א' (חלק ב', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>עולה:</b> \(a_2=\sqrt6>2=a_1\), ובאינדוקציה (הפונקציה \(\sqrt{5t-4}\) עולה) הסדרה עולה.</p>
+      <p class="step"><b>חסומה:</b> באינדוקציה \(0\le a_n\le4\) (מ-\(0\le a_n\le4\) נובע \(5a_n-4\le16\), ולכן \(a_{n+1}\le4\)).</p>
+      <p class="step">בגבול: \(L=\sqrt{5L-4}\Rightarrow L^2-5L+4=0\Rightarrow L=1\) או \(L=4\); כי הסדרה עולה מ-2, \(L=4\).</p>
+      <div class="fin"><b>תשובה סופית:</b> הסדרה עולה, חסומה, וגבולה \(4\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. טורים מספריים ============ -->
+<section>
+  <h2><span class="num">5</span>טורים מספריים ומבחני התכנסות (כולל לייבניץ והערכת שגיאה)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 5.1 · בתנאי מול בהחלט</span>
+    <p>נתונים \(\displaystyle A=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{\ln^2 n}{n}\) ו-\(\displaystyle B=\sum_{n=1}^{\infty}\frac{n^2+(-1)^n}{3^n}\). איזו טענה נכונה?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 8)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\):</b> אין התכנסות בהחלט (\(\tfrac{\ln^2n}{n}\ge\tfrac1n\) מ-\(n\ge3\), מתבדר). אך \(b_n=\tfrac{\ln^2n}{n}\) יורדת ל-0 (מ-\(n\ge8\)), ולפי לייבניץ \(A\) <b>מתכנס בתנאי</b>.</p>
+      <p class="step"><b>\(B\):</b> \(\left|\tfrac{n^2+(-1)^n}{3^n}\right|\le\tfrac{n^2+1}{3^n}\), ולפי מבחן המנה טור זה מתכנס — \(B\) <b>מתכנס בהחלט</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(A\) מתכנס בתנאי, \(B\) מתכנס בהחלט.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 5.2 · לייבניץ מול תנאי הכרחי</span>
+    <p>נתונים \(\displaystyle A=\sum_{n=1}^{\infty}(-1)^{n}\ln\!\left(1+\frac1n\right)\) ו-\(\displaystyle B=\sum_{n=1}^{\infty}\frac{(-1)^n}{\sqrt n-\sqrt{n+1}}\). איזו טענה נכונה?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד ב' (שאלה 14)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(A\):</b> \(\sum|\ln(1+\tfrac1n)|=\sum[\ln(n+1)-\ln n]\) טלסקופי ומתבדר (\(\to\infty\)). אך \(b_n=\ln(1+\tfrac1n)\downarrow0\), ולפי לייבניץ \(A\) <b>מתכנס בתנאי</b>.</p>
+      <p class="step"><b>\(B\):</b> רציונליזציה: \(\tfrac{1}{\sqrt n-\sqrt{n+1}}=-(\sqrt n+\sqrt{n+1})\), ולכן \(|a_n|\to\infty\) — האיברים לא שואפים ל-0, ו-\(B\) <b>מתבדר</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> \(A\) מתכנס בתנאי, \(B\) מתבדר.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 5.3 · לייבניץ + הערכת שגיאה</span>
+    <p>הוכיחו שהטור \(\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}n}{n^2+1}\) מתכנס, קבעו האם בהחלט או בתנאי, ומצאו כמה איברים דרושים לקירוב עם שגיאה קטנה מ-\(0.05\).</p>
+    <p class="src">מתוך: תשפ"ו סמסטר א' מועד ב' (חלק פתוח, שאלה 2ב)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>התכנסות:</b> \(b_n=\dfrac{n}{n^2+1}\downarrow0\) — לפי לייבניץ הטור מתכנס.</p>
+      <p class="step"><b>בתנאי:</b> \(\sum\dfrac{n}{n^2+1}\sim\sum\dfrac1n\) מתבדר, לכן ההתכנסות <b>בתנאי</b>.</p>
+      <p class="step"><b>שגיאה:</b> לפי לייבניץ \(|R_N|\le b_{N+1}=\dfrac{N+1}{(N+1)^2+1}\). דורשים \(b_{N+1}<0.05\); \(b_{20}=\tfrac{20}{401}\approx0.0499<0.05\) ואילו \(b_{19}=\tfrac{19}{362}\approx0.0525>0.05\).</p>
+      <div class="fin"><b>תשובה סופית:</b> מתכנס בתנאי; דרושים \(19\) איברים (\(N=19\), האיבר הראשון שהושמט הוא \(b_{20}\)).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 5.4 · התכנסות בהחלט + הערכת שגיאה</span>
+    <p>הוכיחו שהטור \(\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n 2^n}{n!}\) מתכנס, ומצאו כמה איברים דרושים לשגיאה קטנה מ-\(0.05\).</p>
+    <p class="src">מתוך: תשפ"ו סמסטר א' מועד א' (חלק פתוח, שאלה 2ב)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>התכנסות:</b> על \(b_n=\tfrac{2^n}{n!}\) מבחן המנה נותן \(\tfrac{b_{n+1}}{b_n}=\tfrac{2}{n+1}\to0<1\), ולכן הטור מתכנס <b>בהחלט</b>.</p>
+      <p class="step"><b>שגיאה (לייבניץ):</b> \(|R_N|\le b_{N+1}=\dfrac{2^{N+1}}{(N+1)!}\). בדיקה: \(b_7=\tfrac{128}{5040}\approx0.025<0.05\) ✓, אך \(b_6=\tfrac{64}{720}\approx0.089>0.05\) ✗.</p>
+      <div class="fin"><b>תשובה סופית:</b> מתכנס בהחלט; יש לסכם עד \(N=6\) (האיברים \(n=0,\dots,6\) — סה"כ 7 איברים).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 5.5 · טורים עם פרמטר (השוואה + שורש)</span>
+    <p>נתון שהטור \(\sum a_n\) מתכנס (\(a_n\ne-1\)). נתונים \(\displaystyle A=\sum_{n=1}^{\infty}\frac{1}{2^n(a_n+1)}\) ו-\(\displaystyle B=\sum_{n=1}^{\infty}\sin(a_n)\frac{(2n)^n}{n^{2n}}\). איזו טענה נכונה?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 15)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>\(B\):</b> \(\left|\sin(a_n)\tfrac{(2n)^n}{n^{2n}}\right|\le\tfrac{(2n)^n}{n^{2n}}\); מבחן השורש: \(\sqrt[n]{\tfrac{(2n)^n}{n^{2n}}}=\tfrac{2n}{n^2}=\tfrac2n\to0<1\) — \(B\) <b>מתכנס בהחלט</b>.</p>
+      <p class="step"><b>\(A\):</b> מהתכנסות \(\sum a_n\) נובע \(a_n\to0\), אז מ-\(N\) מסוים \(a_n+1>\tfrac12\), ולכן \(0<\tfrac{1}{2^n(a_n+1)}<\tfrac{1}{2^{n-1}}\). השוואה עם טור הנדסי — \(A\) <b>מתכנס בהחלט</b>.</p>
+      <div class="fin"><b>תשובה סופית:</b> שני הטורים מתכנסים בהחלט.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. טורי חזקות וטיילור/מקלורן ============ -->
+<section>
+  <h2><span class="num">6</span>טורי חזקות (רדיוס ותחום התכנסות) וטורי טיילור/מקלורן</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 6.1 · טור מקלורן + תחום התכנסות</span>
+    <p>נתונה \(g(x)=\ln\!\left(\dfrac{1+x}{1-x}\right)\). מהו טור מקלורן שלה, ומהו קטע ההתכנסות?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלות 1–2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">\(\ln\tfrac{1+x}{1-x}=\ln(1+x)-\ln(1-x)\). מחיבור הטורים נותרים רק החזקות האי-זוגיות:</p>
+      <p class="step">$$g(x)=\sum_{n=0}^{\infty}\frac{2x^{2n+1}}{2n+1}=2x+\frac{2x^3}{3}+\frac{2x^5}{5}+\cdots$$</p>
+      <p class="step">חיתוך תחומי ההתכנסות של שני הטורים נותן \((-1,1)\); בקצוות \(x=\pm1\) הטור מתבדר (השוואה להרמוני).</p>
+      <div class="fin"><b>תשובה סופית:</b> הטור \(\displaystyle\sum_{n=0}^{\infty}\frac{2x^{2n+1}}{2n+1}\); קטע ההתכנסות \((-1,1)\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 6.2 · רדיוס התכנסות</span>
+    <p>מהו רדיוס ההתכנסות של \(\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^n}(x-2)^n\)?</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד א' (שאלה 6)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מבחן המנה: \(\displaystyle\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=\lim_{n\to\infty}\left(\frac{n}{n+1}\right)^n|x-2|=\frac1e|x-2|\).</p>
+      <p class="step">הטור מתכנס כאשר \(\tfrac1e|x-2|<1\), כלומר \(|x-2|<e\).</p>
+      <div class="fin"><b>תשובה סופית:</b> רדיוס ההתכנסות הוא \(R=e\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 6.3 · מקלורן + סכימת טור מספרי</span>
+    <p>נתונה \(f(x)=\dfrac{x+3x^2}{(1-x)^3}\). מצאו את טור מקלורן שלה, ובעזרתו את סכום הטור \(\displaystyle\sum_{n=1}^{\infty}\frac{n(2n-1)}{3^{2n}}\).</p>
+    <p class="src">מתוך: תשפ"ג סמסטר א' מועד ב' (שאלות 1–3)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מגזירת הטור ההנדסי מתקבל \(\dfrac{1}{(1-x)^3}=\sum_{n\ge2}\tfrac{n(n-1)}{2}x^{n-2}\), וכפל ב-\((x+3x^2)\) נותן:</p>
+      <p class="step">$$f(x)=\sum_{n=1}^{\infty}n(2n-1)x^n,\qquad I=(-1,1)$$</p>
+      <p class="step">הצבת \(x=\tfrac19\) (כי \(\tfrac1{3^{2n}}=(\tfrac19)^n\)): הסכום \(=f(\tfrac19)=\dfrac{\tfrac19+3\cdot\tfrac1{81}}{(\tfrac89)^3}=\dfrac{12/81}{512/729}=\dfrac{27}{128}\).</p>
+      <div class="fin"><b>תשובה סופית:</b> הטור \(\sum_{n\ge1}n(2n-1)x^n\); הסכום המבוקש \(=\dfrac{27}{128}\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 6.4 · תחום התכנסות (עם בדיקת קצוות)</span>
+    <p>מהו תחום ההתכנסות של \(\displaystyle\sum_{n=2}^{\infty}\frac{3^n}{n\ln n}(x-2)^n\)?</p>
+    <p class="src">מתוך: תשפ"ו סמסטר א' מועד ב' (חלק סגור, שאלה 4)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מבחן המנה: היחס \(\to3|x-2|\), ולכן \(|x-2|<\tfrac13\), כלומר המרכז 2 והרדיוס \(\tfrac13\): הקטע הפתוח \(\left(\tfrac53,\tfrac73\right)\).</p>
+      <p class="step"><b>\(x=\tfrac73\):</b> \(\sum\tfrac{1}{n\ln n}\) מתבדר (מבחן האינטגרל).</p>
+      <p class="step"><b>\(x=\tfrac53\):</b> \(\sum\tfrac{(-1)^n}{n\ln n}\) מתכנס (לייבניץ).</p>
+      <div class="fin"><b>תשובה סופית:</b> תחום ההתכנסות \(\left[\dfrac53,\dfrac73\right)\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 6.5 · תחום התכנסות (שאלה פתוחה)</span>
+    <p>מצאו את תחום ההתכנסות של \(\displaystyle\sum_{n=2}^{\infty}\frac{5^n\sin(1/n)}{\ln n}x^n\). הוכיחו את קביעתכם.</p>
+    <p class="src">מתוך: תשפ"ו סמסטר א' מועד א' (חלק פתוח, שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מבחן המנה (עם \(\sin(1/n)\sim\tfrac1n\), \(\tfrac{\ln n}{\ln(n+1)}\to1\)): היחס \(\to5|x|\), ולכן \(R=\tfrac15\).</p>
+      <p class="step"><b>\(x=\tfrac15\):</b> \(\sum\tfrac{\sin(1/n)}{\ln n}\) — השוואה גבולית עם \(\sum\tfrac{1}{n\ln n}\) (מתבדר) — <b>מתבדר</b>.</p>
+      <p class="step"><b>\(x=-\tfrac15\):</b> טור מתחלף עם איברים היורדים ל-0 — לפי לייבניץ <b>מתכנס</b> (בתנאי).</p>
+      <div class="fin"><b>תשובה סופית:</b> תחום ההתכנסות \(\left[-\dfrac15,\dfrac15\right)\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. חקירת פונקציות ============ -->
+<section>
+  <h2><span class="num">7</span>חקירת פונקציות (תחום, אסימפטוטות, קיצון, קמירות, שרטוט)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 7.1 · חקירה מלאה</span>
+    <p>חִקרו את הפונקציה \(f(x)=\dfrac{x^2}{\sqrt{x^2-2x-3}}\): תחום, חיתוך צירים, אסימפטוטות, עלייה/ירידה, קמירות, שרטוט.</p>
+    <p class="src">מתוך: מבחן מועד א' סמסטר קיץ 2024 (חלק א', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>תחום:</b> \((x-3)(x+1)>0\Rightarrow(-\infty,-1)\cup(3,\infty)\).</p>
+      <p class="step"><b>חיתוך צירים:</b> אין (הן \(x=0\) והן הפתרון היחיד \(x=0\) מחוץ לתחום).</p>
+      <p class="step"><b>אסימפטוטות:</b> אנכיות \(x=-1,\ x=3\); אלכסונית \(y=x+1\) ב-\(+\infty\) ו-\(y=-x-1\) ב-\(-\infty\).</p>
+      <p class="step"><b>קיצון:</b> \(f'(x)=\dfrac{x(x^2-3x-6)}{(x^2-2x-3)^{3/2}}\); מינימומים מקומיים \(\approx(-1.37,\,1.48)\) ו-\(\approx(4.37,\,2.04)\).</p>
+      <p class="step"><b>קמירות:</b> \(f''(x)=\dfrac{6(x^2+2x+3)}{(x^2-2x-3)^{5/2}}>0\) בכל התחום — קמורה, ללא נקודות פיתול.</p>
+      <div class="fin"><b>תשובה סופית:</b> שני ענפים, שני מינימומים מקומיים, קמורה בכל התחום, עם אסימפטוטות אנכיות \(x=-1,3\) ואלכסוניות \(y=\pm x\pm1\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 7.2 · חקירה (עם זוגיות)</span>
+    <p>חִקרו את \(f(x)=|x|^{1/2}\ln(x^2)\): תחום, זוגיות, חיתוך צירים, אסימפטוטות, עלייה/ירידה, קמירות, שרטוט.</p>
+    <p class="src">מתוך: מבחן מועד ב' סמסטר קיץ 2024 (חלק א', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>תחום:</b> \(\mathbb{R}\setminus\{0\}\). <b>זוגית</b> (\(f(-x)=f(x)\)). עבור \(x>0\): \(f(x)=2\sqrt x\ln x\).</p>
+      <p class="step"><b>חיתוך צירים:</b> \((\pm1,0)\); אין חיתוך עם ציר \(y\).</p>
+      <p class="step"><b>אסימפטוטות:</b> אין אנכית (\(\lim_{x\to0}f=0\), אי-רציפות סליקה); אין אופקית/משופעת (\(f\to\infty\) לאט מליניארי).</p>
+      <p class="step"><b>קיצון:</b> \(f'(x)=\dfrac{2+\ln x}{\sqrt x}=0\Rightarrow x=e^{-2}\); מינימומים ב-\((\pm e^{-2},\approx-1.47)\).</p>
+      <p class="step"><b>קמירות:</b> \(f''(x)=-\dfrac{\ln x}{2x\sqrt x}\); נקודות פיתול \((\pm1,0)\).</p>
+      <div class="fin"><b>תשובה סופית:</b> פונקציה זוגית בצורת "W כפולה", מינימומים ב-\(\pm e^{-2}\), פיתול ב-\(\pm1\), ללא אסימפטוטות.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 7.3 · חקירה (פונקציה רציונלית)</span>
+    <p>חִקרו את \(f(x)=\dfrac{x^3}{(x-1)^2}\): תחום, חיתוך צירים, אסימפטוטות, עלייה/ירידה, קמירות, שרטוט.</p>
+    <p class="src">מתוך: תשפ"ד סמסטר ב' מועד ב' (חלק א', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>תחום:</b> \(\mathbb{R}\setminus\{1\}\). <b>חיתוך צירים:</b> \((0,0)\) בלבד.</p>
+      <p class="step"><b>אסימפטוטות:</b> אנכית \(x=1\); אלכסונית \(y=x+2\) (משני הצדדים).</p>
+      <p class="step"><b>קיצון:</b> \(f'(x)=\dfrac{x^2(x-3)}{(x-1)^3}\); מינימום מקומי \(\left(3,\tfrac{27}{4}\right)\). עולה ב-\((-\infty,1)\cup[3,\infty)\), יורדת ב-\((1,3]\).</p>
+      <p class="step"><b>קמירות:</b> \(f''(x)=\dfrac{6x}{(x-1)^4}\); נקודת פיתול \((0,0)\).</p>
+      <div class="fin"><b>תשובה סופית:</b> אסימפטוטה אנכית \(x=1\), אלכסונית \(y=x+2\), מינימום ב-\((3,6.75)\), פיתול ב-\((0,0)\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 7.4 · חקירה (פונקציה טריגונומטרית הפוכה)</span>
+    <p>חִקרו את \(f(x)=\arcsin(1-x^2)\): תחום, זוגיות, חיתוך צירים, אסימפטוטות, עלייה/ירידה, קמירות, שרטוט.</p>
+    <p class="src">מתוך: מבחן מועד מיוחד קיץ 2024 (חלק א', שאלה 2)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>תחום:</b> \(-1\le1-x^2\le1\Rightarrow[-\sqrt2,\sqrt2]\). <b>זוגית</b>.</p>
+      <p class="step"><b>חיתוך צירים:</b> \((0,\tfrac\pi2)\) עם ציר \(y\); \((\pm1,0)\) עם ציר \(x\). <b>אסימפטוטות:</b> אין (תחום סגור וחסום).</p>
+      <p class="step"><b>קיצון:</b> \(f'(x)=\dfrac{-2x}{|x|\sqrt{2-x^2}}\); מקסימום מקומי (ומוחלט) ב-\((0,\tfrac\pi2)\) — עולה ב-\([-\sqrt2,0]\), יורדת ב-\([0,\sqrt2]\).</p>
+      <p class="step"><b>קמירות:</b> \(f''<0\) בכל התחום — קעורה, אין נקודות פיתול.</p>
+      <div class="fin"><b>תשובה סופית:</b> "כיפה" קעורה סימטרית על \([-\sqrt2,\sqrt2]\), מקסימום \((0,\tfrac\pi2)\), אפסים ב-\(\pm1\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. הוכחות מבוססות משפטים ============ -->
+<section>
+  <h2><span class="num">8</span>הוכחות מבוססות משפטים (לגראנז'/קושי/ערך ביניים/רול)</h2>
+
+  <div class="example">
+    <span class="tag">שאלה 8.1 · אי-שוויון + מספר שורשים</span>
+    <p><b>א.</b> הוכיחו שלכל \(x>0\): \(\ln(1+x)<x-\dfrac{x^2}{2}+\dfrac{x^3}{3}\).<br>
+       <b>ב.</b> מצאו כמה שורשים ממשיים יש למשוואה \(\ln x=(x-2)^2\).</p>
+    <p class="src">מתוך: מבחן מועד א' סמסטר קיץ 2024 (חלק א', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> נגדיר \(g(t)=\ln(1+t)-t+\tfrac{t^2}{2}-\tfrac{t^3}{3}\); \(g(0)=0\) ו-\(g'(t)=\dfrac{-t^3}{1+t}<0\) לכל \(t>0\), אז \(g\) יורדת ו-\(g(x)<g(0)=0\). לכן אי-השוויון מתקיים. \(\blacksquare\)</p>
+      <p class="step"><b>ב.</b> \(f(x)=\ln x-(x-2)^2\): \(f(1)=-1<0,\ f(2)=\ln2>0,\ f(4)\approx-2.6<0\), אז לפי ערך הביניים יש שורש ב-\((1,2)\) ושורש ב-\((2,4)\) — לפחות 2.</p>
+      <p class="step">\(f'\) מתאפסת פעם אחת בלבד בתחום \(x>0\) (ב-\(x\approx2.22\)), ולכן \(f\) חוצה אפס לכל היותר פעמיים.</p>
+      <div class="fin"><b>תשובה סופית:</b> למשוואה \(\ln x=(x-2)^2\) יש בדיוק \(2\) שורשים ממשיים.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 8.2 · משפט קושי + מספר שורשים</span>
+    <p><b>א.</b> הוכיחו שלכל \(1<a<b\): \(e^b-e^a\ge\ln b-\ln a\).<br>
+       <b>ב.</b> מצאו כמה שורשים ממשיים יש למשוואה \(e^x=2x+3\).</p>
+    <p class="src">מתוך: מבחן מועד ב' סמסטר קיץ 2024 (חלק א', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> על \(f(x)=e^x,\ g(x)=\ln x\) בקטע \([a,b]\), לפי משפט קושי קיים \(c\in(a,b)\):</p>
+      <p class="step">$$\frac{e^b-e^a}{\ln b-\ln a}=\frac{e^c}{1/c}=ce^c$$</p>
+      <p class="step">מכיוון ש-\(h(x)=xe^x\) עולה ו-\(c>1\), מתקיים \(ce^c\ge e>1\); ומאחר ש-\(\ln b-\ln a>0\) נובע האי-שוויון. \(\blacksquare\)</p>
+      <p class="step"><b>ב.</b> \(f(x)=e^x-2x-3\): \(f(-2)>0,\ f(0)=-2<0,\ f(2)=e^2-7>0\) — לפחות 2 שורשים. \(f'(x)=e^x-2\) מתאפסת פעם אחת (\(x=\ln2\)), אז \(f\) יורדת ואז עולה — לכל היותר 2 שורשים.</p>
+      <div class="fin"><b>תשובה סופית:</b> למשוואה \(e^x=2x+3\) יש בדיוק \(2\) שורשים ממשיים.</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 8.3 · מספר פתרונות (ערך ביניים + רול) ואי-שוויון בקושי</span>
+    <p><b>א.</b> הוכיחו שלמשוואה \(\sin^2 x=x^2-1\) יש בדיוק שני פתרונות ממשיים שונים.<br>
+       <b>ב.</b> הוכיחו שלכל \(0<x<\tfrac12\): \(\dfrac{\arctan(x^2)}{\sqrt x}<\dfrac{4\sqrt{x^3}}{1+x^4}\).</p>
+    <p class="src">מתוך: תשפ"ד סמסטר ב' מועד ב' (חלק א', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> \(f(x)=\sin^2x-x^2+1\) (זוגית): \(f(-\pi)<0,\ f(0)=1>0,\ f(\pi)<0\) — לפי ערך הביניים לפחות שני שורשים.</p>
+      <p class="step">יחידות: \(f''(x)=2(\cos2x-1)\le0\), אז \(f'\) יורדת ולה לכל היותר אפס אחד; לפי רול ל-\(f\) לכל היותר שני אפסים. לכן בדיוק שניים. \(\blacksquare\)</p>
+      <p class="step"><b>ב.</b> על \(f(t)=\arctan(t^2),\ g(t)=\sqrt t\) בקטע \([0,x]\), לפי משפט קושי קיים \(c\in(0,x)\): \(\dfrac{\arctan(x^2)}{\sqrt x}=\dfrac{4c^{3/2}}{1+c^4}\).</p>
+      <p class="step">הפונקציה \(H(t)=\dfrac{4t^{3/2}}{1+t^4}\) עולה ב-\((0,\tfrac12)\) (כי \(3-5t^4>0\)), ומ-\(c<x\) נובע \(H(c)<H(x)\), כלומר האי-שוויון המבוקש. \(\blacksquare\)</p>
+      <div class="fin"><b>תשובה סופית:</b> א. בדיוק שני פתרונות; ב. האי-שוויון הוכח בעזרת משפט קושי + מונוטוניות של \(H\).</div>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">שאלה 8.4 · זהות דרך נגזרת אפס + מספר שורשים</span>
+    <p><b>א.</b> הוכיחו שלכל \(x>0\): \(\arctan(x)+\arctan\!\left(\dfrac1x\right)=\dfrac\pi2\).<br>
+       <b>ב.</b> מצאו כמה שורשים ממשיים יש למשוואה \(x^4+x^2=3x+4\).</p>
+    <p class="src">מתוך: מבחן מועד מיוחד קיץ 2024 (חלק א', שאלה 1)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> \(f(x)=\arctan x+\arctan\tfrac1x\); \(f'(x)=\dfrac{1}{1+x^2}-\dfrac{1}{1+x^2}=0\), אז \(f\) קבועה ב-\(x>0\). הצבת \(x=1\): \(f(1)=\tfrac\pi4+\tfrac\pi4=\tfrac\pi2\). \(\blacksquare\)</p>
+      <p class="step"><b>ב.</b> \(f(x)=x^4+x^2-3x-4\): \(f(-2)=22>0,\ f(0)=-4<0,\ f(2)=10>0\) — לפחות 2 שורשים.</p>
+      <p class="step">\(f''(x)=12x^2+2>0\), אז \(f'\) עולה מונוטונית ולה שורש יחיד; לכן ל-\(f\) קיצון (מינימום) יחיד — חוצה אפס לכל היותר פעמיים.</p>
+      <div class="fin"><b>תשובה סופית:</b> למשוואה \(x^4+x^2=3x+4\) יש בדיוק \(2\) שורשים ממשיים.</div>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">38 שאלות · ממבחני עבר · אינפי 2</span>
+  <span class="pill">בהצלחה במבחן! 🎓</span>
+</div>
+
+<footer>
+  אינפי 2 · דף תרגול מרוכז · שאלות אמיתיות ממבחני עבר מסודרות לפי נושא
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

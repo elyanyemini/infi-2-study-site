@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טורים · נושא 9 · טורי חזקות ורדיוס התכנסות</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · טורים</div>
+  <h1>נושא 9 — טורי חזקות</h1>
+  <div class="sub">רדיוס התכנסות · תחום התכנסות · בדיקת קצוות</div>
+  <div class="progress">נושא <b>9</b> · זמן קריאה משוער: כ־25 דקות</div>
+</header>
+
+<!-- ============ 1. מהו ============ -->
+<section>
+  <h2><span class="num">1</span>מה זה טור חזקות?</h2>
+
+  <p>טור שבו כל איבר מכיל חזקה של \((x-a)\):</p>
+  <p>$$\sum_{n=0}^{\infty} c_n(x-a)^n$$</p>
+  <p>כאן \(a\) היא המרכז, ו־\(c_n\) הם המקדמים (לא תלויים ב־\(x\)). לכל ערך \(x\) שמציבים מקבלים טור מספרי רגיל — שיכול להתכנס או להתבדר.</p>
+
+  <div class="callout">
+    <span class="lead">השאלה המרכזית: תחום ההתכנסות</span>
+    קבוצת כל ה־\(x\) שעבורם הטור מתכנס. יש תמיד רק שלוש אפשרויות:
+    <ol>
+      <li>כל \(\mathbb{R}\) (רדיוס \(R=\infty\)).</li>
+      <li>רק הנקודה \(x=a\) עצמה (רדיוס \(R=0\)).</li>
+      <li>קטע סימטרי סביב \(a\): \((a-R,\,a+R)\), <b>ועוד בדיקה נפרדת של שני הקצוות</b>.</li>
+    </ol>
+    המספר \(R\) נקרא <b>רדיוס ההתכנסות</b>.
+  </div>
+</section>
+
+<!-- ============ 2. שיטת העבודה ============ -->
+<section>
+  <h2><span class="num">2</span>שיטת העבודה — שלושה שלבים</h2>
+
+  <div class="callout tip">
+    <span class="lead">האלגוריתם הקבוע</span>
+    <ol>
+      <li>מפעילים <b>מבחן המנה או השורש</b> על האיבר \(|c_n(x-a)^n|\), ומקבלים גבול \(L(x)\) שתלוי ב־\(x\). (מנה — אם יש עצרת; שורש — אם יש \(n\) במעריך.)</li>
+      <li>דורשים \(L(x)<1\) (התכנסות). זה נותן את הקטע \((a-R,a+R)\) ואת \(R\).</li>
+      <li><b>בודקים ידנית את שתי נקודות הקצה</b> \(x=a\pm R\) — מציבים אותן בטור המקורי (שם \(L=1\) והמבחן לא עוזר), ומקבלים טור מספרי שבודקים בלייבניץ / השוואה / טור \(p\).</li>
+    </ol>
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">אל תשכח את הקצוות!</span>
+    השלב השלישי הוא הכי נשכח והכי "תופס" נקודות במבחן. הקטע הפתוח לבד לא מספיק — חייבים לבדוק כל קצה בנפרד ולכתוב את התחום הסופי עם סוגריים נכונים (פתוח/סגור).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · רדיוס + בדיקת קצוות מלאה</span>
+    <p>מצא את תחום ההתכנסות של \(\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>שלב 1–2 — רדיוס במבחן המנה.</b> כאן \(a=0\), \(c_n=\frac1n\):</p>
+      <p class="step">$$L(x)=\lim_{n\to\infty}\left|\frac{x^{n+1}}{n+1}\cdot\frac{n}{x^n}\right| = |x|\lim_{n\to\infty}\frac{n}{n+1} = |x|$$</p>
+      <p class="step">דורשים \(|x|<1\), אז \(R=1\) והקטע הפתוח הוא \((-1,1)\).</p>
+      <p class="step"><b>שלב 3 — קצוות.</b></p>
+      <p class="step">\(x=1\): &nbsp; \(\sum\frac{1^n}{n}=\sum\frac1n\) — הטור ההרמוני, <b>מתבדר</b>.</p>
+      <p class="step">\(x=-1\): &nbsp; \(\sum\frac{(-1)^n}{n}\) — טור מתחלף, \(\frac1n\) יורדת ל־0, לפי לייבניץ <b>מתכנס</b>.</p>
+      <p class="step"><b>תחום ההתכנסות הסופי:</b></p>
+      <p class="step">$$[-1,\,1)$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · רדיוס אינסופי (עצרת במכנה)</span>
+    <p>מצא את תחום ההתכנסות של \(\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מבחן המנה:</p>
+      <p class="step">$$L(x)=\lim_{n\to\infty}\left|\frac{x^{n+1}}{(n+1)!}\cdot\frac{n!}{x^n}\right| = |x|\lim_{n\to\infty}\frac{1}{n+1} = 0$$</p>
+      <p class="step">\(L(x)=0<1\) עבור <b>כל</b> \(x\), אז הטור מתכנס תמיד: \(R=\infty\), התחום הוא כל \(\mathbb{R}\).</p>
+      <p class="step muted">(זה בדיוק הטור של \(e^x\) — נראה בנושא הבא.)</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · מרכז שאינו 0 + מבחן שורש</span>
+    <p>מצא את רדיוס ההתכנסות של \(\displaystyle\sum_{n=1}^{\infty}\frac{(x-2)^n}{3^n}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">יש \(n\) במעריך — מבחן השורש. כאן \(a=2\):</p>
+      <p class="step">$$L(x)=\lim_{n\to\infty}\sqrt[n]{\left|\frac{(x-2)^n}{3^n}\right|} = \frac{|x-2|}{3}$$</p>
+      <p class="step">דורשים \(\frac{|x-2|}{3}<1\), כלומר \(|x-2|<3\), אז \(R=3\) והקטע הפתוח \((-1,5)\).</p>
+      <p class="step"><b>קצוות:</b></p>
+      <p class="step">\(x=5\): \(\sum\frac{3^n}{3^n}=\sum 1\) — האיברים לא שואפים ל־0, <b>מתבדר</b>.</p>
+      <p class="step">\(x=-1\): \(\sum\frac{(-3)^n}{3^n}=\sum(-1)^n\) — לא שואף ל־0, <b>מתבדר</b>.</p>
+      <p class="step"><b>תחום סופי:</b> \((-1,\,5)\) (פתוח בשני הקצוות).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. פעולות ============ -->
+<section>
+  <h2><span class="num">3</span>פעולות מותרות על טורי חזקות</h2>
+
+  <p>בתוך תחום ההתכנסות, טור חזקות מתנהג כמעט כמו פולינום. מותר:</p>
+  <table class="tbl">
+    <tr><th>פעולה</th><th>מה קורה</th></tr>
+    <tr><td>הצבה</td><td>מציבים ביטוי אחר במקום \(x\)</td></tr>
+    <tr><td>גזירה איבר-איבר</td><td>\(\left(\sum c_n x^n\right)'=\sum c_n\,n\,x^{n-1}\)</td></tr>
+    <tr><td>אינטגרציה איבר-איבר</td><td>\(\int\sum c_n x^n\,dx=\sum\frac{c_n}{n+1}x^{n+1}+C\)</td></tr>
+    <tr><td>אריתמטיקה</td><td>כפל בקבוע, חיבור טורים</td></tr>
+  </table>
+  <p class="muted">הרדיוס נשמר תחת גזירה ואינטגרציה (הקצוות עלולים להשתנות). זה הבסיס לבניית טורי טיילור בנושא הבא.</p>
+</section>
+
+<!-- ============ 4. שאלות ============ -->
+<section>
+  <h2><span class="num">4</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> אחרי שמצאת שהרדיוס \(R=2\) סביב \(a=0\), האם סיימת את תחום ההתכנסות?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>לא.</b> קיבלת את הקטע הפתוח \((-2,2)\), אבל חובה לבדוק בנפרד את שני הקצוות \(x=2\) ו־\(x=-2\) על ידי הצבה בטור המקורי, ואז לקבוע אם התחום פתוח/סגור בכל קצה.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> באיזה מבחן משתמשים כדי למצוא רדיוס כשיש \(n!\) בטור?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>מבחן המנה</b> (ד'לאמבר). כשיש \(n\) במעריך (כמו \(5^n\)) — מבחן השורש. בשני המקרים דורשים שהגבול \(L(x)<1\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> למה בקצוות אי אפשר להשתמש במבחן המנה/שורש?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כי בקצוות מתקיים בדיוק \(L=1\), וזה בדיוק המקרה שבו מבחן המנה/שורש <b>לא מכריע</b>. לכן מציבים את ערך הקצה בטור ובודקים אותו כטור מספרי רגיל (לייבניץ / השוואה / טור \(p\)).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> אם \(L(x)=0\) לכל \(x\), מה הרדיוס והתחום?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>\(R=\infty\), התחום הוא כל \(\mathbb{R}\). הטור מתכנס עבור כל ערך של \(x\) (אין קצוות לבדוק).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. תרגיל ============ -->
+<section>
+  <h2><span class="num">5</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>מצא את תחום ההתכנסות המלא (כולל קצוות) של \(\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n^2}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>רדיוס — מבחן המנה:</b></p>
+      <p class="step">$$L(x)=\lim_{n\to\infty}\left|\frac{x^{n+1}}{(n+1)^2}\cdot\frac{n^2}{x^n}\right| = |x|\lim_{n\to\infty}\frac{n^2}{(n+1)^2} = |x|$$</p>
+      <p class="step">דורשים \(|x|<1\): \(R=1\), קטע פתוח \((-1,1)\).</p>
+      <p class="step"><b>קצה \(x=1\):</b> \(\sum\frac{1}{n^2}\) — טור \(p\) עם \(p=2>1\), <b>מתכנס</b>.</p>
+      <p class="step"><b>קצה \(x=-1\):</b> \(\sum\frac{(-1)^n}{n^2}\) — מתכנס בהחלט (כי \(\sum\frac{1}{n^2}\) מתכנס), <b>מתכנס</b>.</p>
+      <p class="step"><b>תחום סופי:</b> שני הקצוות נכנסים:</p>
+      <p class="step">$$[-1,\,1]$$</p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 9</span>
+  <span class="pill">הבא → נושא 10: טורי טיילור ומקלורן</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · טורי חזקות
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

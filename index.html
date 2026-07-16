@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אינפי 2 — מרכז הלימוד</title>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.7; font-size:17px; height:100vh; overflow:hidden;
+  }
+
+  /* Layout: sidebar (right) + content (left) */
+  .app{display:flex; height:100vh; width:100%;}
+
+  /* ===== Sidebar / Table of contents ===== */
+  aside.sidebar{
+    width:320px; flex:0 0 320px; height:100vh; overflow-y:auto;
+    background:var(--panel); border-inline-start:1px solid var(--line);
+    padding:20px 16px 40px;
+    transition:width .25s ease, flex-basis .25s ease, padding .25s ease, opacity .2s ease;
+  }
+  .brand{
+    text-align:center; padding:14px 10px 18px; margin-bottom:12px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:14px;
+  }
+  .brand .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:13px;}
+  .brand h1{margin:.25em 0 .1em; font-size:21px;}
+  .brand .sub{color:var(--muted); font-size:13px;}
+
+  .toc-group{margin-top:18px;}
+  .toc-group > .group-title{
+    color:var(--accent2); font-weight:800; font-size:14px; letter-spacing:.4px;
+    text-transform:none; padding:0 6px 6px; border-bottom:1px solid var(--line);
+    margin-bottom:8px;
+  }
+  .toc-item{
+    display:flex; align-items:center; gap:10px; width:100%;
+    text-align:right; background:var(--panel2); color:var(--ink);
+    border:1px solid var(--line); border-radius:10px;
+    padding:9px 12px; margin:6px 0; cursor:pointer; font-size:15px;
+    font-family:inherit; line-height:1.4; transition:.15s;
+  }
+  .toc-item:hover{border-color:var(--accent); background:#242844;}
+  .toc-item.active{
+    border-color:var(--accent); background:linear-gradient(90deg,#2a2f55,#1e2238);
+    box-shadow:inset 3px 0 0 var(--accent);
+  }
+  .toc-item .badge{
+    flex:0 0 auto; min-width:26px; height:26px; line-height:26px; text-align:center;
+    background:var(--accent); color:#0e1020; font-weight:800; border-radius:7px; font-size:13px;
+    padding:0 6px;
+  }
+  .toc-item.active .badge{background:var(--accent2);}
+  .toc-item .label{flex:1;}
+
+  /* ===== Content area ===== */
+  main.content{flex:1; height:100vh; display:flex; flex-direction:column; min-width:0;}
+  .contentbar{
+    display:flex; align-items:center; gap:12px; padding:12px 18px;
+    background:var(--panel); border-bottom:1px solid var(--line); flex:0 0 auto;
+  }
+  .hamburger{
+    display:none; background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    border-radius:9px; width:40px; height:40px; font-size:20px; cursor:pointer;
+  }
+  /* Desktop sidebar toggle (styled like the nav buttons) */
+  .toc-toggle{
+    display:inline-flex; align-items:center; gap:8px; flex:0 0 auto;
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    border-radius:10px; padding:9px 14px; cursor:pointer; font-family:inherit;
+    font-size:15px; font-weight:700; transition:.15s; white-space:nowrap;
+  }
+  .toc-toggle:hover{border-color:var(--accent); background:#242844;}
+  .nav-btn{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    border-radius:10px; padding:9px 16px; cursor:pointer; font-family:inherit;
+    font-size:15px; font-weight:700; transition:.15s;
+  }
+  .nav-btn:hover:not(:disabled){border-color:var(--accent); background:#242844;}
+  .nav-btn:disabled{opacity:.4; cursor:not-allowed;}
+  .now-title{
+    flex:1; text-align:center; font-weight:700; font-size:16px; color:var(--ink);
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .now-pos{color:var(--muted); font-size:13px; font-weight:400;}
+
+  .stage{flex:1; position:relative; padding:14px; min-height:0;}
+  iframe#viewer{
+    width:100%; height:100%; border:1px solid var(--line); border-radius:14px;
+    background:var(--bg); display:none;
+  }
+
+  /* Welcome screen */
+  .welcome{
+    position:absolute; inset:14px; border:1px solid var(--line); border-radius:14px;
+    background:radial-gradient(120% 90% at 50% 0%, #202544 0%, #141830 70%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:30px;
+  }
+  .welcome .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  .welcome h2{font-size:34px; margin:.2em 0 .1em;}
+  .welcome .sub{color:var(--muted); font-size:18px; max-width:560px;}
+  .welcome .hint{
+    margin-top:22px; color:var(--accent2); font-weight:700; font-size:16px;
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:12px 20px;
+  }
+  .welcome .start-btn{
+    margin-top:20px; background:var(--accent); color:#0e1020; border:none;
+    border-radius:12px; padding:12px 26px; font-size:16px; font-weight:800;
+    cursor:pointer; font-family:inherit;
+  }
+  .welcome .start-btn:hover{background:#93b3ff;}
+
+  .backdrop{display:none;}
+
+  /* Desktop: collapsed sidebar state */
+  @media (min-width:821px){
+    .app.collapsed aside.sidebar{
+      width:0; flex:0 0 0; padding-inline:0; overflow:hidden;
+      border-inline-start:none; opacity:0;
+    }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width:820px){
+    body{overflow:auto;}
+    .hamburger{display:inline-flex; align-items:center; justify-content:center;}
+    /* On mobile the hamburger opens the overlay; hide the desktop toggle. */
+    .toc-toggle{display:none;}
+    aside.sidebar{
+      position:fixed; top:0; right:0; z-index:30; transform:translateX(100%);
+      transition:transform .22s ease; box-shadow:-8px 0 24px rgba(0,0,0,.4);
+    }
+    aside.sidebar.open{transform:translateX(0);}
+    .backdrop.show{
+      display:block; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:20;
+    }
+    .now-title .now-name{display:none;}
+    .welcome h2{font-size:26px;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== Content (left, main) ===== -->
+  <main class="content">
+    <div class="contentbar">
+      <button class="hamburger" id="hamburger" aria-label="פתח תפריט">☰</button>
+      <button class="nav-btn" id="prevBtn">▶ הקודם</button>
+      <div class="now-title">
+        <span class="now-name" id="nowName">בחר נושא מהתפריט</span>
+        <span class="now-pos" id="nowPos"></span>
+      </div>
+      <button class="nav-btn" id="nextBtn">הבא ◀</button>
+      <button class="toc-toggle" id="tocToggle" aria-label="הסתר תוכן עניינים" aria-expanded="true">☰ הסתר תפריט</button>
+    </div>
+
+    <div class="stage">
+      <iframe id="viewer" title="תוכן הנושא"></iframe>
+      <div class="welcome" id="welcome">
+        <div class="kicker">אינפי 2</div>
+        <h2>אינפי 2 — מרכז הלימוד</h2>
+        <div class="sub">כל 14 נושאי הקורס במקום אחד: אינטגרלים, סדרות, טורים, חקירת פונקציות, הוכחות, תרגול ומבחן דמה.</div>
+        <div class="hint">בחר נושא מהתפריט כדי להתחיל</div>
+        <button class="start-btn" id="startBtn">התחל מנושא 1 ◀</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Sidebar (right) ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="kicker">מרכז הלימוד</div>
+      <h1>אינפי 2</h1>
+      <div class="sub">תוכן עניינים · 14 נושאים</div>
+    </div>
+    <nav id="toc"></nav>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+</div>
+
+<script>
+  // Linear order of all 14 topics: {group, title, file}
+  const TOPICS = [
+    { group:"אינטגרלים", title:"נושא 1 · אינטגרל לא מסוים, טבלה והצבה", file:"integrals-01-indefinite-integral.html" },
+    { group:"אינטגרלים", title:"נושא 2 · אינטגרציה בחלקים", file:"integrals-02-integration-by-parts.html" },
+    { group:"אינטגרלים", title:"נושא 3 · שברים חלקיים", file:"integrals-03-partial-fractions.html" },
+    { group:"אינטגרלים", title:"נושא 4 · אינטגרל מסוים ומשפט יסודי", file:"integrals-04-definite-integral-fundamental-theorem.html" },
+    { group:"אינטגרלים", title:"נושא 5 · אינטגרלים מוכללים ומבחני התכנסות", file:"integrals-05-improper-integrals-convergence.html" },
+    { group:"סדרות", title:"נושא 6 · גבולות, סנדוויץ' ואריתמטיקה", file:"sequences-06-limits-squeeze-arithmetic.html" },
+    { group:"סדרות", title:"נושא 7 · מונוטוניות, רקורסיה ותת-סדרות", file:"sequences-07-monotonicity-recursion-subsequences.html" },
+    { group:"טורים", title:"נושא 8 · טורים מספריים ומבחני התכנסות", file:"series-08-numerical-series-convergence.html" },
+    { group:"טורים", title:"נושא 9 · טורי חזקות ורדיוס התכנסות", file:"series-09-power-series-radius-of-convergence.html" },
+    { group:"טורים", title:"נושא 10 · טורי טיילור ומקלורן", file:"series-10-taylor-maclaurin-series.html" },
+    { group:"חקירת פונקציות והוכחות", title:"נושא 11 · חקירת פונקציות — המתכון המלא", file:"function-analysis-11-complete-recipe.html" },
+    { group:"חקירת פונקציות והוכחות", title:"נושא 12 · הוכחות — לגראנז', קושי, ערך ביניים ורול", file:"proofs-12-lagrange-cauchy-ivt-rolle.html" },
+    { group:"תרגול ומבחן", title:"דף תרגול מרוכז — שאלות ממבחני עבר לפי נושא", file:"practice-sheet-past-exam-questions.html" },
+    { group:"תרגול ומבחן", title:"מבחן דמה מלא — תנאי זמן + מחוון", file:"mock-exam-timed-with-rubric.html" },
+  ];
+
+  const TOTAL = TOPICS.length;
+  let current = -1; // -1 = welcome screen
+
+  const viewer   = document.getElementById('viewer');
+  const welcome  = document.getElementById('welcome');
+  const nowName  = document.getElementById('nowName');
+  const nowPos   = document.getElementById('nowPos');
+  const prevBtn  = document.getElementById('prevBtn');
+  const nextBtn  = document.getElementById('nextBtn');
+  const tocEl    = document.getElementById('toc');
+  const sidebar  = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+  const appEl    = document.querySelector('.app');
+  const tocToggle= document.getElementById('tocToggle');
+
+  // Build the src path: keep "topics/" outside encoding, encode the filename.
+  function srcFor(file){
+    return encodeURIComponent(file);
+  }
+
+  // Build the table of contents grouped by family.
+  function buildToc(){
+    let lastGroup = null;
+    let groupBox = null;
+    TOPICS.forEach((t, i) => {
+      if(t.group !== lastGroup){
+        groupBox = document.createElement('div');
+        groupBox.className = 'toc-group';
+        const gt = document.createElement('div');
+        gt.className = 'group-title';
+        gt.textContent = t.group;
+        groupBox.appendChild(gt);
+        tocEl.appendChild(groupBox);
+        lastGroup = t.group;
+      }
+      const btn = document.createElement('button');
+      btn.className = 'toc-item';
+      btn.dataset.index = i;
+      btn.innerHTML =
+        '<span class="badge">' + (i+1) + '</span>' +
+        '<span class="label"></span>';
+      btn.querySelector('.label').textContent = t.title;
+      btn.addEventListener('click', () => { load(i); closeSidebar(); });
+      groupBox.appendChild(btn);
+    });
+  }
+
+  function load(i){
+    if(i < 0 || i >= TOTAL) return;
+    current = i;
+    const t = TOPICS[i];
+    viewer.src = srcFor(t.file);
+    viewer.style.display = 'block';
+    welcome.style.display = 'none';
+    nowName.textContent = t.title;
+    nowPos.textContent = ' — נושא ' + (i+1) + ' מתוך ' + TOTAL;
+    prevBtn.disabled = (i === 0);
+    nextBtn.disabled = (i === TOTAL - 1);
+    // highlight active item
+    document.querySelectorAll('.toc-item').forEach(el => {
+      el.classList.toggle('active', Number(el.dataset.index) === i);
+    });
+    // scroll active into view within sidebar
+    const activeEl = tocEl.querySelector('.toc-item.active');
+    if(activeEl) activeEl.scrollIntoView({block:'nearest'});
+    viewer.contentWindow && window.scrollTo(0,0);
+  }
+
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+  }
+  function openSidebar(){
+    sidebar.classList.add('open');
+    backdrop.classList.add('show');
+  }
+
+  prevBtn.addEventListener('click', () => { if(current > 0) load(current - 1); });
+  nextBtn.addEventListener('click', () => {
+    if(current < 0) load(0);
+    else if(current < TOTAL - 1) load(current + 1);
+  });
+
+  document.getElementById('startBtn').addEventListener('click', () => load(0));
+  document.getElementById('hamburger').addEventListener('click', openSidebar);
+  backdrop.addEventListener('click', closeSidebar);
+
+  // Desktop: collapse / expand the sidebar (table of contents).
+  function toggleToc(){
+    const collapsed = appEl.classList.toggle('collapsed');
+    tocToggle.textContent = collapsed ? '☰ תוכן עניינים' : '☰ הסתר תפריט';
+    tocToggle.setAttribute('aria-expanded', String(!collapsed));
+    tocToggle.setAttribute('aria-label', collapsed ? 'הצג תוכן עניינים' : 'הסתר תוכן עניינים');
+  }
+  tocToggle.addEventListener('click', toggleToc);
+
+  // Keyboard navigation (arrows). RTL: right = previous, left = next.
+  document.addEventListener('keydown', (e) => {
+    if(e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
+    if(e.key === 'ArrowRight'){ if(current > 0) load(current - 1); }
+    else if(e.key === 'ArrowLeft'){ if(current >= 0 && current < TOTAL-1) load(current + 1); }
+  });
+
+  buildToc();
+  // Default: show the welcome screen. Buttons start disabled until a topic loads.
+  prevBtn.disabled = true;
+</script>
+</body>
+</html>

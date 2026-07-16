@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>טורים · נושא 10 · טורי טיילור ומקלורן</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · טורים</div>
+  <h1>נושא 10 — טורי טיילור ומקלורן</h1>
+  <div class="sub">הטורים הבסיסיים · פיתוח פונקציות · נגזרות גבוהות · הערכת שגיאה</div>
+  <div class="progress">נושא <b>10</b> · זמן קריאה משוער: כ־30 דקות</div>
+</header>
+
+<!-- ============ 1. הנוסחה ============ -->
+<section>
+  <h2><span class="num">1</span>הרעיון: לייצג פונקציה כטור חזקות</h2>
+
+  <p>אם פונקציה \(f\) שווה לטור חזקות סביב נקודה \(a\), אז המקדמים נקבעים באופן יחיד על ידי הנגזרות של \(f\) בנקודה:</p>
+
+  <div class="boxed">
+    $$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n \qquad \text{— טור טיילור סביב } a$$
+  </div>
+
+  <p>עבור \(a=0\) קוראים לזה <b>טור מקלורן</b>:</p>
+  <p>$$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n$$</p>
+
+  <div class="callout">
+    <span class="lead">מאיפה זה בא?</span>
+    אם מניחים \(f(x)=\sum c_n(x-a)^n\), גוזרים \(n\) פעמים ומציבים \(x=a\), כל האיברים מתאפסים חוץ מאחד, ומקבלים \(c_n=\frac{f^{(n)}(a)}{n!}\).
+  </div>
+</section>
+
+<!-- ============ 2. שלושת הבסיסיים ============ -->
+<section>
+  <h2><span class="num">2</span>שלושת הטורים הבסיסיים (נקודת מוצא לכל תרגיל)</h2>
+
+  <p>במקום לגזור שוב ושוב, כמעט תמיד מתחילים מאחד משלושת הטורים האלה ומבצעים עליהם פעולות (הצבה, גזירה, אינטגרציה). כדאי לזכור אותם בעל פה:</p>
+
+  <table class="tbl">
+    <tr><th>הפונקציה</th><th>הטור</th><th>תחום</th></tr>
+    <tr><td>\(\dfrac{1}{1-x}\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}x^n\)</td><td>\((-1,1)\)</td></tr>
+    <tr><td>\(e^x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}\)</td><td>\(\mathbb{R}\)</td></tr>
+    <tr><td>\(\cos x\)</td><td>\(\displaystyle\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}\)</td><td>\(\mathbb{R}\)</td></tr>
+  </table>
+
+  <p>ומהם נגזרים בקלות עוד שלושה (על ידי אינטגרציה/הצבה):</p>
+  <table class="tbl">
+    <tr><th>הפונקציה</th><th>הטור</th><th>הושג מ־</th></tr>
+    <tr><td>\(\sin x\)</td><td>\(\displaystyle\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k+1)!}x^{2k+1}\)</td><td>אינטגרל של \(\cos x\)</td></tr>
+    <tr><td>\(-\ln(1-x)\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{x^{n+1}}{n+1}\)</td><td>אינטגרל של הטור ההנדסי</td></tr>
+    <tr><td>\(\arctan x\)</td><td>\(\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n}{2n+1}x^{2n+1}\)</td><td>הצבת \(-x^2\) + אינטגרל</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <span class="lead">שיטת העבודה הכללית</span>
+    בהינתן פונקציה — מזהים אילו פעולות (הצבה / גזירה / אינטגרציה / כפל בקבוע) מעבירות את אחד משלושת הבסיסיים לפונקציה המבוקשת, ומבצעים את אותן פעולות <b>בשני האגפים</b> (גם על הפונקציה וגם על הטור).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · פיתוח בהצבה</span>
+    <p>מצא את טור מקלורן של \(f(x)=\dfrac{1}{1+x^2}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מתחילים מהטור ההנדסי \(\frac{1}{1-t}=\sum t^n\), ומציבים \(t=-x^2\):</p>
+      <p class="step">$$\frac{1}{1-(-x^2)} = \sum_{n=0}^{\infty}(-x^2)^n = \sum_{n=0}^{\infty}(-1)^n x^{2n}$$</p>
+      <p class="step">כלומר:</p>
+      <p class="step">$$\frac{1}{1+x^2} = 1 - x^2 + x^4 - x^6 + \dots \qquad (-1<x<1)$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · פיתוח באינטגרציה</span>
+    <p>הסק את טור מקלורן של \(\arctan x\) מהדוגמה הקודמת.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מכיוון ש־\((\arctan x)'=\frac{1}{1+x^2}\), נעשה אינטגרל איבר-איבר על הטור מדוגמה 1:</p>
+      <p class="step">$$\arctan x = \int \sum_{n=0}^{\infty}(-1)^n x^{2n}\,dx = \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1} + C$$</p>
+      <p class="step">מציבים \(x=0\): \(\arctan 0 = 0\), אז \(C=0\):</p>
+      <p class="step">$$\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \dots$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. נגזרות גבוהות ============ -->
+<section>
+  <h2><span class="num">3</span>הטריק החכם — נגזרות מסדר גבוה בלי לגזור</h2>
+
+  <p>מכיוון שהמקדם של \(x^n\) בטור טיילור הוא בדיוק \(\frac{f^{(n)}(a)}{n!}\), אפשר להשוות מקדמים ולחלץ נגזרות גבוהות — בלי לגזור \(n\) פעמים!</p>
+
+  <div class="boxed">
+    אם מצאנו שהמקדם של \(x^n\) בטור הוא \(c_n\), אז &nbsp; \(f^{(n)}(0) = n!\cdot c_n\).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · חילוץ נגזרת גבוהה</span>
+    <p>עבור \(f(x)=\dfrac{1}{1+x^2}\), מצא את \(f^{(10)}(0)\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מדוגמה 1: \(\frac{1}{1+x^2}=\sum(-1)^n x^{2n}\). המקדם של \(x^{10}\) מתקבל כאשר \(2n=10\), כלומר \(n=5\):</p>
+      <p class="step">$$c_{10} = (-1)^5 = -1$$</p>
+      <p class="step">לפי הנוסחה:</p>
+      <p class="step">$$f^{(10)}(0) = 10!\cdot c_{10} = 10!\cdot(-1) = -3{,}628{,}800$$</p>
+      <p class="step muted">לגזור פונקציה זו 10 פעמים ידנית זה סיוט — הטור עושה את זה בשורה אחת.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. שגיאה ============ -->
+<section>
+  <h2><span class="num">4</span>הערכת שגיאה — שארית לגראנז'</h2>
+
+  <p>אם מקרבים את \(f\) בפולינום טיילור מסדר \(k\), השגיאה \(R_k(x)=f(x)-T_k(x)\) ניתנת בצורת לגראנז':</p>
+  <div class="boxed">
+    $$R_k(x)=\frac{f^{(k+1)}(c)}{(k+1)!}(x-a)^{k+1}\qquad \text{עבור } c \text{ כלשהו בין } a \text{ ל־} x$$
+  </div>
+
+  <p>מכיוון ש־\(c\) לא ידועה, מחפשים <b>חסם עליון</b> לביטוי: מעריכים את הערך המקסימלי של \(|f^{(k+1)}(c)|\) על הטווח האפשרי של \(c\).</p>
+
+  <div class="callout tip">
+    <span class="lead">כשהטור מתחלף — קיצור דרך</span>
+    אם הטור מתחלף סימן, אפשר להשתמש בחסם הפשוט של לייבניץ במקום: השגיאה חסומה על ידי האיבר הבא בטור.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · חסם שגיאה</span>
+    <p>מקרבים את \(e^{0.5}\) בעזרת פולינום מקלורן מסדר 3 של \(e^x\). חסום את השגיאה.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">עבור \(e^x\), כל הנגזרות הן \(e^x\), אז \(f^{(4)}(c)=e^c\). כאן \(a=0,\ x=0.5,\ k=3\):</p>
+      <p class="step">$$|R_3(0.5)| = \frac{e^c}{4!}(0.5)^4, \qquad 0<c<0.5$$</p>
+      <p class="step">חוסמים את \(e^c\): מכיוון ש־\(c<0.5\), מתקיים \(e^c<e^{0.5}<2\). לכן:</p>
+      <p class="step">$$|R_3(0.5)| < \frac{2}{24}\cdot(0.5)^4 = \frac{2}{24}\cdot\frac{1}{16} = \frac{1}{192}\approx 0.0052$$</p>
+      <p class="step">אז הקירוב מדויק עד כדי כ־\(0.005\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. שאלות ============ -->
+<section>
+  <h2><span class="num">5</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> מהו טור מקלורן, וכיצד הוא מקרה פרטי של טור טיילור?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>טור מקלורן הוא טור טיילור סביב הנקודה \(a=0\). כלומר \(f(x)=\sum\frac{f^{(n)}(0)}{n!}x^n\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> איך מפתחים טור ל־\(e^{-x^2}\) בלי לגזור?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>מתחילים מ־\(e^t=\sum\frac{t^n}{n!}\) ומציבים \(t=-x^2\):</p>
+      <p>$$e^{-x^2}=\sum_{n=0}^{\infty}\frac{(-x^2)^n}{n!}=\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{n!}$$</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> מקדם \(x^6\) בטור של \(f\) הוא \(\frac25\). כמה שווה \(f^{(6)}(0)\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>\(f^{(6)}(0)=6!\cdot c_6 = 720\cdot\frac25 = 288\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> בשארית לגראנז', למה מחפשים חסם ולא ערך מדויק?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כי הנקודה \(c\) בנוסחה לא ידועה במפורש (רק ידוע שהיא בין \(a\) ל־\(x\)). לכן במקום ערך מדויק מחפשים את הערך המקסימלי האפשרי של הביטוי — חסם עליון לשגיאה.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. תרגיל ============ -->
+<section>
+  <h2><span class="num">6</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>א. מצא את טור מקלורן של \(f(x)=\dfrac{x}{1-x}\).</p>
+    <p>ב. השתמש בו כדי למצוא את \(f^{(4)}(0)\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> מתחילים מ־\(\frac{1}{1-x}=\sum_{n=0}^{\infty}x^n\), וכופלים ב־\(x\):</p>
+      <p class="step">$$\frac{x}{1-x} = x\sum_{n=0}^{\infty}x^n = \sum_{n=0}^{\infty}x^{n+1} = x + x^2 + x^3 + \dots$$</p>
+      <p class="step">כלומר כל המקדמים מ־\(x^1\) והלאה שווים 1 (והמקדם של \(x^0\) הוא 0).</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> המקדם של \(x^4\) הוא \(c_4=1\). לכן:</p>
+      <p class="step">$$f^{(4)}(0)=4!\cdot c_4 = 24\cdot 1 = 24$$</p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 10 — ואת כל הטורים!</span>
+  <span class="pill">הבא → נושא 11: חקירת פונקציות</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · טורי טיילור ומקלורן
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

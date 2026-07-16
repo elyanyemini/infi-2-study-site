@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הוכחות · נושא 12 · לגראנז', קושי, ערך ביניים ורול</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  .progress .hot{color:var(--warn); font-weight:700;}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · הוכחות</div>
+  <h1>נושא 12 — משפטי לגראנז', קושי, ערך ביניים ורול</h1>
+  <div class="sub">הוכחת אי-שוויונות · מספר פתרונות למשוואה</div>
+  <div class="progress"><span class="hot">חלק מהנושא הכי נבחן (31%)</span> · זמן קריאה משוער: כ־30 דקות</div>
+</header>
+
+<!-- ============ 1. ארבעת המשפטים ============ -->
+<section>
+  <h2><span class="num">1</span>ארבעת המשפטים המרכזיים</h2>
+
+  <table class="tbl">
+    <tr><th>המשפט</th><th>תנאים</th><th>מה מבטיח</th></tr>
+    <tr><td>ערך הביניים</td><td>\(f\) רציפה ב־\([a,b]\)</td><td>מקבלת כל ערך בין \(f(a)\) ל־\(f(b)\)</td></tr>
+    <tr><td>רול</td><td>רציפה ב־\([a,b]\), גזירה ב־\((a,b)\), \(f(a)=f(b)\)</td><td>קיים \(c\) עם \(f'(c)=0\)</td></tr>
+    <tr><td>לגראנז'</td><td>רציפה ב־\([a,b]\), גזירה ב־\((a,b)\)</td><td>קיים \(c\): \(f'(c)=\frac{f(b)-f(a)}{b-a}\)</td></tr>
+    <tr><td>קושי</td><td>\(f,g\) רציפות וגזירות</td><td>קיים \(c\): \(\frac{f'(c)}{g'(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}\)</td></tr>
+  </table>
+
+  <div class="callout tip">
+    <span class="lead">איך לחשוב על לגראנז'</span>
+    לגראנז' אומר: קיימת נקודה שבה השיפוע המקומי (\(f'(c)\)) שווה לשיפוע הממוצע בין הקצוות. גיאומטרית — יש נקודה שבה המשיק מקביל למיתר.
+  </div>
+</section>
+
+<!-- ============ 2. אי-שוויונות ============ -->
+<section>
+  <h2><span class="num">2</span>סוג א' — הוכחת אי-שוויון</h2>
+
+  <p>יש שתי גישות עיקריות, ושתיהן חוזרות במבחנים:</p>
+
+  <div class="callout">
+    <span class="lead">גישה 1 — מונוטוניות (עוזר-פונקציה)</span>
+    כדי להוכיח \(f(x)>g(x)\) בקטע: מגדירים \(h(x)=f(x)-g(x)\), ומראים ש־\(h\) עולה (\(h'>0\)) מנקודה שבה \(h=0\). מכיוון שהיא מתחילה מ־0 ועולה, היא חיובית.
+  </div>
+
+  <div class="callout">
+    <span class="lead">גישה 2 — משפט לגראנז'</span>
+    מפעילים לגראנז' על \(f\) בקטע מתאים, מקבלים \(f(b)-f(a)=f'(c)(b-a)\), וחוסמים את \(f'(c)\) בעזרת מה שידוע על הנגזרת בקטע.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · אי-שוויון במונוטוניות</span>
+    <p>הוכח ש־\(e^x > 1+x\) לכל \(x>0\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מגדירים עוזר: \(h(x)=e^x-(1+x)=e^x-1-x\).</p>
+      <p class="step">בנקודה 0: \(h(0)=e^0-1-0=0\).</p>
+      <p class="step">גוזרים: \(h'(x)=e^x-1\). עבור \(x>0\) מתקיים \(e^x>1\), אז \(h'(x)>0\) — \(h\) עולה ממש.</p>
+      <p class="step">מכיוון ש־\(h(0)=0\) ו־\(h\) עולה עבור \(x>0\), נובע \(h(x)>0\), כלומר \(e^x>1+x\). \(\blacksquare\)</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · אי-שוויון בלגראנז'</span>
+    <p>הוכח ש־\(|\sin b - \sin a| \le |b-a|\) לכל \(a,b\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מפעילים לגראנז' על \(f(x)=\sin x\) בקטע \([a,b]\) (רציפה וגזירה בכל מקום). קיים \(c\):</p>
+      <p class="step">$$\frac{\sin b - \sin a}{b-a} = f'(c) = \cos c$$</p>
+      <p class="step">לוקחים ערך מוחלט וחוסמים \(|\cos c|\le1\):</p>
+      <p class="step">$$\left|\frac{\sin b-\sin a}{b-a}\right| = |\cos c| \le 1$$</p>
+      <p class="step">מכפילים ב־\(|b-a|\):</p>
+      <p class="step">$$|\sin b - \sin a| \le |b-a| \quad\blacksquare$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. מספר פתרונות ============ -->
+<section>
+  <h2><span class="num">3</span>סוג ב' — מספר הפתרונות של משוואה</h2>
+
+  <p>שאלה קלאסית: "כמה פתרונות יש למשוואה \(f(x)=0\)?" עונים בשני חצאים:</p>
+
+  <div class="callout tip">
+    <span class="lead">האסטרטגיה הכפולה</span>
+    <ul>
+      <li><b>קיום (לפחות פתרון אחד):</b> משפט ערך הביניים — אם \(f\) רציפה ומחליפה סימן (\(f(a)<0<f(b)\)), יש שורש ביניהם.</li>
+      <li><b>יחידות (לכל היותר פתרון אחד):</b> מונוטוניות — אם \(f'\) שומרת סימן (תמיד חיובית או תמיד שלילית) בקטע, הפונקציה מונוטונית וחוצה את האפס פעם אחת בדיוק.</li>
+    </ul>
+    שילוב של שניהם נותן <b>בדיוק פתרון אחד</b>.
+  </div>
+
+  <div class="callout">
+    <span class="lead">הקשר למשפט רול</span>
+    אם היו <b>שני</b> שורשים \(x_1,x_2\) של \(f\), אז \(f(x_1)=f(x_2)=0\), ולפי רול קיימת נקודה ביניהם עם \(f'=0\). אם הוכחנו ש־\(f'\ne0\) בכל הקטע — נוצרת סתירה, אז אין שני שורשים. זו דרך אלגנטית להוכיח יחידות.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · בדיוק פתרון אחד</span>
+    <p>הוכח שלמשוואה \(x^3+x-1=0\) יש בדיוק פתרון ממשי אחד.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נסמן \(f(x)=x^3+x-1\) (רציפה וגזירה בכל מקום).</p>
+      <p class="step"><b>קיום (ערך ביניים):</b> \(f(0)=-1<0\) ו־\(f(1)=1+1-1=1>0\). הפונקציה רציפה ומחליפה סימן בין 0 ל־1, אז יש שורש בקטע \((0,1)\).</p>
+      <p class="step"><b>יחידות (מונוטוניות):</b> \(f'(x)=3x^2+1\). מכיוון ש־\(3x^2\ge0\), מתקיים \(f'(x)\ge1>0\) לכל \(x\) — הפונקציה עולה ממש בכל הישר.</p>
+      <p class="step">פונקציה עולה ממש חוצה את האפס לכל היותר פעם אחת. יחד עם הקיום — יש <b>בדיוק פתרון אחד</b>. \(\blacksquare\)</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · שימוש ברול לחסימת מספר שורשים</span>
+    <p>הוכח שלמשוואה \(x^3-3x+5=0\) יש לכל היותר שורש ממשי אחד בקטע \((-1,1)\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">נניח בשלילה שיש שני שורשים \(x_1<x_2\) בקטע, כלומר \(f(x_1)=f(x_2)=0\).</p>
+      <p class="step">\(f(x)=x^3-3x+5\) רציפה וגזירה, אז לפי <b>רול</b> קיימת \(c\in(x_1,x_2)\) עם \(f'(c)=0\).</p>
+      <p class="step">אבל \(f'(x)=3x^2-3=3(x^2-1)\), ובקטע \((-1,1)\) מתקיים \(x^2<1\), אז \(f'(x)<0\) — לעולם לא מתאפס בקטע.</p>
+      <p class="step">סתירה. לכן אין שני שורשים בקטע — לכל היותר אחד. \(\blacksquare\)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. שאלות ============ -->
+<section>
+  <h2><span class="num">4</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> באיזה משפט משתמשים כדי להראות ש<b>קיים</b> פתרון למשוואה, ומה התנאי?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>משפט ערך הביניים.</b> התנאי: \(f\) רציפה בקטע, ומחליפה סימן בין הקצוות (\(f(a)\) ו־\(f(b)\) בעלי סימנים הפוכים). אז יש שורש ביניהם.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> איך מוכיחים ש<b>יש לכל היותר</b> פתרון אחד?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>מראים שהפונקציה <b>מונוטונית</b> (למשל \(f'>0\) בכל הקטע) — אז היא חוצה את האפס לכל היותר פעם אחת. לחלופין, בשלילה עם רול: שני שורשים היו מאלצים נקודה עם \(f'=0\), בסתירה.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> להוכחת \(f(x)>g(x)\), איזה עוזר-פונקציה בונים ומה מראים עליו?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>בונים \(h(x)=f(x)-g(x)\), מוצאים נקודה שבה \(h=0\), ומראים ש־\(h\) עולה משם (\(h'>0\)). אז \(h>0\), כלומר \(f>g\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> אילו שלושה תנאים דורש משפט רול?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>(1) רציפות ב־\([a,b]\), (2) גזירות ב־\((a,b)\), (3) ערכים שווים בקצוות \(f(a)=f(b)\). אז מובטח \(c\) עם \(f'(c)=0\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. תרגיל ============ -->
+<section>
+  <h2><span class="num">5</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>א. הוכח ש־\(\ln(1+x)<x\) לכל \(x>0\).</p>
+    <p>ב. הוכח שלמשוואה \(x^5+x^3+x-2=0\) יש בדיוק פתרון ממשי אחד.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> עוזר: \(h(x)=x-\ln(1+x)\). בנקודה 0: \(h(0)=0-\ln1=0\).</p>
+      <p class="step">נגזרת: \(h'(x)=1-\frac{1}{1+x}=\frac{x}{1+x}\). עבור \(x>0\) זה חיובי, אז \(h\) עולה.</p>
+      <p class="step">מכיוון ש־\(h(0)=0\) ו־\(h\) עולה \(\Rightarrow h(x)>0\), כלומר \(x>\ln(1+x)\). \(\blacksquare\)</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> \(f(x)=x^5+x^3+x-2\).</p>
+      <p class="step"><b>קיום:</b> \(f(0)=-2<0\), \(f(1)=1+1+1-2=1>0\). רציפה ומחליפה סימן \(\Leftarrow\) יש שורש ב־\((0,1)\).</p>
+      <p class="step"><b>יחידות:</b> \(f'(x)=5x^4+3x^2+1>0\) לכל \(x\) (סכום אי-שליליים \(+1\)). אז \(f\) עולה ממש \(\Leftarrow\) חוצה אפס לכל היותר פעם אחת.</p>
+      <p class="step">יחד: בדיוק פתרון אחד. \(\blacksquare\)</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">סיימת את כל הנושאים! 🎓</span>
+    כיסינו את כל החומר למבחן: אינטגרלים (5 נושאים), סדרות (2), טורים (3), חקירת פונקציות והוכחות משפטים (2). לפי תוכנית הלימוד, השלב הבא הוא לתרגל מבחני עבר בתנאי זמן. בהצלחה!
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 12 — ואת כל החומר!</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · הוכחות מבוססות משפטים
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

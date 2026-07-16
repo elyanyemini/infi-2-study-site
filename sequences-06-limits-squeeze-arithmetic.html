@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סדרות · נושא 6 · גבולות, סנדוויץ' ואריתמטיקה</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · סדרות</div>
+  <h1>נושא 6 — גבולות, סנדוויץ' ואריתמטיקה</h1>
+  <div class="sub">הגדרת הגבול · הקשר לפונקציות · כללי חישוב</div>
+  <div class="progress">נושא <b>6</b> · חלק א' של סדרות · זמן קריאה משוער: כ־25 דקות</div>
+</header>
+
+<!-- ============ 1. מהי סדרה ============ -->
+<section>
+  <h2><span class="num">1</span>מה זו סדרה ומה זה גבול שלה?</h2>
+
+  <p>סדרה היא רשימה אינסופית של מספרים לפי סדר: \(a_1, a_2, a_3, \dots\). למשל \(a_n=\frac1n\) נותנת \(1, \tfrac12, \tfrac13, \dots\).</p>
+
+  <p>השאלה המרכזית: לאן הסדרה "הולכת" ככל ש־\(n\) גדל? המספר שאליו היא מתקרבת נקרא <b>הגבול</b>.</p>
+
+  <div class="callout">
+    <span class="lead">הגדרת הגבול (אפסילון)</span>
+    אומרים ש־\(a_n\to L\) אם לכל \(\varepsilon>0\) קיים \(n_\varepsilon\) כך שלכל \(n>n_\varepsilon\) מתקיים \(|a_n-L|<\varepsilon\).
+    <br><span class="muted">בעברית פשוטה: מרגע מסוים והלאה, כל איברי הסדרה נמצאים קרוב כרצוננו ל־\(L\).</span>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">מושגים בסיסיים</span>
+    <ul>
+      <li><b>מתכנסת</b> — יש לה גבול סופי.</li>
+      <li><b>מתבדרת</b> — אין גבול סופי (או ששואפת ל־\(\pm\infty\), או שאין גבול בכלל).</li>
+      <li><b>הגבול יחיד</b> — אם קיים גבול, הוא יחיד.</li>
+      <li>שינוי של <b>מספר סופי</b> של איברים (או הזזה) לא משנה את הגבול.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2. הקשר לפונקציות ============ -->
+<section>
+  <h2><span class="num">2</span>הכלי החזק ביותר — הקשר לפונקציות</h2>
+
+  <p>אם נחליף את \(n\) הבדיד ב־\(x\) רציף, אפשר להשתמש בכל הכלים מאינפי 1 (לופיטל, כפל בצמוד, גבולות ידועים):</p>
+
+  <div class="boxed">
+    אם \(\displaystyle\lim_{x\to\infty} f(x)=L\), אז \(\displaystyle\lim_{n\to\infty} f(n)=L\).
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">שתי מגבלות חשובות</span>
+    <ul>
+      <li>אי אפשר "לתרגם" ל־\(x\) רציף ביטויים כמו \((-1)^n\) או \(n!\) — הם לא מוגדרים על ממשיים. אותם מטפלים בדרכים אחרות (תת-סדרות, מבחן המנה).</li>
+      <li>הכיוון ההפוך <b>לא</b> נכון: יתכן שלסדרה יש גבול בעוד שלפונקציה אין. למשל \(a_n=\sin(2\pi n)=0\) לכל \(n\), אבל \(f(x)=\sin(2\pi x)\) מתנודדת ואין לה גבול.</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · לופיטל דרך פונקציה</span>
+    <p>חשב את \(\displaystyle\lim_{n\to\infty}\frac{\ln n}{n}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">עוברים לפונקציה \(f(x)=\frac{\ln x}{x}\). כש־\(x\to\infty\) זו צורה \(\frac{\infty}{\infty}\), אז לופיטל:</p>
+      <p class="step">$$\lim_{x\to\infty}\frac{\ln x}{x} \;\overset{\text{L'H}}{=}\; \lim_{x\to\infty}\frac{1/x}{1} = 0$$</p>
+      <p class="step">לכן גם הסדרה: \(\displaystyle\lim_{n\to\infty}\frac{\ln n}{n}=0\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. סנדוויץ' ============ -->
+<section>
+  <h2><span class="num">3</span>משפט הסנדוויץ' (הכריך)</h2>
+
+  <div class="callout">
+    <span class="lead">המשפט</span>
+    אם \(a_n\le b_n\le c_n\) (החל משלב מסוים), ו־\(a_n\to L\) וגם \(c_n\to L\), אז גם האמצעי נלכד: \(b_n\to L\).
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">מקרה פרטי חשוב מאוד</span>
+    <b>סדרה ששואפת ל־0 כפול סדרה חסומה = שואף ל־0.</b> למשל \(\frac{\sin n}{n}\): הגורם \(\sin n\) חסום בין \(-1\) ל־\(1\), והגורם \(\frac1n\to0\), אז המכפלה שואפת ל־0.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · חסומה כפול אפסה</span>
+    <p>חשב את \(\displaystyle\lim_{n\to\infty}\frac{\cos(n^2)}{n}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">חוסמים את המונה: \(-1\le\cos(n^2)\le1\), אז:</p>
+      <p class="step">$$-\frac1n \le \frac{\cos(n^2)}{n} \le \frac1n$$</p>
+      <p class="step">שני הצדדים שואפים ל־0, אז לפי סנדוויץ':</p>
+      <p class="step">$$\lim_{n\to\infty}\frac{\cos(n^2)}{n}=0$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 3 · סנדוויץ' עם שורש n-י</span>
+    <p>חשב את \(\displaystyle\lim_{n\to\infty}\sqrt[n]{2^n+3^n}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מבודדים את הבסיס הגדול (3). מלמטה ומלמעלה:</p>
+      <p class="step">$$3 = \sqrt[n]{3^n} \le \sqrt[n]{2^n+3^n} \le \sqrt[n]{3^n+3^n} = \sqrt[n]{2\cdot 3^n} = 3\cdot\sqrt[n]{2}$$</p>
+      <p class="step">מכיוון ש־\(\sqrt[n]{2}\to1\), הצד הימני שואף ל־3, והשמאלי הוא 3 קבוע. לפי סנדוויץ':</p>
+      <p class="step">$$\lim_{n\to\infty}\sqrt[n]{2^n+3^n}=3$$</p>
+      <p class="step muted">כלל כללי: \(\sqrt[n]{a_1^n+\dots+a_k^n}\to\max(a_i)\). הבסיס הגדול תמיד מנצח.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. אריתמטיקה ============ -->
+<section>
+  <h2><span class="num">4</span>אריתמטיקה של גבולות וזהירות מ"צורות לא מוגדרות"</h2>
+
+  <p>אם \(a_n\to L\) ו־\(b_n\to M\) (סופיים), אז הגבולות מתנהגים "יפה":</p>
+  <p>$$a_n+b_n\to L+M,\quad a_nb_n\to LM,\quad \frac{a_n}{b_n}\to\frac{L}{M}\ (M\ne0),\quad \sqrt{a_n}\to\sqrt{L}$$</p>
+
+  <div class="callout warn">
+    <span class="lead">שבע הצורות הלא מוגדרות</span>
+    בצורות האלה אי אפשר להסיק ישירות — צריך לעבד את הביטוי (לופיטל, כפל בצמוד, חילוק באיבר הדומיננטי):
+    $$\frac{\infty}{\infty},\quad \frac00,\quad 0\cdot\infty,\quad \infty-\infty,\quad 1^{\infty},\quad \infty^{0},\quad 0^{0}$$
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">כללים שימושיים</span>
+    <ul>
+      <li>מתכנסת \(+\) מתבדרת \(=\) מתבדרת (הכרחי).</li>
+      <li>אם \(a_n\to\infty\) אז \(\frac{1}{a_n}\to0\).</li>
+      <li>\(a_n\to0 \iff |a_n|\to0\).</li>
+    </ul>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 4 · מנת פולינומים (חילוק בדומיננטי)</span>
+    <p>חשב את \(\displaystyle\lim_{n\to\infty}\frac{3n^2+2n}{5n^2-1}\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">צורה \(\frac{\infty}{\infty}\). מחלקים מונה ומכנה בחזקה הגבוהה ביותר, \(n^2\):</p>
+      <p class="step">$$\frac{3+\frac{2}{n}}{5-\frac{1}{n^2}}$$</p>
+      <p class="step">כש־\(n\to\infty\) האיברים \(\frac2n\) ו־\(\frac{1}{n^2}\) שואפים ל־0:</p>
+      <p class="step">$$\to \frac{3+0}{5-0} = \frac35$$</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 5 · הפרש שורשים (כפל בצמוד)</span>
+    <p>חשב את \(\displaystyle\lim_{n\to\infty}\left(\sqrt{n^2+n}-n\right)\).</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">צורה \(\infty-\infty\). כופלים ומחלקים בצמוד \(\sqrt{n^2+n}+n\):</p>
+      <p class="step">$$\frac{\left(\sqrt{n^2+n}-n\right)\left(\sqrt{n^2+n}+n\right)}{\sqrt{n^2+n}+n} = \frac{(n^2+n)-n^2}{\sqrt{n^2+n}+n} = \frac{n}{\sqrt{n^2+n}+n}$$</p>
+      <p class="step">מחלקים ב־\(n\) (מתחת לשורש זה \(n^2\)):</p>
+      <p class="step">$$= \frac{1}{\sqrt{1+\frac1n}+1} \to \frac{1}{\sqrt{1}+1} = \frac12$$</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. שאלות ============ -->
+<section>
+  <h2><span class="num">5</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> למה אי אפשר להשתמש בלופיטל ישירות על \(a_n=\frac{(-1)^n}{n}\) דרך פונקציה?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כי \((-1)^n\) לא מוגדר על \(x\) ממשי — אי אפשר "לתרגם" אותו לפונקציה רציפה. אבל אפשר לפתור בסנדוויץ': \(-\frac1n\le\frac{(-1)^n}{n}\le\frac1n\), ושני הצדדים ל־0, אז הגבול 0.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> מהו \(\displaystyle\lim_{n\to\infty}\frac{\sin(n!)}{n}\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>0.</b> זה "חסומה כפול אפסה": \(\sin(n!)\) חסום בין \(-1\) ל־1, ו־\(\frac1n\to0\). המכפלה שואפת ל־0 (סנדוויץ').</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> מהו \(\displaystyle\lim_{n\to\infty}\sqrt[n]{5^n+7^n}\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>7.</b> בשורש n-י של סכום חזקות, הבסיס הגדול מנצח. כאן \(\max(5,7)=7\).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> "צורה \(\infty-\infty\) תמיד שווה 0" — נכון או לא?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>לא נכון.</b> זו צורה לא מוגדרת — התוצאה יכולה להיות כל מספר, אינסוף, או לא קיימת. חייבים לעבד (למשל כפל בצמוד). ראינו דוגמה שהתוצאה שלה \(\frac12\).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. תרגיל ============ -->
+<section>
+  <h2><span class="num">6</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>חשב את הגבולות:</p>
+    <p>א. \(\displaystyle\lim_{n\to\infty}\frac{2n^3-n}{4n^3+5n^2}\) &nbsp;&nbsp;&nbsp; ב. \(\displaystyle\lim_{n\to\infty}\frac{3\cos n+n}{n+1}\)</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>א.</b> מחלקים בחזקה הגבוהה \(n^3\):</p>
+      <p class="step">$$\frac{2-\frac{1}{n^2}}{4+\frac{5}{n}} \to \frac{2-0}{4+0} = \frac12$$</p>
+      <hr style="border-color:#285c46; margin:14px 0;">
+      <p class="step"><b>ב.</b> מחלקים ב־\(n\):</p>
+      <p class="step">$$\frac{\frac{3\cos n}{n}+1}{1+\frac1n}$$</p>
+      <p class="step">האיבר \(\frac{3\cos n}{n}\) הוא "חסומה כפול אפסה" ולכן שואף ל־0:</p>
+      <p class="step">$$\to \frac{0+1}{1+0} = 1$$</p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 6</span>
+  <span class="pill">הבא → נושא 7: מונוטוניות, רקורסיה ותת-סדרות</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · סדרות — חלק א'
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

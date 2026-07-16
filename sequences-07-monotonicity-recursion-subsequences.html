@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סדרות · נושא 7 · מונוטוניות, רקורסיה ותת-סדרות</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:17px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .reveal-btn.q{background:var(--accent2);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  .qcard{
+    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
+    padding:14px 18px; margin:12px 0;
+  }
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .practice{border-inline-start:4px solid var(--warn);}
+  .practice .tag{background:var(--warn); color:#241a00;}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · סדרות</div>
+  <h1>נושא 7 — מונוטוניות, רקורסיה ותת-סדרות</h1>
+  <div class="sub">המשפט המרכזי · סדרות נסיגה · בולצאנו-ויירשטראס</div>
+  <div class="progress">נושא <b>7</b> · חלק ב' של סדרות · זמן קריאה משוער: כ־30 דקות</div>
+</header>
+
+<!-- ============ 1. מונוטוניות וחסימות ============ -->
+<section>
+  <h2><span class="num">1</span>מונוטוניות, חסימות והמשפט המרכזי</h2>
+
+  <div class="callout">
+    <span class="lead">הגדרות</span>
+    <ul>
+      <li>סדרה <b>עולה</b> אם \(a_n\le a_{n+1}\) לכל \(n\); <b>יורדת</b> אם \(a_n\ge a_{n+1}\).</li>
+      <li>סדרה <b>חסומה</b> אם קיימים \(m,M\) כך ש־\(m\le a_n\le M\) לכל \(n\).</li>
+    </ul>
+  </div>
+
+  <p>המשפט הבא הוא הכלי המרכזי להוכחת התכנסות <b>בלי לדעת את הגבול מראש</b>:</p>
+
+  <div class="boxed">
+    סדרה <b>מונוטונית וחסומה</b> — בהכרח מתכנסת.
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">בפירוט</span>
+    <ul>
+      <li>עולה וחסומה מלמעלה \(\Leftarrow\) מתכנסת (לגבול \(=\sup a_n\)).</li>
+      <li>עולה ולא חסומה מלמעלה \(\Rightarrow a_n\to\infty\).</li>
+      <li>יורדת וחסומה מלמטה \(\Leftarrow\) מתכנסת (לגבול \(=\inf a_n\)).</li>
+      <li>יורדת ולא חסומה מלמטה \(\Rightarrow a_n\to-\infty\).</li>
+    </ul>
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">אל תתבלבל בין המושגים</span>
+    <ul>
+      <li>מתכנסת \(\Leftarrow\) חסומה (תמיד). אבל חסומה <b>לא</b> בהכרח מתכנסת — למשל \((-1)^n\).</li>
+      <li>מונוטונית לבד <b>לא</b> מספיקה (יכולה להתבדר לאינסוף). צריך <b>גם</b> חסומה.</li>
+      <li>מתכנסת <b>לא</b> חייבת להיות מונוטונית — למשל \(\frac{(-1)^n}{n}\to0\) אבל קופצת.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 2. סדרות רקורסיביות ============ -->
+<section>
+  <h2><span class="num">2</span>סדרות נסיגה (רקורסיביות) — המתכון המלא</h2>
+
+  <p>סדרה מהצורה \(a_{n+1}=f(a_n)\) עם ערך התחלתי נתון. זו שאלה קלאסית ומאוד נפוצה במבחן. כמעט תמיד מבקשים: הוכח שהסדרה מתכנסת, ומצא את הגבול.</p>
+
+  <div class="callout tip">
+    <span class="lead">ארבעת השלבים (שנן אותם!)</span>
+    <ol>
+      <li><b>מציאת מועמד לגבול:</b> אם \(L=\lim a_n\), אז מהצבה בנוסחה מקבלים \(L=f(L)\). פותרים את המשוואה הזו.</li>
+      <li><b>זיהוי כיוון:</b> מחשבים כמה איברים ראשונים כדי לראות אם הסדרה עולה או יורדת, ולבחור את המועמד הנכון.</li>
+      <li><b>הוכחה באינדוקציה</b> של שני דברים: (א) מונוטוניות, (ב) חסימות (בכיוון המתאים, לרוב על ידי \(L\)).</li>
+      <li><b>מסקנה:</b> מונוטונית + חסומה \(\Leftarrow\) מתכנסת \(\Leftarrow\) הגבול הוא המועמד מ־(1).</li>
+    </ol>
+  </div>
+
+  <div class="callout warn">
+    <span class="lead">למה שלב 1 לבד לא מספיק?</span>
+    פתרון \(L=f(L)\) נותן מועמד <b>רק בהנחה שהגבול קיים</b>. חייבים קודם להוכיח שהסדרה בכלל מתכנסת (שלבים 2–4) — אחרת אפשר "למצוא" גבול לסדרה שאין לה גבול בכלל.
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 1 · סדרת נסיגה מלאה</span>
+    <p>נתונה \(a_1=1\) ו־\(a_{n+1}=\sqrt{2+a_n}\). הוכח שהסדרה מתכנסת ומצא את הגבול.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>שלב 1 — מועמד לגבול.</b> נניח \(L=\lim a_n\). מהצבה: \(L=\sqrt{2+L}\). מעלים בריבוע: \(L^2=2+L\), כלומר \(L^2-L-2=0\), ומפרקים: \((L-2)(L+1)=0\). המועמדים: \(L=2\) או \(L=-1\). הסדרה חיובית, אז \(L=2\).</p>
+      <p class="step"><b>שלב 2 — כיוון.</b> \(a_1=1,\ a_2=\sqrt3\approx1.73,\ a_3\approx1.93\) — הסדרה עולה, ונראה שחסומה מלמעלה ע"י 2.</p>
+      <p class="step"><b>שלב 3א — חסימות (\(a_n<2\)) באינדוקציה.</b> בסיס: \(a_1=1<2\). ✓ צעד: נניח \(a_n<2\), אז \(a_{n+1}=\sqrt{2+a_n}<\sqrt{2+2}=2\). ✓</p>
+      <p class="step"><b>שלב 3ב — עלייה (\(a_{n+1}>a_n\)).</b> בודקים \(a_{n+1}^2-a_n^2 = (2+a_n)-a_n^2 = -(a_n^2-a_n-2) = -(a_n-2)(a_n+1)\). מכיוון ש־\(a_n<2\) ו־\(a_n>0\), הביטוי חיובי, אז \(a_{n+1}>a_n\). ✓ הסדרה עולה.</p>
+      <p class="step"><b>שלב 4 — מסקנה.</b> עולה וחסומה מלמעלה \(\Leftarrow\) מתכנסת. מכיוון שהיא מתכנסת, הגבול הוא המועמד:</p>
+      <p class="step">$$\lim_{n\to\infty} a_n = 2$$</p>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">טיפ להוכחת מונוטוניות</span>
+    לפעמים במקום להשוות \(a_{n+1}\) ל־\(a_n\) ישירות, נוח להסתכל על הפונקציה \(f(x)\) המתאימה: אם \(f'(x)\ge0\) (עולה), הסדרה שומרת על סדר.
+  </div>
+</section>
+
+<!-- ============ 3. תת-סדרות ============ -->
+<section>
+  <h2><span class="num">3</span>תת-סדרות (סדרות חלקיות)</h2>
+
+  <p>תת-סדרה \(a_{n_k}\) נוצרת מבחירת חלק מהאיברים תוך שמירת הסדר (\(n_1<n_2<\dots\)). למשל האיברים הזוגיים \(a_2,a_4,a_6,\dots\).</p>
+
+  <div class="callout">
+    <span class="lead">הכלים המרכזיים</span>
+    <ul>
+      <li>\(a_n\to L \iff\) <b>כל</b> תת-סדרה שואפת ל־\(L\).</li>
+      <li>אם שתי תת-סדרות שואפות לגבולות <b>שונים</b> \(\Leftarrow\) לסדרה אין גבול.</li>
+      <li>להפך: אם הזוגיים והאי-זוגיים (שביחד מכסים הכל) שואפים לאותו \(L\) \(\Leftarrow\) כל הסדרה שואפת ל־\(L\).</li>
+    </ul>
+  </div>
+
+  <div class="callout tip">
+    <span class="lead">מתי לפצל לתת-סדרות?</span>
+    כשמופיע \((-1)^n\) (מפצלים זוגי/אי-זוגי), או ביטוי טריגונומטרי שאפשר "לסדר" לכפולות של \(2\pi\).
+  </div>
+
+  <div class="example">
+    <span class="tag">דוגמה 2 · הוכחת אי-קיום גבול</span>
+    <p>הוכח שלסדרה \(a_n=(-1)^n\cdot\frac{n}{n+1}\) אין גבול.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מפצלים לזוגיים ואי-זוגיים.</p>
+      <p class="step"><b>זוגיים</b> (\(n=2k\), אז \((-1)^n=1\)): \(a_{2k}=\dfrac{2k}{2k+1}\to 1\).</p>
+      <p class="step"><b>אי-זוגיים</b> (\(n=2k-1\), אז \((-1)^n=-1\)): \(a_{2k-1}=-\dfrac{2k-1}{2k}\to -1\).</p>
+      <p class="step">שתי תת-סדרות שואפות לגבולות שונים (1 ו־\(-1\)), ולכן לסדרה כולה <b>אין גבול</b>.</p>
+    </div>
+  </div>
+
+  <h3>שני משפטים מרכזיים</h3>
+  <div class="callout">
+    <ul>
+      <li><b>לכל סדרה יש תת-סדרה מונוטונית.</b></li>
+      <li><b>בולצאנו-ויירשטראס:</b> לכל סדרה <b>חסומה</b> יש תת-סדרה <b>מתכנסת</b>. (נובע מהקודם + המשפט המרכזי.)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 4. שאלות ============ -->
+<section>
+  <h2><span class="num">4</span>שאלות לבדיקת הבנה</h2>
+  <p class="muted">נסה לענות בראש לפני שאתה חושף את התשובה.</p>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 1.</span> סדרה עולה. האם זה מספיק כדי להסיק שהיא מתכנסת?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p><b>לא.</b> צריך <b>גם</b> חסומה מלמעלה. סדרה עולה שאינה חסומה (כמו \(a_n=n\)) שואפת לאינסוף. רק "עולה + חסומה מלמעלה" מבטיח התכנסות.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 2.</span> בסדרת נסיגה, למה לא מספיק לפתור \(L=f(L)\) כדי לקבוע את הגבול?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>כי \(L=f(L)\) נותן מועמד <b>בהנחה שהגבול קיים</b>. אם הסדרה בכלל לא מתכנסת, המשוואה עדיין תיתן פתרון "מזויף". לכן חובה קודם להוכיח התכנסות (מונוטוניות + חסימות באינדוקציה).</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 3.</span> אם \(a_{2k}\to3\) ו־\(a_{2k-1}\to3\), מה אפשר להסיק על \(a_n\)?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>ש־\(a_n\to3\). הזוגיים והאי-זוגיים ביחד מכסים את כל הסדרה, ושניהם שואפים לאותו גבול — לכן כל הסדרה שואפת ל־3.</p>
+    </div>
+  </div>
+
+  <div class="qcard">
+    <p><span class="qnum">שאלה 4.</span> מה מבטיח משפט בולצאנו-ויירשטראס, ומה התנאי?</p>
+    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
+    <div class="answer">
+      <p>שלכל סדרה <b>חסומה</b> יש תת-סדרה <b>מתכנסת</b>. התנאי היחיד הוא חסימות (לא צריך מונוטוניות ולא התכנסות של הסדרה המקורית).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. תרגיל ============ -->
+<section>
+  <h2><span class="num">5</span>תרגיל לתרגול עצמאי</h2>
+
+  <div class="example practice">
+    <span class="tag">תרגיל</span>
+    <p>נתונה \(a_1=3\) ו־\(a_{n+1}=\dfrac{a_n+6}{2}\). הוכח שהסדרה מתכנסת ומצא את הגבול.</p>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון מלא</button>
+    <div class="answer">
+      <p class="step"><b>שלב 1 — מועמד.</b> \(L=\dfrac{L+6}{2}\Rightarrow 2L=L+6\Rightarrow L=6\).</p>
+      <p class="step"><b>שלב 2 — כיוון.</b> \(a_1=3,\ a_2=\tfrac{9}{2}=4.5,\ a_3=\tfrac{10.5}{2}=5.25\) — עולה, וכנראה חסומה מלמעלה ע"י 6.</p>
+      <p class="step"><b>שלב 3א — חסימות (\(a_n<6\)).</b> בסיס: \(a_1=3<6\). צעד: אם \(a_n<6\), אז \(a_{n+1}=\dfrac{a_n+6}{2}<\dfrac{6+6}{2}=6\). ✓</p>
+      <p class="step"><b>שלב 3ב — עלייה.</b> \(a_{n+1}-a_n=\dfrac{a_n+6}{2}-a_n=\dfrac{6-a_n}{2}>0\) כי \(a_n<6\). ✓ הסדרה עולה.</p>
+      <p class="step"><b>שלב 4 — מסקנה.</b> עולה וחסומה מלמעלה \(\Leftarrow\) מתכנסת, והגבול הוא:</p>
+      <p class="step">$$\lim_{n\to\infty} a_n = 6$$</p>
+    </div>
+  </div>
+</section>
+
+<div class="nav">
+  <span class="pill">✓ סיימת את נושא 7 — ואת כל הסדרות!</span>
+  <span class="pill">הבא → נושא 8: טורים מספריים</span>
+</div>
+
+<footer>
+  אינפי 2 · חומר עזר ללימוד עצמי · סדרות — חלק ב'
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+</script>
+</body>
+</html>

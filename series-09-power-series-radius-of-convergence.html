@@ -148,18 +148,25 @@ window.MathJax = {
 
   <div class="callout">
     <span class="lead">דרך א' — שיטת ההרצאה (על האיבר כולו)</span>
-    מפעילים מבחן מנה/שורש על האיבר השלם \(|c_n(x-a)^n|\). מוציאים את \(|x-a|\) החוצה ונשאר גבול של המקדמים בלבד:
-    <p style="text-align:center">$$L(x)=|x-a|\cdot \ell,\qquad \ell=\lim_{n\to\infty}\left|\frac{c_{n+1}}{c_n}\right|\ \text{(מנה)}\quad\text{או}\quad \ell=\lim_{n\to\infty}\sqrt[n]{|c_n|}\ \text{(שורש)}.$$</p>
-    דורשים \(L(x)<1\), כלומר \(|x-a|\cdot\ell<1 \iff |x-a|<\dfrac{1}{\ell}\). מכאן
+    <p>מפעילים מבחן מנה/שורש על האיבר השלם \(|c_n(x-a)^n|\). את הגורם \(|x-a|\) (שאינו תלוי ב־\(n\)) אפשר להוציא החוצה מהגבול, ומה שנשאר הוא <b>גבול שתלוי רק במקדמים \(c_n\)</b>. את המספר הזה נסמן באות \(\ell\) — הוא מודד כמה מהר גדלים המקדמים, ומחשבים אותו באחד משני המבחנים:</p>
+    <p class="muted" style="margin:.3em 0 0">לפי מבחן המנה:</p>
+    <p style="text-align:center">$$\ell=\lim_{n\to\infty}\left|\frac{c_{n+1}}{c_n}\right|$$</p>
+    <p class="muted" style="margin:.3em 0 0">או לפי מבחן השורש:</p>
+    <p style="text-align:center">$$\ell=\lim_{n\to\infty}\sqrt[n]{|c_n|}$$</p>
+    <p>הגבול של האיבר השלם הוא אז \(|x-a|\) כפול \(\ell\):</p>
+    <p style="text-align:center">$$L(x)=|x-a|\cdot \ell$$</p>
+    <p>תנאי ההתכנסות הוא \(L(x)\lt 1\), כלומר \(|x-a|\cdot\ell\lt 1\), ומכאן \(|x-a|\lt \dfrac{1}{\ell}\). לכן הרדיוס הוא:</p>
     <p style="text-align:center">$$R=\frac{1}{\ell}.$$</p>
   </div>
 
   <div class="callout tip">
     <span class="lead">דרך ב' — קיצור דרך: "רק המקדמים"</span>
-    מחשבים ישר את גבול המקדמים, <b>בלי ה־\(x^n\)</b>:
-    <p style="text-align:center">$$\frac{1}{R}=\lim_{n\to\infty}\left|\frac{c_{n+1}}{c_n}\right|\qquad\text{או}\qquad \frac{1}{R}=\lim_{n\to\infty}\sqrt[n]{|c_n|}.$$</p>
-    זה בדיוק אותו \(\ell\) מדרך א', ולכן שתי הדרכים נותנות את אותו \(R\). מקרי קצה:
-    <ul>
+    <p>מחשבים ישר את גבול המקדמים, <b>בלי ה־\(x^n\)</b>. לפי מבחן המנה:</p>
+    <p style="text-align:center">$$\frac{1}{R}=\lim_{n\to\infty}\left|\frac{c_{n+1}}{c_n}\right|$$</p>
+    <p class="muted" style="margin:.3em 0 0">או לפי מבחן השורש:</p>
+    <p style="text-align:center">$$\frac{1}{R}=\lim_{n\to\infty}\sqrt[n]{|c_n|}$$</p>
+    <p>זה בדיוק אותו \(\ell\) מדרך א' (שהרי \(R=\frac1\ell\)), ולכן שתי הדרכים נותנות את אותו \(R\). מקרי קצה:</p>
+    <ul style="margin-top:0">
       <li>\(\ell=0 \ \Rightarrow\ R=\infty\) (מתכנס לכל \(x\)).</li>
       <li>\(\ell=\infty \ \Rightarrow\ R=0\) (מתכנס רק ב־\(x=a\)).</li>
     </ul>

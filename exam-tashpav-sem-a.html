@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מבחן אמיתי · אינפי 2 · תשפ"ו סמסטר א' (מועד א')</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]'], ['$$','$$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1220; --panel:#171a2b; --panel2:#1e2238; --ink:#e9ecf5; --muted:#a6adc8;
+    --accent:#7aa2ff; --accent2:#8ce0c0; --line:#2a2f4a; --warn:#ffcf7a; --ok:#8ce0c0;
+    --ex:#c9b6ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
+    color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
+    line-height:1.9; font-size:18px;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  header.top{
+    text-align:center; padding:26px 18px; margin-bottom:22px;
+    background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
+    border:1px solid var(--line); border-radius:18px;
+  }
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
+  header.top h1{margin:.25em 0 .1em; font-size:30px;}
+  header.top .sub{color:var(--muted); font-size:16px;}
+  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
+  .progress b{color:var(--accent2);}
+  .progress .hot{color:var(--warn); font-weight:700;}
+  section{
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:22px 24px; margin:20px 0;
+  }
+  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2 .num{
+    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
+    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
+    margin-inline-end:10px; font-size:18px;
+  }
+  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
+  p{margin:.55em 0;}
+  .muted{color:var(--muted);}
+  .callout{
+    background:var(--panel2); border-inline-start:4px solid var(--accent);
+    border-radius:10px; padding:12px 16px; margin:14px 0;
+  }
+  .callout.warn{border-inline-start-color:var(--warn);}
+  .callout.tip{border-inline-start-color:var(--ok);}
+  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
+  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
+  li{margin:.35em 0;}
+  .opts{list-style:none; padding-inline-start:0; margin:.6em 0;}
+  .opts li{background:var(--panel2); border:1px solid var(--line); border-radius:9px; padding:7px 14px; margin:6px 0;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
+  table.tbl th{background:var(--panel2); color:var(--accent2);}
+  .example{
+    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
+    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
+  }
+  .example .tag{
+    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
+    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
+  }
+  .step{margin:.5em 0; padding-inline-start:6px;}
+  .reveal-btn{
+    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
+    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
+    font-family:inherit; transition:filter .15s;
+  }
+  .reveal-btn:hover{filter:brightness(1.1);}
+  .answer{
+    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46;
+  }
+  .answer.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
+  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
+  .points{display:inline-block; background:var(--warn); color:#241a00; font-weight:800; padding:1px 10px; border-radius:14px; font-size:14px; margin-inline-start:8px;}
+  .grade-split{background:#10231b; border-top:1px dashed #285c46; margin-top:12px; padding-top:8px; font-size:15px; color:var(--muted);}
+  .grade-split b{color:var(--accent2);}
+  .final{background:#0e2b20; border:1px solid var(--ok); border-radius:10px; padding:8px 14px; margin:12px 0; font-weight:700;}
+  .note{background:#2b210e; border:1px solid var(--warn); border-radius:10px; padding:8px 14px; margin:12px 0; font-size:15px;}
+  /* --- טיימר --- */
+  .clock{font-size:56px; font-weight:800; text-align:center; letter-spacing:2px; color:var(--accent2); font-variant-numeric:tabular-nums; margin:6px 0;}
+  .timer-msg{text-align:center; color:var(--warn); font-weight:800; font-size:22px; min-height:26px;}
+  .timer-btns{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:10px;}
+  .timer-btn{background:var(--accent); color:#0e1020; border:none; border-radius:10px; padding:10px 22px; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; transition:filter .15s;}
+  .timer-btn.reset{background:var(--panel2); color:var(--ink); border:1px solid var(--line);}
+  .timer-btn:hover{filter:brightness(1.1);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div class="kicker">אינפי 2 · מבחן מבחני עבר · קוד קורס 612107</div>
+  <h1>תשפ"ו · סמסטר א' · מועד א'</h1>
+  <div class="sub">2026 · 3 שעות · 100 נקודות · 8 שאלות</div>
+  <div class="progress"><span class="hot">המבחן העדכני ביותר — כל שאלה עם פתרון מלא ומפורט</span></div>
+</header>
+
+<!-- ============ טיימר ============ -->
+<section>
+  <h2><span class="num">⏱</span>טיימר — ספירה לאחור ל־3 שעות</h2>
+  <div id="clock" class="clock">03:00:00</div>
+  <div id="timer-msg" class="timer-msg"></div>
+  <div class="timer-btns">
+    <button class="timer-btn" onclick="startTimer()">התחל מבחן</button>
+    <button class="timer-btn" onclick="pauseTimer()">השהה</button>
+    <button class="timer-btn reset" onclick="resetTimer()">אפס</button>
+  </div>
+</section>
+
+<!-- ============ הנחיות ============ -->
+<section>
+  <h2><span class="num">i</span>הנחיות</h2>
+  <ul>
+    <li>משך הבחינה: <b>3 שעות</b>. סה"כ <b>100 נקודות</b>.</li>
+    <li><b>חלק א'</b> — 2 שאלות פתוחות, 20 נק' כל אחת (40 נק'). נמקו בפירוט כל צעד.</li>
+    <li><b>חלק ב'</b> — 6 שאלות ברירה, 10 נק' כל אחת (60 נק'). יש לסמן את התשובה הנכונה ביותר.</li>
+    <li>מותר להשתמש בכל משפט שנלמד בקורס, בציון שמו.</li>
+  </ul>
+  <div class="callout warn">
+    <span class="lead">מחוון — לפתיחה רק אחרי שסיימת</span>
+    מתחת לכל שאלה יש כפתור שחושף פתרון מלא, מפורט ומודרך, עם התשובה הסופית מודגשת. נסו לפתור לבד תחת שעון לפני שאתם פותחים.
+  </div>
+</section>
+
+<!-- ============ חלק א' ============ -->
+<section>
+  <h2><span class="num">א</span>חלק א' — שאלות פתוחות (40 נק')</h2>
+  <p class="muted">שתי שאלות, 20 נקודות כל אחת. נמקו בפירוט.</p>
+</section>
+
+<!-- ---------- שאלה 1 ---------- -->
+<section>
+  <h2><span class="num">1</span>תחום התכנסות של טור חזקות <span class="points">20 נק'</span></h2>
+  <p>מצאו את תחום ההתכנסות (כולל בדיקת הקצוות) של הטור, והוכיחו את קביעתכם:
+  $$\sum_{n=2}^{\infty}\frac{5^{n}\sin\!\left(\frac1n\right)}{\ln(n)}\,x^{n}.$$</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>הערה מקדימה על הסימן.</b> לכל $n\ge2$ מתקיים $\dfrac1n\in(0,\pi)$, ולכן $\sin\!\left(\dfrac1n\right)\gt 0$. מכאן שהמקדמים $a_{n}=\dfrac{5^{n}\sin(1/n)}{\ln n}$ חיוביים — נוח להפעיל את מבחן המנה על הערכים המוחלטים.</p>
+      <p class="step"><b>שלב 1: רדיוס ההתכנסות (מבחן המנה).</b>
+      $$\lim_{n\to\infty}\left|\frac{a_{n+1}x^{n+1}}{a_{n}x^{n}}\right|=|x|\cdot\lim_{n\to\infty}\frac{5^{n+1}\sin\!\left(\frac{1}{n+1}\right)/\ln(n+1)}{5^{n}\sin\!\left(\frac1n\right)/\ln(n)}=5|x|\cdot\lim_{n\to\infty}\frac{\sin\!\left(\frac{1}{n+1}\right)}{\sin\!\left(\frac1n\right)}\cdot\frac{\ln n}{\ln(n+1)}.$$
+      עבור $n$ גדול $\sin(1/n)\sim1/n$, לכן היחס $\dfrac{\sin(1/(n+1))}{\sin(1/n)}\to1$; וכן $\dfrac{\ln n}{\ln(n+1)}\to1$. סה"כ הגבול $=5|x|$.</p>
+      <p class="step">לפי מבחן המנה הטור מתכנס בהחלט כאשר $5|x|\lt 1$, כלומר $|x|\lt \dfrac15$, ומתבדר כאשר $|x|\gt \dfrac15$. לכן רדיוס ההתכנסות הוא $R=\dfrac15$, והתחום הפנימי הוא $\left(-\dfrac15,\dfrac15\right)$.</p>
+      <p class="step"><b>שלב 2: הקצה $x=\dfrac15$.</b> הטור הופך ל־$\displaystyle\sum_{n=2}^{\infty}\frac{\sin(1/n)}{\ln n}$ (איברים חיוביים). נשווה בגבול ל־$\displaystyle\sum\frac{1}{n\ln n}$ (מתבדר לפי מבחן האינטגרל: $\int_{2}^{\infty}\frac{dx}{x\ln x}=\big[\ln(\ln x)\big]_{2}^{\infty}=\infty$):
+      $$\lim_{n\to\infty}\frac{\sin(1/n)/\ln n}{1/(n\ln n)}=\lim_{n\to\infty}n\sin\!\left(\frac1n\right)=\lim_{n\to\infty}\frac{\sin(1/n)}{1/n}=1\in(0,\infty).$$
+      גבול סופי וחיובי $\Rightarrow$ אותה התנהגות $\Rightarrow$ בקצה $x=\dfrac15$ הטור <b>מתבדר</b>.</p>
+      <p class="step"><b>שלב 3: הקצה $x=-\dfrac15$.</b> הטור הופך לטור מתחלף $\displaystyle\sum_{n=2}^{\infty}(-1)^{n}\frac{\sin(1/n)}{\ln n}$. האיברים $\dfrac{\sin(1/n)}{\ln n}\to0$ ויורדים (עבור $n$ גדול מספיק), לכן לפי מבחן לייבניץ הטור <b>מתכנס</b> — ובתנאי בלבד, שכן בשלב 2 ראינו שטור הערכים המוחלטים מתבדר.</p>
+      <div class="final">תשובה סופית: תחום ההתכנסות הוא $\left[-\dfrac15,\ \dfrac15\right)$ (מתכנס בהחלט בפנים, מתכנס בתנאי ב־$-\tfrac15$, מתבדר ב־$\tfrac15$).</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> רדיוס במבחן המנה 8 · קצה $+\tfrac15$ (השוואה גבולית + התבדרות) 6 · קצה $-\tfrac15$ (לייבניץ) 6.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 2 ---------- -->
+<section>
+  <h2><span class="num">2</span>סדרה רקורסיבית + טור מתחלף והערכת שגיאה <span class="points">20 נק'</span></h2>
+  <p><b>א. (10 נק')</b> נתונה $a_{n+1}=\dfrac{1}{3-a_{n}},\ a_{1}=2$. הוכיחו שהסדרה חסומה, מונוטונית ומתכנסת, וחשבו את גבולה.</p>
+  <p><b>ב. (10 נק')</b> הוכיחו שהטור $\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^{n}2^{n}}{n!}$ מתכנס, ומצאו את מספר האיברים המינימלי הדרוש לקירוב מדויק עד המקום העשרוני הראשון (שגיאה קטנה מ־$0.5\cdot10^{-1}=0.05$).</p>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא (לפתיחה אחרי שסיימת)</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>סעיף א' — מועמד לגבול.</b> אם קיים גבול $L$, מרציפות הפונקציה $x\mapsto\dfrac{1}{3-x}$:
+      $$L=\frac{1}{3-L}\;\Longrightarrow\;3L-L^{2}=1\;\Longrightarrow\;L^{2}-3L+1=0\;\Longrightarrow\;L=\frac{3\pm\sqrt5}{2}.$$</p>
+      <p class="step"><b>חסימות (אינדוקציה).</b> נראה $a_{n}\in\left[\dfrac{3-\sqrt5}{2},\,2\right]$ לכל $n$ (טווח זה כבר "מוכן" גם למונוטוניות בהמשך). בסיס: $a_{1}=2$ בטווח. צעד: אם $a_{n}\in\left[\dfrac{3-\sqrt5}{2},2\right]$, אז $3-a_{n}\in\left[1,\dfrac{3+\sqrt5}{2}\right]$ (חיובי), ובהיפוך:
+      $$a_{n+1}=\frac{1}{3-a_{n}}\in\left[\frac{2}{3+\sqrt5},\,1\right].$$
+      מכיוון ש־$\dfrac{2}{3+\sqrt5}=\dfrac{2(3-\sqrt5)}{(3+\sqrt5)(3-\sqrt5)}=\dfrac{2(3-\sqrt5)}{4}=\dfrac{3-\sqrt5}{2}$, מתקבל $a_{n+1}\in\left[\dfrac{3-\sqrt5}{2},1\right]\subset\left[\dfrac{3-\sqrt5}{2},2\right]$. לכן הסדרה חסומה.</p>
+      <p class="step"><b>מונוטוניות.</b> נבדוק אם $\dfrac{1}{3-x}\le x$ בטווח (כאשר $3-x\gt 0$): זה שקול ל־$1\le x(3-x)$, כלומר $x^{2}-3x+1\le0$, המתקיים בדיוק עבור $x\in\left[\dfrac{3-\sqrt5}{2},\dfrac{3+\sqrt5}{2}\right]$. מאחר שהראינו $a_{n}\in\left[\dfrac{3-\sqrt5}{2},2\right]$, המוכל בטווח זה, נובע $a_{n+1}\le a_{n}$ לכל $n$ — הסדרה <b>מונוטונית יורדת</b>.</p>
+      <p class="step"><b>מסקנה.</b> חסומה ויורדת $\Rightarrow$ מתכנסת. הגבול הוא השורש הקטן (הגדול $\tfrac{3+\sqrt5}{2}\approx2.618$ נפסל כי חורג מתחום הערכים):</p>
+      <div class="final">תשובה סופית (א'): הסדרה מתכנסת, $\displaystyle\lim_{n\to\infty}a_{n}=\dfrac{3-\sqrt5}{2}$.</div>
+
+      <p class="step"><b>סעיף ב' — התכנסות.</b> נבחן את הערכים המוחלטים $b_{n}=\dfrac{2^{n}}{n!}\gt 0$ במבחן המנה:
+      $$\lim_{n\to\infty}\frac{b_{n+1}}{b_{n}}=\lim_{n\to\infty}\frac{2^{n+1}/(n+1)!}{2^{n}/n!}=\lim_{n\to\infty}\frac{2}{n+1}=0\lt 1.$$
+      לכן $\sum b_{n}$ מתכנס, ומכאן שהטור הנתון מתכנס <b>בהחלט</b>.</p>
+      <p class="step"><b>הערכת שגיאה (לייבניץ).</b> האיברים $b_{n}=\dfrac{2^{n}}{n!}\to0$ ויורדים (עבור $n$ גדול מספיק, שכן $\tfrac{b_{n+1}}{b_{n}}=\tfrac{2}{n+1}\lt 1$ כבר מ־$n\ge2$). בטור מתחלף השגיאה בסכום חלקי עד האיבר ה־$N$ חסומה באיבר הראשון שהושמט:
+      $$|R_{N}|\le b_{N+1}=\frac{2^{N+1}}{(N+1)!}.$$
+      דורשים $b_{N+1}\le0.05$. נבדוק:
+      $$N=5:\ b_{6}=\frac{2^{6}}{6!}=\frac{64}{720}\approx0.0889\gt 0.05\ ✗,\qquad N=6:\ b_{7}=\frac{2^{7}}{7!}=\frac{128}{5040}\approx0.0254\lt 0.05\ ✓.$$</p>
+      <div class="final">תשובה סופית (ב'): הטור מתכנס בהחלט; יש לסכום עד $N=6$, כלומר את האיברים $n=0,1,\dots,6$ — <b>סה"כ 7 איברים</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> א' — מועמד 2, חסימה 4, מונוטוניות 3, מסקנה 1. ב' — התכנסות בהחלט 4, חסם השגיאה 3, פתרון ל־$N$ 3.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ חלק ב' ============ -->
+<section>
+  <h2><span class="num">ב</span>חלק ב' — שאלות ברירה (60 נק')</h2>
+  <p class="muted">שש שאלות, 10 נקודות כל אחת. סַמנו את התשובה הנכונה ביותר.</p>
+</section>
+
+<!-- ---------- שאלה 3 (ברירה 1) ---------- -->
+<section>
+  <h2><span class="num">3</span>זיהוי פונקציה מתוך זהות אינטגרלית <span class="points">10 נק'</span></h2>
+  <p>אם $\displaystyle\int_{2}^{x}\frac{t^{3}-t+2}{t^{2}-t}\,dt=\int_{2}^{x}f(t)\,dt+2\int_{2}^{x}\frac{1}{t-1}\,dt$, אז $f(x)$ שווה ל־:</p>
+  <ul class="opts">
+    <li>א. $x+1-\dfrac2x$ &nbsp;&nbsp; ב. $\dfrac{x^{2}}{2}+x$ &nbsp;&nbsp; ג. $\dfrac{x^{2}}{2}$ &nbsp;&nbsp; ד. $\dfrac{x^{2}}{2}+x+2\ln x$ &nbsp;&nbsp; ה. $x+1-\dfrac1x$</li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מהשוואת האינטגרנדים (שני האגפים אינטגרלים מ־$2$ ל־$x$ מאותה נקודה): $\dfrac{t^{3}-t+2}{t^{2}-t}=f(t)+\dfrac{2}{t-1}$, ולכן
+      $$f(t)=\frac{t^{3}-t+2}{t(t-1)}-\frac{2}{t-1}=\frac{t^{3}-t+2-2t}{t(t-1)}=\frac{t^{3}-3t+2}{t(t-1)}.$$</p>
+      <p class="step">מפרקים את המונה: $t^{3}-3t+2=(t-1)^{2}(t+2)$ (ניתן לבדוק בהצבת $t=1$: מתאפס עם ריבוי, והמקדם החופשי $+2$ מתאים). לכן
+      $$f(t)=\frac{(t-1)^{2}(t+2)}{t(t-1)}=\frac{(t-1)(t+2)}{t}=\frac{t^{2}+t-2}{t}=t+1-\frac2t.$$</p>
+      <div class="final">תשובה סופית: <b>א' — $f(x)=x+1-\dfrac2x$</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> השוואת אינטגרנדים 3 · פירוק המונה 4 · פישוט 3.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 4 (ברירה 2) ---------- -->
+<section>
+  <h2><span class="num">4</span>גבול סדרה עם שורשים <span class="points">10 נק'</span></h2>
+  <p>נתונה $a_{n}=\dfrac{\sqrt{c^{2}n+\sqrt[3]{n}+\sqrt[4]{n}}}{\sqrt{n+c^{2}\cdot2026}}$, כאשר $c\gt 0$ קבוע. איזו טענה נכונה?</p>
+  <ul class="opts">
+    <li>א. הסדרה מתכנסת ל־$c$ &nbsp;&nbsp; ב. מתכנסת ל־$1$ &nbsp;&nbsp; ג. מתכנסת ל־$0$ &nbsp;&nbsp; ד. מתכנסת ל־$\dfrac1c$ &nbsp;&nbsp; ה. מתבדרת</li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step">מחלקים מונה ומכנה ב־$\sqrt n$ (כלומר מכניסים $n$ לתוך כל שורש כ־$\sqrt n=\sqrt{n}$). האיבר הדומיננטי במונה תחת השורש הוא $c^{2}n$, ובמכנה $n$:
+      $$a_{n}=\frac{\sqrt{c^{2}+n^{-2/3}+n^{-3/4}}}{\sqrt{1+c^{2}\cdot2026/n}}.$$
+      (כי $\sqrt[3]{n}/n=n^{-2/3}$ ו־$\sqrt[4]{n}/n=n^{-3/4}$.)</p>
+      <p class="step">כאשר $n\to\infty$: $n^{-2/3}\to0,\ n^{-3/4}\to0,\ 2026/n\to0$, ולכן
+      $$a_{n}\xrightarrow[n\to\infty]{}\frac{\sqrt{c^{2}+0+0}}{\sqrt{1+0}}=\sqrt{c^{2}}=c$$
+      (השוויון $\sqrt{c^{2}}=c$ נכון כי $c\gt 0$).</p>
+      <div class="final">תשובה סופית: <b>א' — הסדרה מתכנסת ל־$c$</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> חלוקה ב־$\sqrt n$ 5 · חישוב הגבול 5.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 5 (ברירה 3) ---------- -->
+<section>
+  <h2><span class="num">5</span>קדומה של $e^{3x}\sin x$ בקטע <span class="points">10 נק'</span></h2>
+  <p>נתונה $f(x)=e^{3x}\sin(x)$. תהי $F$ הקדומה שלה ב־$\mathbb{R}$ המקיימת $F(\pi)=0$. מהו $F\!\left(\dfrac\pi2\right)$?</p>
+  <ul class="opts">
+    <li>א. $\dfrac{3e^{3\pi/2}}{10}-\dfrac{e^{3\pi}}{10}$ &nbsp;&nbsp; ב. $\dfrac{3e^{3\pi/2}}{10}$ &nbsp;&nbsp; ג. $0$ &nbsp;&nbsp; ד. $\dfrac{3e^{3\pi/2}}{10}+\dfrac{e^{3\pi}}{10}$ &nbsp;&nbsp; ה. $\dfrac{e^{3\pi/2}}{10}$</li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>שלב 1: קדומה כללית.</b> אינטגרל מהצורה $\int e^{ax}\sin(bx)\,dx$ מחושב באמצעות אינטגרציה בחלקים כפולה; כאן $a=3,\ b=1$:
+      $$\int e^{3x}\sin x\,dx=\frac{e^{3x}(3\sin x-\cos x)}{10}+C.$$
+      נסמן $G(x)=\dfrac{e^{3x}(3\sin x-\cos x)}{10}$. בדיקה בגזירה: $G'(x)=\dfrac{e^{3x}\big[3(3\sin x-\cos x)+(3\cos x+\sin x)\big]}{10}=\dfrac{e^{3x}\cdot10\sin x}{10}=e^{3x}\sin x$ ✓.</p>
+      <p class="step"><b>שלב 2: התאמה לתנאי $F(\pi)=0$.</b> הקדומה המסוימת המקיימת $F(\pi)=0$ היא $F(x)=\displaystyle\int_{\pi}^{x}f(t)\,dt=G(x)-G(\pi)$. לכן
+      $$F\!\left(\frac\pi2\right)=G\!\left(\frac\pi2\right)-G(\pi).$$</p>
+      <p class="step"><b>שלב 3: הצבת ערכים.</b> ב־$x=\dfrac\pi2$: $\sin=1,\ \cos=0$, לכן $G\!\left(\dfrac\pi2\right)=\dfrac{e^{3\pi/2}(3\cdot1-0)}{10}=\dfrac{3e^{3\pi/2}}{10}$. ב־$x=\pi$: $\sin=0,\ \cos=-1$, לכן $G(\pi)=\dfrac{e^{3\pi}(0-(-1))}{10}=\dfrac{e^{3\pi}}{10}$. מכאן
+      $$F\!\left(\frac\pi2\right)=\frac{3e^{3\pi/2}}{10}-\frac{e^{3\pi}}{10}.$$</p>
+      <div class="final">תשובה סופית: <b>א' — $\dfrac{3e^{3\pi/2}}{10}-\dfrac{e^{3\pi}}{10}$</b>.</div>
+      <div class="note"><b>הערת דיוק:</b> בחלק מדפי הפתרון המקוריים סומנה אפשרות ד' (עם סימן חיבור). החישוב הישיר $G(\pi/2)-G(\pi)$ נותן דווקא <b>סימן חיסור</b> (אפשרות א') — וזה הנכון, כפי שמאשרת בדיקת הגזירה של $G$ למעלה.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> קדומה כללית + בדיקה 4 · התאמת התנאי 3 · הצבת גבולות 3.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 6 (ברירה 4) ---------- -->
+<section>
+  <h2><span class="num">6</span>אינטגרל לא מסוים בחלקים <span class="points">10 נק'</span></h2>
+  <p>האינטגרל $\displaystyle\int\frac{\ln(x+1)}{x^{2}}\,dx$ שווה ל־:</p>
+  <ul class="opts">
+    <li>א. $-\dfrac{\ln(x+1)}{x}+\ln\left|\dfrac{x}{x+1}\right|+C$ &nbsp;&nbsp; <span class="muted">(שאר האפשרויות ב'–ה' הן וריאציות סימן/מבנה על אותו ביטוי)</span></li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>אינטגרציה בחלקים.</b> ניקח $u=\ln(x+1)\Rightarrow du=\dfrac{dx}{x+1}$, ו־$dv=\dfrac{dx}{x^{2}}\Rightarrow v=-\dfrac1x$:
+      $$\int\frac{\ln(x+1)}{x^{2}}\,dx=-\frac{\ln(x+1)}{x}+\int\frac{dx}{x(x+1)}.$$</p>
+      <p class="step"><b>שברים חלקיים לאיבר שנותר:</b> $\dfrac{1}{x(x+1)}=\dfrac1x-\dfrac{1}{x+1}$, ולכן
+      $$\int\frac{dx}{x(x+1)}=\ln|x|-\ln|x+1|=\ln\left|\frac{x}{x+1}\right|.$$</p>
+      <p class="step">מחברים:
+      $$\int\frac{\ln(x+1)}{x^{2}}\,dx=-\frac{\ln(x+1)}{x}+\ln\left|\frac{x}{x+1}\right|+C.$$</p>
+      <div class="final">תשובה סופית: <b>א'</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> בחירת $u,dv$ ובחלקים 5 · שברים חלקיים ואיחוד 5.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 7 (ברירה 5) ---------- -->
+<section>
+  <h2><span class="num">7</span>שני אינטגרלים מוכללים <span class="points">10 נק'</span></h2>
+  <p>נתונים $\displaystyle A=\int_{1}^{\infty}\frac{\sin(2026/x)}{2+\sqrt x}\,dx$ ו־$\displaystyle B=\int_{-\infty}^{\infty}\frac{x^{5}}{(x^{8}+2026)^{2}}\,dx$. מהי הטענה הנכונה?</p>
+  <ul class="opts">
+    <li>א. שני האינטגרלים $A,B$ מתכנסים. &nbsp;&nbsp; <span class="muted">(שאר האפשרויות: צירופים של "מתכנס/מתבדר")</span></li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>האינטגרל $A$ (התנהגות ב־$\infty$).</b> כש־$x\to\infty$ מתקיים $\dfrac{2026}{x}\to0$, ולכן $\sin\!\left(\dfrac{2026}{x}\right)\sim\dfrac{2026}{x}$; המכנה $2+\sqrt x\sim\sqrt x$. לכן האינטגרנד מתנהג כמו $\dfrac{2026/x}{\sqrt x}=\dfrac{2026}{x^{3/2}}$. לפי מבחן ההשוואה הגבולי עם $\displaystyle\int_{1}^{\infty}\frac{dx}{x^{3/2}}$ (מתכנס, $p=\tfrac32\gt 1$): <b>$A$ מתכנס</b>.</p>
+      <p class="step"><b>האינטגרל $B$ (התנהגות ב־$\pm\infty$).</b> הפונקציה רציפה בכל $\mathbb{R}$ (המכנה $x^{8}+2026\gt 0$ תמיד). כש־$x\to\pm\infty$:
+      $$\frac{x^{5}}{(x^{8}+2026)^{2}}\sim\frac{x^{5}}{x^{16}}=\frac{1}{x^{11}},$$
+      אינטגרבילי בקצוות ($p=11\gt 1$). לכן $B$ <b>מתכנס בהחלט</b>. (למעשה האינטגרנד אי־זוגי והתחום סימטרי, כך שערכו אף $0$ — אך די בהתכנסות.)</p>
+      <div class="final">תשובה סופית: <b>א' — שני האינטגרלים מתכנסים</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> $A$ בהשוואה גבולית 5 · $B$ בהשוואה + רציפות 5.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- שאלה 8 (ברירה 6) ---------- -->
+<section>
+  <h2><span class="num">8</span>גבול עם אינטגרל (לופיטל) <span class="points">10 נק'</span></h2>
+  <p>חשבו: $\displaystyle\lim_{x\to0}\frac{4x\displaystyle\int_{0}^{x}\sin^{3}(t)\,dt}{2x-\sin(2x)}$. &nbsp;<span class="muted">(רמז: $\sin^{2}x=\dfrac{1-\cos(2x)}{2}$.)</span></p>
+  <ul class="opts">
+    <li>א. $0$ &nbsp;&nbsp; ב. $\infty$ &nbsp;&nbsp; ג. $1$ &nbsp;&nbsp; ד. $\pi$ &nbsp;&nbsp; ה. $\dfrac12$</li>
+  </ul>
+
+  <div class="example">
+    <span class="tag">מחוון — פתרון מלא</span>
+    <button class="reveal-btn" onclick="toggle(this)">הצג פתרון</button>
+    <div class="answer">
+      <p class="step"><b>זיהוי הצורה.</b> כש־$x\to0$ המונה שואף ל־$0$ (כי $\int_{0}^{0}=0$) והמכנה ל־$2\cdot0-\sin0=0$ — צורה $\dfrac00$. נפעיל לופיטל, ונגזור מונה ומכנה.</p>
+      <p class="step"><b>גזירת המונה</b> (כלל מכפלה + משפט יסודי):
+      $$\frac{d}{dx}\left[4x\int_{0}^{x}\sin^{3}t\,dt\right]=4\int_{0}^{x}\sin^{3}t\,dt+4x\sin^{3}x.$$
+      <b>גזירת המכנה</b> (עם הרמז $1-\cos2x=2\sin^{2}x$):
+      $$\frac{d}{dx}\big[2x-\sin(2x)\big]=2-2\cos(2x)=4\sin^{2}x.$$</p>
+      <p class="step">לכן
+      $$\lim_{x\to0}\frac{4\int_{0}^{x}\sin^{3}t\,dt+4x\sin^{3}x}{4\sin^{2}x}=\lim_{x\to0}\frac{\int_{0}^{x}\sin^{3}t\,dt}{\sin^{2}x}+\lim_{x\to0}\frac{4x\sin^{3}x}{4\sin^{2}x}.$$
+      האיבר השני: $\dfrac{4x\sin^{3}x}{4\sin^{2}x}=x\sin x\to0$.</p>
+      <p class="step"><b>האיבר הראשון</b> (שוב $\tfrac00$; נשתמש בשקילות $\sin t\sim t$, ובאופן שקול לופיטל נוסף):
+      $$\lim_{x\to0}\frac{\int_{0}^{x}\sin^{3}t\,dt}{\sin^{2}x}=\lim_{x\to0}\frac{\int_{0}^{x}t^{3}\,dt}{x^{2}}=\lim_{x\to0}\frac{x^{4}/4}{x^{2}}=\lim_{x\to0}\frac{x^{2}}{4}=0.$$</p>
+      <p class="step">סה"כ הגבול $=0+0=0$.</p>
+      <div class="final">תשובה סופית: <b>א' — הגבול שווה $0$</b>.</div>
+      <div class="grade-split"><b>חלוקת ניקוד:</b> זיהוי $\tfrac00$ + גזירת מונה ומכנה 5 · פירוק לשני גבולות וחישובם 5.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- סיכום ---------- -->
+<section>
+  <h2><span class="num">✓</span>סיכום ניקוד</h2>
+  <table class="tbl">
+    <tr><th>שאלה</th><th>נושא</th><th>ניקוד</th><th>תשובה</th></tr>
+    <tr><td>1</td><td>תחום התכנסות של טור חזקות</td><td>20</td><td>$[-\tfrac15,\tfrac15)$</td></tr>
+    <tr><td>2</td><td>סדרה רקורסיבית + טור מתחלף/שגיאה</td><td>20</td><td>$\tfrac{3-\sqrt5}{2}$ · 7 איברים</td></tr>
+    <tr><td>3</td><td>זיהוי פונקציה מזהות אינטגרלית</td><td>10</td><td>א'</td></tr>
+    <tr><td>4</td><td>גבול סדרה עם שורשים</td><td>10</td><td>א' ($c$)</td></tr>
+    <tr><td>5</td><td>קדומה של $e^{3x}\sin x$</td><td>10</td><td>א'</td></tr>
+    <tr><td>6</td><td>אינטגרל בחלקים</td><td>10</td><td>א'</td></tr>
+    <tr><td>7</td><td>שני אינטגרלים מוכללים</td><td>10</td><td>א' (מתכנסים)</td></tr>
+    <tr><td>8</td><td>גבול עם אינטגרל (לופיטל)</td><td>10</td><td>א' ($0$)</td></tr>
+    <tr><td colspan="2"><b>סה"כ</b></td><td><b>100</b></td><td></td></tr>
+  </table>
+  <div class="callout tip">
+    <span class="lead">בהצלחה! 🎓</span>
+    זהו המבחן העדכני ביותר בקורס. מומלץ להריץ אותו בתנאי זמן מלאים, ורק בסוף לבדוק מול הפתרונות.
+  </div>
+</section>
+
+<footer>
+  אינפי 2 · מבחן תשפ"ו סמסטר א' מועד א' (612107) · פתרונות מפורטים לתרגול עצמי
+</footer>
+
+</div>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.toggle('show');
+  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג פתרון');
+}
+
+/* ===== טיימר ספירה לאחור ל-3 שעות ===== */
+var TOTAL = 3 * 60 * 60;
+var remaining = TOTAL;
+var timerId = null;
+var running = false;
+function fmt(s){
+  var h = Math.floor(s / 3600);
+  var m = Math.floor((s % 3600) / 60);
+  var sec = s % 60;
+  function p(n){ return (n < 10 ? '0' : '') + n; }
+  return p(h) + ':' + p(m) + ':' + p(sec);
+}
+function render(){ document.getElementById('clock').textContent = fmt(remaining); }
+function tick(){
+  if(remaining > 0){ remaining--; render(); }
+  else {
+    clearInterval(timerId); timerId = null; running = false;
+    document.getElementById('clock').textContent = '00:00:00';
+    document.getElementById('timer-msg').textContent = 'הזמן נגמר';
+  }
+}
+function startTimer(){
+  if(running || remaining <= 0) return;
+  running = true;
+  document.getElementById('timer-msg').textContent = '';
+  timerId = setInterval(tick, 1000);
+}
+function pauseTimer(){ running = false; if(timerId){ clearInterval(timerId); timerId = null; } }
+function resetTimer(){ pauseTimer(); remaining = TOTAL; render(); document.getElementById('timer-msg').textContent = ''; }
+render();
+</script>
+</body>
+</html>

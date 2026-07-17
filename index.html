@@ -172,7 +172,7 @@
       <div class="welcome" id="welcome">
         <div class="kicker">אינפי 2</div>
         <h2>אינפי 2 — מרכז הלימוד</h2>
-        <div class="sub">כל 14 נושאי הקורס במקום אחד: אינטגרלים, סדרות, טורים, חקירת פונקציות, הוכחות, תרגול ומבחן דמה.</div>
+        <div class="sub">כל נושאי הקורס במקום אחד: אינטגרלים, סדרות, טורים, חקירת פונקציות, הוכחות, תרגול, מבחן דמה ומבחני עבר פתורים.</div>
         <div class="hint">בחר נושא מהתפריט כדי להתחיל</div>
         <button class="start-btn" id="startBtn">התחל מנושא 1 ◀</button>
       </div>
@@ -184,7 +184,7 @@
     <div class="brand">
       <div class="kicker">מרכז הלימוד</div>
       <h1>אינפי 2</h1>
-      <div class="sub">תוכן עניינים · 14 נושאים</div>
+      <div class="sub">תוכן עניינים · כל נושאי הקורס</div>
     </div>
     <nav id="toc"></nav>
   </aside>
@@ -193,7 +193,7 @@
 </div>
 
 <script>
-  // Linear order of all 14 topics: {group, title, file}
+  // Linear order of all topics: {group, title, file}
   const TOPICS = [
     { group:"אינטגרלים", title:"נושא 1 · אינטגרל לא מסוים, טבלה והצבה", file:"integrals-01-indefinite-integral.html" },
     { group:"אינטגרלים", title:"נושא 2 · אינטגרציה בחלקים", file:"integrals-02-integration-by-parts.html" },
@@ -209,6 +209,8 @@
     { group:"חקירת פונקציות והוכחות", title:"נושא 12 · הוכחות — לגראנז', קושי, ערך ביניים ורול", file:"proofs-12-lagrange-cauchy-ivt-rolle.html" },
     { group:"תרגול ומבחן", title:"דף תרגול מרוכז — שאלות ממבחני עבר לפי נושא", file:"practice-sheet-past-exam-questions.html" },
     { group:"תרגול ומבחן", title:"מבחן דמה מלא — תנאי זמן + מחוון", file:"mock-exam-timed-with-rubric.html" },
+    { group:"מבחני עבר עם פתרונות", title:"תשפ\"ו · סמסטר א' (מועד א') — המבחן העדכני ביותר", file:"exam-tashpav-sem-a.html" },
+    { group:"מבחני עבר עם פתרונות", title:"תשפ\"ה · סמסטר ב' · מועד ב' (14/09/2025)", file:"exam-tashpah-sem-b-moed-b.html" },
   ];
 
   const TOTAL = TOPICS.length;

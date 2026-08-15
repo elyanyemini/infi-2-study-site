@@ -21,144 +21,124 @@ window.MathJax = {
   body{
     margin:0; background:linear-gradient(180deg,#0d1020,#12152a 40%,#0f1220);
     color:var(--ink); font-family:"Segoe UI","Assistant","Heebo",system-ui,Arial,sans-serif;
-    line-height:1.9; font-size:18px;
+    line-height:1.7; font-size:17px;
   }
-  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 80px;}
+  .wrap{max-width:860px; margin:0 auto; padding:24px 18px 70px;}
   header.top{
-    text-align:center; padding:26px 18px; margin-bottom:22px;
+    text-align:center; padding:22px 18px; margin-bottom:16px;
     background:radial-gradient(120% 100% at 50% 0%, #202544 0%, #141830 70%);
-    border:1px solid var(--line); border-radius:18px;
+    border:1px solid var(--line); border-radius:16px;
   }
-  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:15px;}
-  header.top h1{margin:.25em 0 .1em; font-size:30px;}
-  header.top .sub{color:var(--muted); font-size:16px;}
-  .progress{margin-top:14px; font-size:14px; color:var(--muted);}
-  .progress b{color:var(--accent2);}
+  header.top .kicker{color:var(--accent); font-weight:700; letter-spacing:.5px; font-size:14px;}
+  header.top h1{margin:.2em 0 .1em; font-size:27px;}
+  header.top .sub{color:var(--muted); font-size:15px;}
   section{
-    background:var(--panel); border:1px solid var(--line); border-radius:16px;
-    padding:22px 24px; margin:20px 0;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:16px 20px; margin:14px 0;
   }
-  h2{font-size:23px; margin:.2em 0 .6em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
+  h2{font-size:20px; margin:.1em 0 .5em; border-bottom:2px solid var(--line); padding-bottom:.3em;}
   h2 .num{
     display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
-    width:34px; height:34px; line-height:34px; text-align:center; border-radius:9px;
-    margin-inline-end:10px; font-size:18px;
+    width:30px; height:30px; line-height:30px; text-align:center; border-radius:8px;
+    margin-inline-end:9px; font-size:16px;
   }
-  h3{font-size:19px; color:var(--accent2); margin:1.1em 0 .4em;}
-  p{margin:.55em 0;}
-  .muted{color:var(--muted);}
-  .callout{
-    background:var(--panel2); border-inline-start:4px solid var(--accent);
-    border-radius:10px; padding:12px 16px; margin:14px 0;
-  }
-  .callout.warn{border-inline-start-color:var(--warn);}
-  .callout.tip{border-inline-start-color:var(--ok);}
-  .callout .lead{font-weight:700; color:var(--ink); display:block; margin-bottom:2px;}
-  ul,ol{margin:.4em 0; padding-inline-start:1.4em;}
-  li{margin:.35em 0;}
-  table.tbl{width:100%; border-collapse:collapse; margin:14px 0; font-size:16px;}
-  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 12px; text-align:center;}
-  table.tbl th{background:var(--panel2); color:var(--accent2);}
-  .example{
-    background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--line);
-    border-inline-start:4px solid var(--ex); border-radius:12px; padding:16px 20px; margin:16px 0;
-  }
-  .example .tag{
-    display:inline-block; background:var(--ex); color:#181428; font-weight:800;
-    padding:2px 12px; border-radius:20px; font-size:14px; margin-bottom:8px;
-  }
-  .step{margin:.5em 0; padding-inline-start:6px;}
-  .reveal-btn{
-    background:var(--accent); color:#0e1020; border:none; border-radius:10px;
-    padding:9px 18px; font-size:16px; font-weight:700; cursor:pointer; margin-top:10px;
-    font-family:inherit; transition:filter .15s;
-  }
-  .reveal-btn:hover{filter:brightness(1.1);}
-  .reveal-btn.q{background:var(--accent2);}
-  .answer{
-    display:none; margin-top:12px; padding:14px 18px; border-radius:10px;
-    background:#12251d; border:1px solid #285c46;
-  }
-  .answer.show{display:block; animation:fade .25s ease;}
-  @keyframes fade{from{opacity:0; transform:translateY(-4px)} to{opacity:1; transform:none}}
-  .qcard{
-    background:var(--panel2); border:1px solid var(--line); border-radius:12px;
-    padding:14px 18px; margin:12px 0;
-  }
-  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
-  .practice{border-inline-start:4px solid var(--warn);}
-  .practice .tag{background:var(--warn); color:#241a00;}
-  footer{text-align:center; color:var(--muted); font-size:14px; margin-top:30px;}
-  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:20px; flex-wrap:wrap;}
-  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:6px 14px; font-size:14px; color:var(--muted);}
-  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:16px;}
-  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:12px; padding:6px 16px; margin:14px 0; text-align:center;}
+  p{margin:.45em 0;}
+  .muted{color:var(--muted); font-size:15px;}
+  code.k{background:var(--panel2); padding:1px 7px; border-radius:6px; color:var(--warn); font-size:15px;}
+  .boxed{background:var(--panel2); border:1px solid var(--accent); border-radius:10px; padding:5px 14px; margin:10px 0; text-align:center; font-size:15.5px;}
 
-  /* ===== Decision-tree specific ===== */
-  .flow{margin:18px 0;}
-  .node{
-    border-radius:14px; padding:14px 18px; margin:0 auto; max-width:640px;
-    text-align:center; border:2px solid var(--line); background:var(--panel2);
+  /* ===== gate cards (step 0 / step 1) ===== */
+  .gate{
+    display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap;
+    background:var(--panel2); border:1px solid var(--line);
+    border-inline-start:5px solid var(--accent); border-radius:12px;
+    padding:12px 16px; margin:10px 0;
   }
-  .node .nlabel{font-weight:800; font-size:17px;}
-  .node.q{border-color:var(--accent); background:linear-gradient(180deg,#232853,#1b1f3a);}
-  .node.q .nlabel{color:var(--accent);}
-  .node.stop-bad{border-color:var(--bad); background:#2a1a1f;}
-  .node.stop-bad .nlabel{color:var(--bad);}
-  .node.stop-good{border-color:var(--ok); background:#12251d;}
-  .node.stop-good .nlabel{color:var(--ok);}
-  .arrow{
-    text-align:center; color:var(--muted); font-size:24px; line-height:1.2;
-    margin:6px 0; user-select:none;
+  .gate .gnum{
+    flex:0 0 auto; background:var(--accent); color:#0e1020; font-weight:800;
+    width:30px; height:30px; line-height:30px; text-align:center; border-radius:8px; font-size:16px;
   }
-  .arrow .lbl{
-    display:inline-block; font-size:14px; background:var(--panel2); color:var(--muted);
-    border:1px solid var(--line); border-radius:20px; padding:2px 12px; margin:0 6px;
-    vertical-align:middle;
-  }
-  .split{display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin-top:8px;}
-  .split > div{flex:1 1 280px; min-width:260px;}
+  .gate .gbody{flex:1 1 260px;}
+  .gate .gbody b{color:var(--ink);}
+  .gopts{margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;}
+  .gopts span{border-radius:20px; padding:3px 12px; font-size:14px; font-weight:700; border:1px solid var(--line);}
+  .gopts .bad{color:var(--bad); background:#2a1a1f; border-color:#5c2833;}
+  .gopts .good{color:var(--ok); background:#12251d; border-color:#285c46;}
+  .gopts .go{color:var(--accent); background:#1b2145; border-color:#33407a;}
 
+  /* ===== branch rows (route A) ===== */
   .branch{
     background:var(--panel2); border:1px solid var(--line);
     border-inline-start:5px solid var(--accent); border-radius:12px;
-    padding:14px 18px; margin:12px 0;
+    padding:10px 15px; margin:9px 0;
   }
-  .branch .btitle{font-weight:800; font-size:17px; color:var(--accent2); margin-bottom:2px;}
-  .branch .cond{color:var(--ink); font-weight:700;}
-  .branch .test{
-    display:inline-block; background:var(--accent); color:#0e1020; font-weight:800;
-    padding:2px 12px; border-radius:20px; font-size:14px; margin:6px 0;
+  .bhead{display:flex; align-items:center; gap:11px; flex-wrap:wrap;}
+  .bnum{
+    flex:0 0 auto; width:26px; height:26px; line-height:26px; text-align:center;
+    border-radius:7px; background:#2a3060; color:var(--accent); font-weight:800; font-size:14px;
   }
-  .branch ul{margin:.3em 0; font-size:16px;}
-  .branch .src{color:var(--muted); font-size:13px;}
-  .branch.b-ratio{border-inline-start-color:#7aa2ff;}
-  .branch.b-root{border-inline-start-color:#8ce0c0;}
-  .branch.b-comp{border-inline-start-color:#ffcf7a;}
-  .branch.b-equiv{border-inline-start-color:#c9b6ff;}
-  .branch.b-int{border-inline-start-color:#ff9b9b;}
-  .branch.b-bound{border-inline-start-color:#7ee0e0;}
-  .branch.b-tel{border-inline-start-color:#e0a6ff;}
-  .branch.b-conj{border-inline-start-color:#a6ffbf;}
+  .btrig{font-weight:700; font-size:16px; flex:1 1 auto; min-width:150px;}
+  .btest{
+    background:var(--accent); color:#0e1020; font-weight:800;
+    padding:3px 13px; border-radius:20px; font-size:13.5px; white-space:nowrap;
+  }
+  .ex-btn{
+    background:transparent; border:1px solid var(--ex); color:var(--ex);
+    border-radius:8px; padding:4px 13px; font-size:13px; cursor:pointer;
+    font-family:inherit; white-space:nowrap; transition:.15s;
+  }
+  .ex-btn:hover{background:var(--ex); color:#181428;}
+  .answer{
+    flex:1 1 100%; display:none; margin-top:9px; padding:11px 15px; border-radius:10px;
+    background:#12251d; border:1px solid #285c46; font-size:15px; line-height:1.75;
+  }
+  .answer.show{display:block; animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0} to{opacity:1}}
+  .answer .v-ok{color:var(--ok); font-weight:800;}
+  .answer .v-bad{color:var(--bad); font-weight:800;}
 
+  .branch.c1{border-inline-start-color:#7aa2ff;}
+  .branch.c2{border-inline-start-color:#8ce0c0;}
+  .branch.c3{border-inline-start-color:#ffcf7a;}
+  .branch.c4{border-inline-start-color:#a6ffbf;}
+  .branch.c5{border-inline-start-color:#ff9b9b;}
+  .branch.c6{border-inline-start-color:#c9b6ff;}
+  .branch.c7{border-inline-start-color:#7ee0e0;}
+  .branch.c8{border-inline-start-color:#e0a6ff;}
+
+  /* ===== traps ===== */
   .trap{
     background:#2a1a1f; border:1px solid #5c2833; border-inline-start:5px solid var(--bad);
-    border-radius:12px; padding:14px 18px; margin:12px 0;
+    border-radius:11px; padding:9px 15px; margin:8px 0; font-size:15.5px;
   }
-  .trap .ttitle{font-weight:800; color:var(--bad); margin-bottom:4px;}
+  .trap b{color:var(--bad);}
 
+  /* ===== cheat ===== */
   .cheat{
     background:linear-gradient(180deg,#191d33,#161a2e); border:1px solid var(--accent);
-    border-radius:14px; padding:18px 22px; margin:18px 0;
+    border-radius:12px; padding:14px 20px; margin:6px 0;
   }
-  .cheat h3{margin-top:0;}
-  .cheat ol{font-size:16.5px;}
+  .cheat ol{font-size:16px; margin:.3em 0; padding-inline-start:1.3em;}
+  .cheat li{margin:.3em 0;}
+  .callout{background:var(--panel2); border-inline-start:4px solid var(--ok); border-radius:10px; padding:10px 15px; margin:12px 0;}
+  .callout .lead{font-weight:700; display:block; margin-bottom:2px;}
+
+  /* ===== practice ===== */
+  .ex-btn.wide{border-color:var(--accent2); color:var(--accent2); font-size:15px; padding:8px 18px; font-weight:700;}
+  .ex-btn.wide:hover{background:var(--accent2); color:#0e1020;}
+  .qcard{background:var(--panel2); border:1px solid var(--line); border-radius:11px; padding:11px 15px; margin:9px 0;}
+  .qcard .qnum{color:var(--accent2); font-weight:800; margin-inline-end:6px;}
+  .qcard .ex-btn{margin-top:8px;}
+
+  footer{text-align:center; color:var(--muted); font-size:13px; margin-top:24px;}
+  .nav{display:flex; justify-content:center; gap:10px; margin-top:16px; flex-wrap:wrap;}
+  .pill{background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:5px 13px; font-size:13px; color:var(--muted);}
 
   @media print{
     body{background:#fff; color:#000;}
-    section,.node,.branch,.cheat{background:#fff !important; border-color:#999 !important;}
-    .reveal-btn{display:none;}
-    .answer{display:block !important;}
+    section,.gate,.branch,.cheat,.trap,.qcard{background:#fff !important; border-color:#999 !important;}
+    .ex-btn,.ex-btn.wide{display:none !important;}
+    .answer{display:block !important; background:#f3f3f3 !important; border-color:#999 !important;}
   }
 </style>
 </head>
@@ -168,182 +148,145 @@ window.MathJax = {
 <header class="top">
   <div class="kicker">אינפי 2 · טורים · כלי עזר</div>
   <h1>עץ החלטות — איזה מבחן התכנסות לבחור?</h1>
-  <div class="sub">מסלול אחד מהטור שלפניך עד לתשובה: מתכנס בהחלט / בתנאי / מתבדר</div>
-  <div class="progress">כלי עזר · זמן קריאה משוער: כ־15 דקות · נבנה מתוך <b>82</b> שאלות טורים ממבחני עבר</div>
+  <div class="sub">מלמעלה למטה. הענף הראשון שמתאים לצורת \(a_n\) — הוא הנכון. לוחצים על "דוגמה" רק אם צריך.</div>
 </header>
 
-<!-- ============ מבוא ============ -->
+<!-- ============ שני שערים לפני הענפים ============ -->
 <section>
-  <h2><span class="num">?</span>למה עץ החלטות</h2>
-  <p>בכל מבחן מופיעים 2–3 טורים ונשאלת אותה שאלה: <b>מתכנס בהחלט, מתכנס בתנאי, או מתבדר?</b> הקושי כמעט אף פעם אינו בחישוב — אלא בבחירת המבחן הנכון. סטודנט שמנסה מבחן אחרי מבחן מבזבז 10 דקות; מי שמזהה את <b>הצורה</b> של האיבר הכללי בוחר נכון בשנייה.</p>
-  <p>הדף הזה הוא מסלול החלטה יחיד. עבור עליו מלמעלה למטה, ואל תדלג על שלב 0.</p>
-  <div class="callout tip">
-    <span class="lead">איך להשתמש בזה בזמן מבחן</span>
-    הסתכל על האיבר הכללי \(a_n\) ושאל: <b>מה הכי "כבד" בביטוי?</b> עצרת? חזקה \(n\)־ית? פולינום? זה קובע את הענף.
-  </div>
-</section>
+  <h2><span class="num">▶</span>שני שערים — תמיד לפי הסדר</h2>
 
-<!-- ============ שלב 0 ============ -->
-<section>
-  <h2><span class="num">0</span>שלב 0 — תנאי הכרחי (5 שניות, תמיד ראשון)</h2>
-
-  <p>חשב את הגבול של האיבר הכללי: \(\displaystyle\lim_{n\to\infty} a_n\).</p>
-
-  <div class="flow">
-    <div class="node q"><span class="nlabel">האם \(\lim a_n = 0\)?</span></div>
-    <div class="arrow">↓</div>
-    <div class="split">
-      <div>
-        <div class="arrow"><span class="lbl">לא (או שהגבול לא קיים)</span></div>
-        <div class="node stop-bad"><span class="nlabel">הטור מתבדר — סיימת</span></div>
+  <div class="gate">
+    <div class="gnum">0</div>
+    <div class="gbody">
+      <b>תנאי הכרחי:</b> האם \(\displaystyle\lim_{n\to\infty} a_n = 0\)?
+      <div class="gopts">
+        <span class="bad">לא → מתבדר. סוף.</span>
+        <span class="good">כן → לשער 1</span>
       </div>
-      <div>
-        <div class="arrow"><span class="lbl">כן</span></div>
-        <div class="node q"><span class="nlabel">המשך לשלב 1</span></div>
-      </div>
+    </div>
+    <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+    <div class="answer">
+      \(\displaystyle\sum(-1)^n\, n\sin\tfrac1n\) : &nbsp; \(n\sin\frac1n\to 1\neq 0\) &nbsp;⇒&nbsp; <span class="v-bad">מתבדר</span> מיד.
+      <br><span class="muted">שים לב: \(\lim a_n=0\) <b>לא</b> מספיק להתכנסות — \(\sum\frac1n\) מתבדר למרות שהאיבר שואף ל-0.</span>
     </div>
   </div>
 
-  <h3>דוגמאות שנופלות כאן מיד</h3>
-  <ul>
-    <li>\(\displaystyle\sum(-1)^n\, n\sin\tfrac{1}{n}\) &nbsp;—&nbsp; כאן \(n\sin\frac1n \to 1 \neq 0\)</li>
-    <li>\(\displaystyle\sum \frac{2n+(-1)^n\cdot 5}{4n+(-1)^n\cdot 3}\) &nbsp;—&nbsp; שואף ל\(-\frac12 \neq 0\)</li>
-    <li>\(\displaystyle\sum \frac{2n^3-n}{5n^3+1}\) &nbsp;—&nbsp; שואף ל\(-\frac25 \neq 0\)</li>
-  </ul>
-
-  <div class="callout warn">
-    <span class="lead">הכיוון ההפוך אינו נכון!</span>
-    \(\lim a_n = 0\) <b>אינו</b> מוכיח התכנסות. הטור ההרמוני \(\sum\frac1n\) הוא הדוגמה הנגדית — האיבר שואף לאפס והטור מתבדר. שמור אותה בכיס לכל שאלה תיאורטית.
-  </div>
-</section>
-
-<!-- ============ שלב 1 ============ -->
-<section>
-  <h2><span class="num">1</span>שלב 1 — סיווג: איזה סוג טור זה?</h2>
-
-  <p>הסתכל על <b>הסימן</b> של האיברים:</p>
-
-  <div class="flow">
-    <div class="node q"><span class="nlabel">האם הסימן מתחלף?</span></div>
-    <div class="arrow">↓</div>
-    <div class="split">
-      <div>
-        <div class="arrow"><span class="lbl">לא — כל האיברים חיוביים</span></div>
-        <div class="node"><span class="nlabel">מסלול א' · טור חיובי</span></div>
+  <div class="gate">
+    <div class="gnum">1</div>
+    <div class="gbody">
+      <b>סיווג:</b> האם הסימן מתחלף (יש \((-1)^n,\ \cos n,\ \sin n\))?
+      <div class="gopts">
+        <span class="go">לא → מסלול א' (טור חיובי)</span>
+        <span class="go">כן → מסלול ב' (מחליף סימן)</span>
       </div>
-      <div>
-        <div class="arrow"><span class="lbl">כן — יש \((-1)^n\), \(\cos n\), \(\sin n\)</span></div>
-        <div class="node"><span class="nlabel">מסלול ב' · טור מחליף סימן</span></div>
-      </div>
+      <p class="muted" style="margin-top:6px;">בטור חיובי יש רק "מתכנס / מתבדר". "מתכנס <b>בתנאי</b>" קיים רק במסלול ב'.</p>
     </div>
-  </div>
-
-  <div class="callout">
-    <span class="lead">שים לב</span>
-    בטור חיובי יש רק שתי תשובות אפשריות: מתכנס או מתבדר. המושג "מתכנס בתנאי" קיים <b>רק</b> במסלול ב'.
   </div>
 </section>
 
 <!-- ============ מסלול א ============ -->
 <section>
-  <h2><span class="num">א</span>מסלול א' — טור חיובי: בחר לפי הצורה</h2>
+  <h2><span class="num">א</span>מסלול א' — טור חיובי</h2>
+  <p class="muted">שאל: מה הכי "כבד" ב-\(a_n\)? זה קובע את הענף. עבור בסדר; הראשון שמתאים מנצח.</p>
 
-  <p>עבור על שמונת הענפים לפי הסדר. הראשון שמתאים — הוא הנכון.</p>
-
-  <div class="branch b-ratio">
-    <div class="btitle">א.1 — יש עצרת, \(n^n\), או חזקה \(c^n\)?</div>
-    <div class="test">← מבחן המנה</div>
-    <p class="step">חשב \(\displaystyle\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|\). קטן מ־1 ⇒ מתכנס. גדול מ־1 ⇒ מתבדר.</p>
-    <ul>
-      <li>\(\displaystyle\sum\frac{5^n n!}{(2n)!}\)</li>
-      <li>\(\displaystyle\sum\frac{(k!)^2 3^k}{(2k+2)!}\)</li>
-      <li>\(\displaystyle\sum\frac{n!}{5^n \ln n}\)</li>
-      <li>\(\displaystyle\sum\frac{e^{n^2}}{n!}\)</li>
-    </ul>
-    <p class="src">אם התוצאה היא <b>בדיוק 1</b> — המבחן אינו מכריע. עבור לענף אחר (בדרך כלל א.3).</p>
-  </div>
-
-  <div class="branch b-root">
-    <div class="btitle">א.2 — כל הביטוי מורם בחזקת \(n\) (או \(n^2\))?</div>
-    <div class="test">← מבחן השורש</div>
-    <p class="step">חשב \(\displaystyle\lim_{n\to\infty}\sqrt[n]{a_n}\).</p>
-    <ul>
-      <li>\(\displaystyle\sum\left(1+\tfrac{1}{n}\right)^{-n^2}\)</li>
-      <li>\(\displaystyle\sum\frac{(-3)^n}{\left(1+\frac{2}{n}\right)^{n^2}}\)</li>
-      <li>\(\displaystyle\sum\frac{(2n)^n}{n^{2n}}\)</li>
-      <li>\(\displaystyle\sum\frac{2^{n^2}}{e^n\sqrt n}\)</li>
-    </ul>
-  </div>
-
-  <div class="branch b-comp">
-    <div class="btitle">א.3 — ביטוי רציונלי/אלגברי בלבד (חזקות של \(n\), שורשים)?</div>
-    <div class="test">← מבחן ההשוואה הגבולי מול \(\frac{1}{n^p}\)</div>
-    <p class="step"><b>איך בוחרים \(p\):</b> החזקה השלטת במונה פחות החזקה השלטת במכנה.</p>
-    <ul>
-      <li>\(\displaystyle\sum\frac{3n+1}{2n^2+5n}\) → משווים ל־\(\frac1n\) → <b>מתבדר</b></li>
-      <li>\(\displaystyle\sum\frac{3n^4+2n^2}{\sqrt{1+n^9}}\) → \(\frac{n^4}{n^{4.5}}=\frac{1}{n^{0.5}}\) → <b>מתבדר</b></li>
-      <li>\(\displaystyle\sum\frac{1}{\sqrt n + (-1)^n}\) → \(\frac{1}{\sqrt n}\) → <b>מתבדר</b></li>
-    </ul>
-    <div class="boxed">מבחן ה־\(p\): &nbsp; \(\displaystyle\sum\frac{1}{n^p}\) מתכנס \(\iff p \gt 1\)</div>
-  </div>
-
-  <div class="branch b-conj">
-    <div class="btitle">א.4 — יש הפרש של שורשים?</div>
-    <div class="test">← קודם כפול בצמוד, אחר כך השוואה גבולית</div>
-    <ul>
-      <li>\(\displaystyle\sum\frac1n\left(\sqrt{n+1}-\sqrt{n-1}\right)\) → הצמוד נותן \(\approx\frac{1}{n\sqrt n}\) → <b>מתכנס</b></li>
-      <li>\(\displaystyle\sum\left(\sqrt{n^3+1}-\sqrt{n^3-1}\right)\) → \(\approx\frac{1}{n^{1.5}}\) → <b>מתכנס</b></li>
-      <li>\(\displaystyle\sum\left(\frac1n-\frac{1}{\sqrt{n^2+1}}\right)\)</li>
-    </ul>
-  </div>
-
-  <div class="branch b-int">
-    <div class="btitle">א.5 — יש \(\ln n\)?</div>
-    <div class="test">← מבחן האינטגרל, או חסימת הלוגריתם</div>
-    <p class="step"><b>אם \(\ln n\) במכנה יחד עם \(n\)</b> — מבחן האינטגרל:</p>
-    <ul>
-      <li>\(\displaystyle\sum\frac{1}{n\ln n}\) → <b>מתבדר</b> &nbsp;<span class="src">(שווה לזכור בעל־פה)</span></li>
-      <li>\(\displaystyle\sum\frac{2}{n(\ln n)^3}\) → <b>מתכנס</b></li>
-    </ul>
-    <div class="boxed">\(\displaystyle\sum\frac{1}{n(\ln n)^p}\) מתכנס \(\iff p \gt 1\)</div>
-    <p class="step"><b>אם \(\ln n\) לבד</b> — השתמש בכך שהלוגריתם גדל לאט מכל חזקה: \(\ln n \lt n^{\varepsilon}\).</p>
-    <ul>
-      <li>\(\displaystyle\sum\frac{1}{(\ln n)^2}\) → גדול מ־\(\frac1n\) → <b>מתבדר</b></li>
-    </ul>
-  </div>
-
-  <div class="branch b-equiv">
-    <div class="btitle">א.6 — יש פונקציה טריגונומטרית/לוגריתמית של \(\frac1n\)?</div>
-    <div class="test">← החלף בשקילה, ואז השוואה גבולית</div>
-    <p class="step">זה הענף הנפוץ ביותר במבחנים. השקילויות (כאשר \(x\to 0\)):</p>
-    <div class="boxed">
-      \(\sin x \sim x \qquad \tan x \sim x \qquad \arctan x \sim x \qquad \ln(1+x)\sim x \qquad 1-\cos x \sim \frac{x^2}{2}\)
+  <div class="branch c1">
+    <div class="bhead">
+      <span class="bnum">1</span>
+      <span class="btrig">עצרת \(n!\) · \(n^n\) · חזקה \(c^n\)</span>
+      <span class="btest">מבחן המנה</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\frac{5^n\,n!}{(2n)!}\) : &nbsp; \(\left|\frac{a_{n+1}}{a_n}\right|=\frac{5(n+1)}{(2n+1)(2n+2)}\to 0<1\) &nbsp;⇒&nbsp; <span class="v-ok">מתכנס</span>.
+        <br><span class="muted">תוצאה בדיוק 1 = המבחן לא הכריע → עבור לענף 3.</span>
+      </div>
     </div>
-    <ul>
-      <li>\(\displaystyle\sum\frac{\tan\frac1n}{\sqrt{n+1}}\) → \(\frac{1/n}{\sqrt n}=\frac{1}{n^{1.5}}\) → <b>מתכנס</b></li>
-      <li>\(\displaystyle\sum\frac{\sin\frac1n}{\ln^2 n}\) → \(\frac{1}{n\ln^2 n}\) → <b>מתכנס</b></li>
-      <li>\(\displaystyle\sum\ln\left(1+\frac1n\right)\) → \(\frac1n\) → <b>מתבדר</b></li>
-      <li>\(\displaystyle\sum\frac{\sin\left(\frac{\pi}{3n^3}\right)}{n^2}\) → \(\frac{1}{n^5}\) → <b>מתכנס</b></li>
-    </ul>
   </div>
 
-  <div class="branch b-bound">
-    <div class="btitle">א.7 — המונה חסום (\(\cos n\), \(\sin n\), \(\arctan n\))?</div>
-    <div class="test">← השוואה ישירה: החלף את המונה בחסם</div>
-    <ul>
-      <li>\(\displaystyle\sum\frac{\cos k}{k\sqrt k}\) → \(\le \frac{1}{k^{1.5}}\) → <b>מתכנס בהחלט</b></li>
-      <li>\(\displaystyle\sum\frac{\sin n}{n^2}\) → \(\le\frac{1}{n^2}\) → <b>מתכנס בהחלט</b></li>
-      <li>\(\displaystyle\sum(-1)^n\frac{(\arctan n)^2}{n^2}\) → \(\arctan n \lt \frac{\pi}{2}\) → \(\le\frac{\pi^2/4}{n^2}\) → <b>מתכנס בהחלט</b></li>
-    </ul>
+  <div class="branch c2">
+    <div class="bhead">
+      <span class="bnum">2</span>
+      <span class="btrig">כל הביטוי בחזקת \(n\) (או \(n^2\))</span>
+      <span class="btest">מבחן השורש</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\left(1+\tfrac1n\right)^{-n^2}\) : &nbsp; \(\sqrt[n]{a_n}=\left(1+\tfrac1n\right)^{-n}\to e^{-1}<1\) &nbsp;⇒&nbsp; <span class="v-ok">מתכנס</span>.
+      </div>
+    </div>
   </div>
 
-  <div class="branch b-tel">
-    <div class="btitle">א.8 — האיבר הוא הפרש שנסגר (טלסקופי)?</div>
-    <div class="test">← חשב את הסכום החלקי \(S_n\) ישירות</div>
-    <ul>
-      <li>\(\displaystyle\sum\ln\frac{n}{n+1}=\sum\big[\ln n-\ln(n+1)\big]\) → \(S_n=-\ln(n+1)\to-\infty\) → <b>מתבדר</b></li>
-      <li>\(\displaystyle\sum\left(\ln\sqrt{k+1}-\ln\sqrt k\right)\) → <b>מתבדר</b></li>
-    </ul>
+  <div class="branch c3">
+    <div class="bhead">
+      <span class="bnum">3</span>
+      <span class="btrig">רציונלי / אלגברי (חזקות של \(n\), שורשים)</span>
+      <span class="btest">השוואה גבולית ל-\(\frac{1}{n^p}\)</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\frac{3n+1}{2n^2+5n}\) : &nbsp; מתנהג כמו \(\frac{3n}{2n^2}=\frac{3}{2n}\), משווים ל-\(\frac1n\) &nbsp;(\(p=1\)) &nbsp;⇒&nbsp; <span class="v-bad">מתבדר</span>.
+        <br><span class="muted">בחירת \(p\): חזקה שלטת במונה פחות חזקה שלטת במכנה. &nbsp; \(\sum\frac{1}{n^p}\) מתכנס ⇔ \(p>1\).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="branch c4">
+    <div class="bhead">
+      <span class="bnum">4</span>
+      <span class="btrig">הפרש של שורשים</span>
+      <span class="btest">כפל בצמוד → השוואה</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\left(\sqrt{n^3+1}-\sqrt{n^3-1}\right)\) : &nbsp; כפל בצמוד \(=\frac{2}{\sqrt{n^3+1}+\sqrt{n^3-1}}\approx\frac{1}{n^{1.5}}\) &nbsp;(\(p=1.5\)) &nbsp;⇒&nbsp; <span class="v-ok">מתכנס</span>.
+      </div>
+    </div>
+  </div>
+
+  <div class="branch c5">
+    <div class="bhead">
+      <span class="bnum">5</span>
+      <span class="btrig">יש \(\ln n\)</span>
+      <span class="btest">מבחן האינטגרל / חסימת לוג</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\frac{1}{n\ln n}\) : &nbsp; \(\int\frac{dx}{x\ln x}=\ln\ln x\to\infty\) &nbsp;⇒&nbsp; <span class="v-bad">מתבדר</span>.
+        <br><span class="muted">כלל: \(\sum\frac{1}{n(\ln n)^p}\) מתכנס ⇔ \(p>1\). &nbsp; \(\ln n\) לבד? הוא קטן מכל חזקה \(n^\varepsilon\) — השווה ל-\(\frac1n\).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="branch c6">
+    <div class="bhead">
+      <span class="bnum">6</span>
+      <span class="btrig">טריג' / לוג של \(\frac1n\) &nbsp;(\(\sin\frac1n,\tan\frac1n,\ln(1+\frac1n)\))</span>
+      <span class="btest">שקילות → השוואה</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\frac{\tan\frac1n}{\sqrt{n+1}}\) : &nbsp; \(\tan\frac1n\sim\frac1n\) &nbsp;⇒&nbsp; \(\frac{1/n}{\sqrt n}=\frac{1}{n^{1.5}}\) &nbsp;⇒&nbsp; <span class="v-ok">מתכנס</span>.
+        <br><span class="muted">כש-\(x\to0\): &nbsp; \(\sin x,\tan x,\arctan x,\ln(1+x)\sim x\) &nbsp;·&nbsp; \(1-\cos x\sim\frac{x^2}{2}\).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="branch c7">
+    <div class="bhead">
+      <span class="bnum">7</span>
+      <span class="btrig">המונה חסום (\(\cos n,\sin n,\arctan n\))</span>
+      <span class="btest">השוואה ישירה לחסם</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\frac{\sin n}{n^2}\) : &nbsp; \(|\sin n|\le 1\) &nbsp;⇒&nbsp; \(\left|\frac{\sin n}{n^2}\right|\le\frac{1}{n^2}\) &nbsp;⇒&nbsp; <span class="v-ok">מתכנס בהחלט</span>.
+      </div>
+    </div>
+  </div>
+
+  <div class="branch c8">
+    <div class="bhead">
+      <span class="bnum">8</span>
+      <span class="btrig">הפרש שנסגר (טלסקופי)</span>
+      <span class="btest">חשב סכום חלקי \(S_n\)</span>
+      <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+      <div class="answer">
+        \(\displaystyle\sum\ln\frac{n}{n+1}=\sum\big[\ln n-\ln(n+1)\big]\) : &nbsp; \(S_n=-\ln(n+1)\to-\infty\) &nbsp;⇒&nbsp; <span class="v-bad">מתבדר</span>.
+      </div>
+    </div>
   </div>
 </section>
 
@@ -351,160 +294,120 @@ window.MathJax = {
 <section>
   <h2><span class="num">ב</span>מסלול ב' — טור מחליף סימן</h2>
 
-  <div class="callout warn">
-    <span class="lead">סדר הפעולות כאן קריטי</span>
-    אל תתחיל מלייבניץ. תמיד בודקים <b>קודם</b> התכנסות בהחלט.
-  </div>
-
-  <div class="flow">
-    <div class="node q"><span class="nlabel">קח את \(\sum|a_n|\) — זהו טור חיובי. הרץ עליו את כל מסלול א'.</span></div>
-    <div class="arrow">↓</div>
-    <div class="split">
-      <div>
-        <div class="arrow"><span class="lbl">\(\sum|a_n|\) מתכנס</span></div>
-        <div class="node stop-good"><span class="nlabel">מתכנס בהחלט — סיימת</span></div>
-      </div>
-      <div>
-        <div class="arrow"><span class="lbl">\(\sum|a_n|\) מתבדר</span></div>
-        <div class="node q"><span class="nlabel">עבור למבחן לייבניץ ↓</span></div>
+  <div class="gate">
+    <div class="gnum">1</div>
+    <div class="gbody">
+      <b>קודם התכנסות בהחלט:</b> קח \(\sum|a_n|\) (טור חיובי) והרץ עליו את מסלול א'.
+      <div class="gopts">
+        <span class="good">\(\sum|a_n|\) מתכנס → מתכנס בהחלט. סוף.</span>
+        <span class="go">\(\sum|a_n|\) מתבדר → לשלב 2</span>
       </div>
     </div>
   </div>
 
-  <h3>מבחן לייבניץ על \(b_n = |a_n|\)</h3>
-  <p>בדוק <b>שני</b> תנאים:</p>
-  <ol>
-    <li>\(b_n\) <b>יורדת</b> מונוטונית (לפחות מאינדקס מסוים)</li>
-    <li>\(\lim_{n\to\infty} b_n = 0\)</li>
-  </ol>
-
-  <div class="flow">
-    <div class="split">
-      <div>
-        <div class="arrow"><span class="lbl">שני התנאים ✓</span></div>
-        <div class="node stop-good"><span class="nlabel">מתכנס בתנאי</span></div>
-      </div>
-      <div>
-        <div class="arrow"><span class="lbl">תנאי 2 נכשל</span></div>
-        <div class="node stop-bad"><span class="nlabel">מתבדר</span></div>
+  <div class="gate">
+    <div class="gnum">2</div>
+    <div class="gbody">
+      <b>מבחן לייבניץ</b> על \(b_n=|a_n|\): &nbsp; (1) \(b_n\) יורדת &nbsp; (2) \(b_n\to0\).
+      <div class="gopts">
+        <span class="good">שניהם ✓ → מתכנס בתנאי</span>
+        <span class="bad">\(b_n\not\to0\) → מתבדר</span>
+        <span class="go">לא יורדת אך \(\to0\) → פצל לזוגי/אי-זוגי ידנית</span>
       </div>
     </div>
-    <div class="arrow" style="margin-top:14px;"><span class="lbl">תנאי 1 נכשל אבל 2 מתקיים</span></div>
-    <div class="node"><span class="nlabel">לייבניץ אינו חל — פצל לזוגיים/אי־זוגיים ובדוק ידנית</span></div>
+    <button class="ex-btn" onclick="toggle(this)">דוגמה</button>
+    <div class="answer">
+      \(\displaystyle\sum\frac{(-1)^n\ln n}{n}\) : &nbsp; בהחלט \(\sum\frac{\ln n}{n}>\sum\frac1n\) מתבדר; לייבניץ: \(\frac{\ln n}{n}\) יורדת מ-\(n=3\) ושואפת ל-0 ✓ &nbsp;⇒&nbsp; <span class="v-ok">מתכנס בתנאי</span>.
+    </div>
   </div>
 
-  <h3>דוגמאות למסלול המלא</h3>
-  <div class="example">
-    <span class="tag">מסלול מלא</span>
-    <p class="step"><b>\(\displaystyle\sum\frac{(-1)^n\ln n}{n}\)</b></p>
-    <p class="step">בהחלט: \(\sum\frac{\ln n}{n} \gt \sum\frac1n\) ⇒ <b>מתבדר</b>. לייבניץ: \(\frac{\ln n}{n}\) יורדת מ־\(n=3\) ושואפת ל־0 ✓</p>
-    <p class="step">⇒ <b>מתכנס בתנאי</b></p>
-    <hr style="border-color:#2a2f4a; margin:12px 0;">
-    <p class="step"><b>\(\displaystyle\sum(-1)^n\frac{1}{\sqrt n}\sin\frac1n\)</b></p>
-    <p class="step">בהחלט: \(\frac{1}{\sqrt n}\cdot\frac1n=\frac{1}{n^{1.5}}\) ⇒ מתכנס ⇒ <b>מתכנס בהחלט</b> (לא צריך לייבניץ בכלל)</p>
-    <hr style="border-color:#2a2f4a; margin:12px 0;">
-    <p class="step"><b>\(\displaystyle\sum(-1)^n\, n\sin\frac1n\)</b></p>
-    <p class="step">כבר נפל בשלב 0: האיבר שואף ל־1 ⇒ <b>מתבדר</b></p>
+  <div class="callout" style="border-inline-start-color:var(--warn);">
+    <span class="lead">אל תתחיל מלייבניץ.</span>
+    תמיד בודקים קודם \(\sum|a_n|\). מי שמדלג עלול לכתוב "בתנאי" על טור שמתכנס בהחלט — וזו תשובה שגויה.
   </div>
 </section>
 
 <!-- ============ מלכודות ============ -->
 <section>
-  <h2><span class="num">!</span>שלוש מלכודות שחוזרות במבחנים</h2>
+  <h2><span class="num">!</span>שלוש מלכודות שחוזרות</h2>
+  <div class="trap"><b>1.</b> "מתכנס בתנאי" דורש <b>שניים</b>: ש-\(\sum|a_n|\) יתבדר <b>וגם</b> ש-\(\sum a_n\) יתכנס.</div>
+  <div class="trap"><b>2.</b> \(\lim a_n=0\) הכרחי אך לא מספיק. הנגד: הטור ההרמוני \(\sum\frac1n\).</div>
+  <div class="trap"><b>3.</b> מבחן מנה/שורש עם תוצאה \(=1\) לא מכריע — עבור להשוואה, לא ל"מתבדר".</div>
+</section>
 
-  <div class="trap">
-    <div class="ttitle">1. "מתכנס בתנאי" דורש שני דברים</div>
-    <p class="step">צריך ש־\(\sum|a_n|\) <b>יתבדר</b> וגם ש־\(\sum a_n\) <b>יתכנס</b>. אם דילגת על הבדיקה הראשונה, אתה עלול לכתוב "בתנאי" על טור שמתכנס בהחלט — וזו תשובה שגויה.</p>
+<!-- ============ סיכום ============ -->
+<section>
+  <h2><span class="num">✓</span>הכול בשש שורות</h2>
+  <div class="cheat">
+    <ol>
+      <li>\(a_n\not\to0\)? ⇒ <b>מתבדר.</b> סוף.</li>
+      <li>מחליף סימן? ⇒ קודם \(\sum|a_n|\), ורק אז לייבניץ.</li>
+      <li>עצרת / \(n^n\) / \(c^n\) ⇒ <b>מנה</b>.</li>
+      <li>הכול בחזקת \(n\) ⇒ <b>שורש</b>.</li>
+      <li>רציונלי / שורשים ⇒ <b>השוואה גבולית</b> ל-\(\frac{1}{n^p}\).</li>
+      <li>\(\sin\frac1n,\tan\frac1n,\ln(1+\frac1n)\) ⇒ <b>החלף ב-\(\frac1n\)</b> ואז השווה.</li>
+    </ol>
+    <p class="muted" style="margin-top:8px;">מיוחדים: \(\ln n\) עם \(n\) ⇒ אינטגרל · מונה חסום ⇒ השוואה ישירה · הפרש שורשים ⇒ צמוד · הפרש שנסגר ⇒ סכום חלקי.</p>
   </div>
-
-  <div class="trap">
-    <div class="ttitle">2. \(\lim a_n = 0\) אינו מספיק</div>
-    <p class="step">זהו תנאי הכרחי בלבד, לא מספיק. הדוגמה הנגדית: הטור ההרמוני \(\sum\frac1n\).</p>
-  </div>
-
-  <div class="trap">
-    <div class="ttitle">3. מבחן המנה עם תוצאה 1 אינו מכריע</div>
-    <p class="step">תוצאה \(L=1\) <b>אינה</b> אומרת "מתבדר". היא אומרת שהמבחן לא עזר — עבור להשוואה גבולית.</p>
-  </div>
+  <div class="boxed">בעל-פה: &nbsp; \(\displaystyle\sum\frac{1}{n^p}\) מתכנס ⇔ \(p>1\) &nbsp;·&nbsp; \(\displaystyle\sum\frac{1}{n(\ln n)^p}\) מתכנס ⇔ \(p>1\)</div>
 </section>
 
 <!-- ============ תרגול ============ -->
 <section>
-  <h2><span class="num">✎</span>תרגול מהיר — רק לזהות את המבחן</h2>
-  <p class="muted">אל תפתור. רק אמור: איזה ענף בעץ, ואיזה מבחן. שנייה לכל אחד.</p>
+  <h2><span class="num">✎</span>תרגול — זיהוי מהיר</h2>
+  <p class="muted">לא לפתור — רק לומר: איזה ענף ואיזה מבחן. 8 שאלות, מוסתרות.</p>
+  <button class="ex-btn wide" onclick="toggle(this)">פתח 8 שאלות תרגול ▾</button>
+  <div class="answer" style="background:transparent; border:none; padding:0;">
 
-  <div class="qcard">
-    <p><span class="qnum">1.</span> \(\displaystyle\sum_{n=1}^{\infty}\frac{n^3}{2^{n/2}}\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.1 — יש חזקה \(c^n\) ⇒ <b>מבחן המנה</b>. (מתכנס)</p></div>
+    <div class="qcard">
+      <p><span class="qnum">1.</span> \(\displaystyle\sum\frac{n^3}{2^{n/2}}\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 1 — חזקה \(c^n\) ⇒ <b>מנה</b>. (מתכנס)</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">2.</span> \(\displaystyle\sum\frac{1}{(\ln n)^2}\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 5 — \(\ln n\) לבד ⇒ <b>השוואה</b> ל-\(\frac1n\). מתבדר.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">3.</span> \(\displaystyle\sum(-1)^n\ln\!\left(\frac{n+1}{n}\right)\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">מסלול ב'. בהחלט \(\sim\frac1n\) מתבדר; לייבניץ ✓ ⇒ <b>מתכנס בתנאי</b>.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">4.</span> \(\displaystyle\sum\sqrt{\frac{2k^2+1}{3k^3+k+1}}\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 3 — אלגברי ⇒ <b>השוואה גבולית</b>. בשורש \(\sim\frac1k\) ⇒ האיבר \(\sim\frac{1}{\sqrt k}\) ⇒ מתבדר.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">5.</span> \(\displaystyle\sum\frac{\cos(n^n)}{n!}\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 7 — מונה חסום ⇒ <b>השוואה</b>: \(\le\frac{1}{n!}\) ⇒ <b>מתכנס בהחלט</b>.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">6.</span> \(\displaystyle\sum\ln\!\left(\frac{n}{n+1}\right)\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 8 — טלסקופי ⇒ <b>סכום חלקי</b>: \(S_n=-\ln(n+1)\to-\infty\) ⇒ מתבדר.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">7.</span> \(\displaystyle\sum\left(1+\frac1n\right)^{-n^2}\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 2 — הכול בחזקת \(n^2\) ⇒ <b>שורש</b>. מתכנס.</div>
+    </div>
+
+    <div class="qcard">
+      <p><span class="qnum">8.</span> \(\displaystyle\sum\left(\sqrt{n^3+1}-\sqrt{n^3-1}\right)\)</p>
+      <button class="ex-btn" onclick="toggle(this)">תשובה</button>
+      <div class="answer">ענף 4 — הפרש שורשים ⇒ <b>צמוד</b> ואז השוואה: \(\approx\frac{1}{n^{1.5}}\) ⇒ מתכנס.</div>
+    </div>
+
   </div>
-
-  <div class="qcard">
-    <p><span class="qnum">2.</span> \(\displaystyle\sum_{n=2}^{\infty}\frac{1}{(\ln n)^2}\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.5 — \(\ln n\) לבד ⇒ <b>השוואה</b> ל־\(\frac1n\) (הלוגריתם גדל לאט). מתבדר.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">3.</span> \(\displaystyle\sum_{n=1}^{\infty}(-1)^n\ln\left(\frac{n+1}{n}\right)\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>מסלול ב'. בהחלט: \(\ln(1+\frac1n)\sim\frac1n\) ⇒ מתבדר. לייבניץ ✓ ⇒ <b>מתכנס בתנאי</b>.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">4.</span> \(\displaystyle\sum_{k=1}^{\infty}\sqrt{\frac{2k^2+1}{3k^3+k+1}}\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.3 — אלגברי טהור ⇒ <b>השוואה גבולית</b>. בתוך השורש \(\sim\frac{1}{k}\), ולכן האיבר \(\sim\frac{1}{\sqrt k}\) ⇒ מתבדר.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">5.</span> \(\displaystyle\sum_{n=1}^{\infty}\frac{\cos(n^n)}{n!}\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.7 — מונה חסום ⇒ <b>השוואה</b>: \(\left|\frac{\cos(n^n)}{n!}\right|\le\frac{1}{n!}\) ⇒ <b>מתכנס בהחלט</b>.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">6.</span> \(\displaystyle\sum_{n=2}^{\infty}\ln\left(\frac{n}{n+1}\right)\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.8 — טלסקופי ⇒ <b>סכום חלקי ישיר</b>: \(S_n=-\ln(n+1)\to-\infty\) ⇒ מתבדר.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">7.</span> \(\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{-n^2}\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.2 — הכול בחזקת \(n^2\) ⇒ <b>מבחן השורש</b>. מתכנס.</p></div>
-  </div>
-
-  <div class="qcard">
-    <p><span class="qnum">8.</span> \(\displaystyle\sum_{n=1}^{\infty}\left(\sqrt{n^3+1}-\sqrt{n^3-1}\right)\)</p>
-    <button class="reveal-btn q" onclick="toggle(this)">הצג תשובה</button>
-    <div class="answer"><p>ענף א.4 — הפרש שורשים ⇒ <b>כפל בצמוד</b> ואז השוואה: \(\approx\frac{1}{n^{1.5}}\) ⇒ מתכנס.</p></div>
-  </div>
-</section>
-
-<!-- ============ סיכום להדפסה ============ -->
-<section>
-  <h2><span class="num">✓</span>סיכום מקוצר — לדף אחד</h2>
-
-  <div class="cheat">
-    <h3>המסלול, בשש שורות</h3>
-    <ol>
-      <li>\(a_n \not\to 0\)? ⇒ <b>מתבדר.</b> סוף.</li>
-      <li>מחליף סימן? ⇒ קודם \(\sum|a_n|\), ורק אחר כך לייבניץ.</li>
-      <li>עצרת / \(n^n\) / \(c^n\) ⇒ <b>מנה</b>.</li>
-      <li>הכול בחזקת \(n\) ⇒ <b>שורש</b>.</li>
-      <li>רציונלי / שורשים ⇒ <b>השוואה גבולית</b> מול \(\frac{1}{n^p}\).</li>
-      <li>\(\sin\frac1n\), \(\tan\frac1n\), \(\ln(1+\frac1n)\) ⇒ <b>החלף ב־\(\frac1n\)</b> ואז השווה.</li>
-    </ol>
-    <p class="muted" style="margin-top:10px;">מקרים מיוחדים: \(\ln n\) עם \(n\) ⇒ אינטגרל · מונה חסום ⇒ השוואה ישירה · הפרש שורשים ⇒ צמוד · הפרש שנסגר ⇒ סכום חלקי.</p>
-  </div>
-
-  <div class="callout tip">
-    <span class="lead">שתי נוסחאות שחייבות להיות בעל־פה</span>
-    \(\displaystyle\sum\frac{1}{n^p}\) מתכנס \(\iff p \gt 1\) &nbsp;·&nbsp; \(\displaystyle\sum\frac{1}{n(\ln n)^p}\) מתכנס \(\iff p \gt 1\)
-  </div>
-
-  <p class="muted">טיפ: הדף הזה מותאם להדפסה (Ctrl+P) — הפתרונות ייפתחו אוטומטית והכפתורים ייעלמו.</p>
 </section>
 
 <div class="nav">
@@ -512,9 +415,7 @@ window.MathJax = {
   <span class="pill">מבוסס על 82 שאלות טורים ממבחני עבר</span>
 </div>
 
-<footer>
-  אינפי 2 · חומר עזר ללימוד עצמי · עץ החלטות להתכנסות טורים
-</footer>
+<footer>אינפי 2 · חומר עזר ללימוד עצמי · עץ החלטות להתכנסות טורים</footer>
 
 </div>
 
@@ -522,8 +423,8 @@ window.MathJax = {
 function toggle(btn){
   const ans = btn.nextElementSibling;
   const open = ans.classList.toggle('show');
-  if(btn.textContent.includes('הצג')) btn.dataset.orig = btn.textContent;
-  btn.textContent = open ? 'הסתר' : (btn.dataset.orig || 'הצג תשובה');
+  if(!btn.dataset.orig) btn.dataset.orig = btn.textContent;
+  btn.textContent = open ? 'הסתר' : btn.dataset.orig;
 }
 </script>
 </body>
